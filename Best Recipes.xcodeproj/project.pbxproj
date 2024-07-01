@@ -17,6 +17,7 @@
 		0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158C2C302DD800BA2CE9 /* SceneDelegate.swift */; };
 		0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158E2C302DD800BA2CE9 /* ViewController.swift */; };
 		0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA815932C302DD900BA2CE9 /* Assets.xcassets */; };
+		11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EBDE022C333BE900D9DB8B /* RecipeView.swift */; };
 		3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBAF2C332EB200892324 /* RxBlocking */; };
 		3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB12C332EB200892324 /* RxCocoa */; };
 		3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB32C332EB200892324 /* RxRelay */; };
@@ -38,6 +39,7 @@
 		0BA8158E2C302DD800BA2CE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BA815932C302DD900BA2CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA815982C302DD900BA2CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11EBDE022C333BE900D9DB8B /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		0B2228032C31D070005A2AC9 /* Recipe Screen */ = {
 			isa = PBXGroup;
 			children = (
+				11EBDE022C333BE900D9DB8B /* RecipeView.swift */,
 				0B2228042C31D095005A2AC9 /* RecipeViewController.swift */,
 			);
 			path = "Recipe Screen";
@@ -241,6 +244,7 @@
 				0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */,
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
+				11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */,
 				0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */,
 				0B2227FF2C31D011005A2AC9 /* OnboardingViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
