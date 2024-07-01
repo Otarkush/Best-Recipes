@@ -11,9 +11,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
     }
-
-
 }
 
+// MARK: - Prewiew for UIKIT
+@available(iOS 17.0, *)
+#Preview(traits: .sizeThatFitsLayout, body: {
+    ViewController()
+})
