@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "75490896-4567-4B56-BF84-8500A1002550"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "63B4B625-9D44-4E3F-A0A9-239B27AB6663"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Best Recipes/Favorites Screen/FavoritesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "FavoritesView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "63B4B625-9D44-4E3F-A0A9-239B27AB6663 - d046fe0c0aef7b68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Best_Recipes.FavoritesView.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Best_Recipes.FavoritesView&gt;"
+                  moduleName = "Best Recipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexander/Developer/chelenge2/Best-Recipes/Best%20Recipes/Favorites%20Screen/FavoritesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "63B4B625-9D44-4E3F-A0A9-239B27AB6663 - 7098cb586177106e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Best_Recipes.FavoritesView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Best_Recipes.FavoritesView&gt;"
+                  moduleName = "Best Recipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexander/Developer/chelenge2/Best-Recipes/Best%20Recipes/Favorites%20Screen/FavoritesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "58">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F64C138-A797-4389-96E0-8EEBBCB77395"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Best Recipes/Favorites Screen/FavoritesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

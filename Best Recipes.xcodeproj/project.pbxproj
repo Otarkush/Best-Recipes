@@ -17,6 +17,7 @@
 		0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158C2C302DD800BA2CE9 /* SceneDelegate.swift */; };
 		0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158E2C302DD800BA2CE9 /* ViewController.swift */; };
 		0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA815932C302DD900BA2CE9 /* Assets.xcassets */; };
+		11D2AA8B2C32B71A007CD35F /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		0BA815982C302DD900BA2CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BA8159D2C302DDA00BA2CE9 /* Best RecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Best RecipesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BA815A72C302DDA00BA2CE9 /* Best RecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Best RecipesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0B2228012C31D052005A2AC9 /* FavoritesViewController.swift */,
+				11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */,
 			);
 			path = "Favorites Screen";
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
 				0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */,
+				11D2AA8B2C32B71A007CD35F /* FavoritesView.swift in Sources */,
 				0B2227FF2C31D011005A2AC9 /* OnboardingViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
 				0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */,
@@ -467,14 +471,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H955NK8X7Y;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Best Recipes/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,14 +499,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H955NK8X7Y;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Best Recipes/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
