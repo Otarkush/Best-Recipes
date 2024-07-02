@@ -28,6 +28,8 @@
 		3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB52C332EB200892324 /* RxSwift */; };
 		3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB92C332EB200892324 /* SnapKit */; };
 		3CB7EBBC2C332EB200892324 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBBB2C332EB200892324 /* RxGesture */; };
+		79E5C5BA2C34711600124B88 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5B92C34711600124B88 /* ListItem.swift */; };
+		79E5C5BC2C3474DB00124B88 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5BB2C3474DB00124B88 /* ListSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		11EBDE022C333BE900D9DB8B /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		79E5C5B92C34711600124B88 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		79E5C5BB2C3474DB00124B88 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				0B2227FB2C31CFBB005A2AC9 /* HomeViewController.swift */,
+				79E5C5B92C34711600124B88 /* ListItem.swift */,
+				79E5C5BB2C3474DB00124B88 /* ListSection.swift */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -283,11 +289,13 @@
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
 				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
+				79E5C5BC2C3474DB00124B88 /* ListSection.swift in Sources */,
 				11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */,
 				0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */,
 				0B2227FF2C31D011005A2AC9 /* OnboardingViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
 				11671AB42C341BCD00FCD29A /* Resources.swift in Sources */,
+				79E5C5BA2C34711600124B88 /* ListItem.swift in Sources */,
 				0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */,
 				0B2227FC2C31CFBB005A2AC9 /* HomeViewController.swift in Sources */,
 			);
