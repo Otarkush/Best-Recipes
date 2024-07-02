@@ -8,10 +8,11 @@
 import UIKit
 
 final class RecipeViewController: UIViewController {
+    private let recipeView = RecipeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        l
+        view = recipeView
     }
 }
