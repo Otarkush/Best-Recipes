@@ -73,4 +73,8 @@ class FavoritesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with recipe: Recipe) {
+        recipesImageView.image = UIImage(named: recipe.image)
+        descriptionLabel.text = recipe.title
+    }
 }
