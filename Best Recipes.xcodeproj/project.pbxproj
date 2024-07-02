@@ -18,6 +18,7 @@
 		0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158E2C302DD800BA2CE9 /* ViewController.swift */; };
 		0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA815932C302DD900BA2CE9 /* Assets.xcassets */; };
 		11D2AA8B2C32B71A007CD35F /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */; };
+		11D2AA8D2C32EA44007CD35F /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2AA8C2C32EA44007CD35F /* FavoritesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		0BA8159D2C302DDA00BA2CE9 /* Best RecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Best RecipesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BA815A72C302DDA00BA2CE9 /* Best RecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Best RecipesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		11D2AA8C2C32EA44007CD35F /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				0B2228012C31D052005A2AC9 /* FavoritesViewController.swift */,
 				11D2AA8A2C32B71A007CD35F /* FavoritesView.swift */,
+				11D2AA8C2C32EA44007CD35F /* FavoritesTableViewCell.swift */,
 			);
 			path = "Favorites Screen";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11D2AA8D2C32EA44007CD35F /* FavoritesTableViewCell.swift in Sources */,
 				0B22280B2C31D136005A2AC9 /* Model.swift in Sources */,
 				0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */,
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
