@@ -20,8 +20,8 @@ final class FavoritesViewController: UIViewController {
 //    данные c API с картинкой и текстом
     let recipeGarlic = Recipe(id: 716429,
                               title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-                              image: "https://img.spoonacular.com/recipes/716429-312x231.jpg")
-    let recipePork = Recipe(id: 715538, title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta", image: "https://img.spoonacular.com/recipes/715538-312x231.jpg")
+                              image: "716429.jpg")
+    let recipePork = Recipe(id: 715538, title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta", image: "715538.jpg")
     
     lazy var recipe: [Recipe] = [recipeGarlic, recipePork, recipeGarlic, recipePork]
     
@@ -40,10 +40,14 @@ final class FavoritesViewController: UIViewController {
     
 }
 
+// MARK: - Extinsions
+
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+
 }
 
 extension FavoritesViewController: UITableViewDataSource {
@@ -54,9 +58,9 @@ extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = FavoritesTableViewCell.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
+        cell.selectionStyle = .none
         cell.configure(with: recipe[indexPath.row])
         return cell
     }
-    
     
 }

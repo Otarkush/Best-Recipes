@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesView: UIView {
+final class FavoritesView: UIView {
     
     // MARK: -  Property UI
     private lazy var titleLabel: UILabel = {
@@ -22,11 +22,12 @@ class FavoritesView: UIView {
     }()
     
     private lazy var favoriteTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
-//        tableView.separatorStyle = .none
-        tableView.backgroundColor = .blue
-        tableView.estimatedRowHeight = 100
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = true
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
+//        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -52,9 +53,11 @@ class FavoritesView: UIView {
         favoriteTableView
         ].forEach{ addSubview($0) }
         
+//        регистрация ячейки
         favoriteTableView.register(FavoritesTableViewCell.self, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
     }
     
+//    Делегаты
     func setDelegate(_ value: FavoritesViewController) {
         favoriteTableView.delegate = value
         favoriteTableView.dataSource = value
@@ -70,7 +73,7 @@ class FavoritesView: UIView {
             favoriteTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             favoriteTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             favoriteTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            favoriteTableView.heightAnchor.constraint(equalToConstant: 100)
+            favoriteTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             
         ])
     }

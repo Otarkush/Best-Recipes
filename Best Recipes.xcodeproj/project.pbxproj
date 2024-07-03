@@ -24,12 +24,6 @@
 		11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EBDE022C333BE900D9DB8B /* RecipeView.swift */; };
 		11ED712F2C3464B100B90C1C /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED712E2C3464B100B90C1C /* FavoritesTableViewCell.swift */; };
 		11ED71312C3464B900B90C1C /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED71302C3464B900B90C1C /* FavoritesView.swift */; };
-		3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBAF2C332EB200892324 /* RxBlocking */; };
-		3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB12C332EB200892324 /* RxCocoa */; };
-		3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB32C332EB200892324 /* RxRelay */; };
-		3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB52C332EB200892324 /* RxSwift */; };
-		3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB92C332EB200892324 /* SnapKit */; };
-		3CB7EBBC2C332EB200892324 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBBB2C332EB200892324 /* RxGesture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,12 +53,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */,
-				3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */,
-				3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */,
-				3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */,
-				3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */,
-				3CB7EBBC2C332EB200892324 /* RxGesture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,12 +205,6 @@
 			);
 			name = "Best Recipes";
 			packageProductDependencies = (
-				3CB7EBAF2C332EB200892324 /* RxBlocking */,
-				3CB7EBB12C332EB200892324 /* RxCocoa */,
-				3CB7EBB32C332EB200892324 /* RxRelay */,
-				3CB7EBB52C332EB200892324 /* RxSwift */,
-				3CB7EBB92C332EB200892324 /* SnapKit */,
-				3CB7EBBB2C332EB200892324 /* RxGesture */,
 			);
 			productName = "Best Recipes";
 			productReference = 0BA815872C302DD800BA2CE9 /* Best Recipes.app */;
@@ -537,39 +519,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		3CB7EBAF2C332EB200892324 /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
-		};
-		3CB7EBB12C332EB200892324 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		3CB7EBB32C332EB200892324 /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		3CB7EBB52C332EB200892324 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		3CB7EBB92C332EB200892324 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAC2C332E8000892324 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		3CB7EBBB2C332EB200892324 /* RxGesture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CB7EBAD2C332E9100892324 /* XCRemoteSwiftPackageReference "RxGesture" */;
-			productName = RxGesture;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0BA8157F2C302DD800BA2CE9 /* Project object */;
 }
