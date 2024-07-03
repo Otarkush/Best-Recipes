@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B2227FC2C31CFBB005A2AC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2227FB2C31CFBB005A2AC9 /* HomeViewController.swift */; };
-		0B2227FF2C31D011005A2AC9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2227FE2C31D011005A2AC9 /* OnboardingViewController.swift */; };
+		0B2227FF2C31D011005A2AC9 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2227FE2C31D011005A2AC9 /* OnboardingMainViewController.swift */; };
 		0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2228012C31D052005A2AC9 /* FavoritesViewController.swift */; };
 		0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2228042C31D095005A2AC9 /* RecipeViewController.swift */; };
 		0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2228072C31D0D0005A2AC9 /* TabBarController.swift */; };
@@ -23,11 +23,14 @@
 		3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB52C332EB200892324 /* RxSwift */; };
 		3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB92C332EB200892324 /* SnapKit */; };
 		3CB7EBBC2C332EB200892324 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBBB2C332EB200892324 /* RxGesture */; };
+		B51172772C3496C2001A44E5 /* OnboardingPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */; };
+		B51172792C34AD47001A44E5 /* OnboardingPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */; };
+		B511727B2C34AE71001A44E5 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B2227FB2C31CFBB005A2AC9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		0B2227FE2C31D011005A2AC9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		0B2227FE2C31D011005A2AC9 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
 		0B2228012C31D052005A2AC9 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0B2228042C31D095005A2AC9 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		0B2228072C31D0D0005A2AC9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -38,6 +41,9 @@
 		0BA8158E2C302DD800BA2CE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BA815932C302DD900BA2CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA815982C302DD900BA2CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
+		B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
+		B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +85,10 @@
 		0B2227FD2C31CFE8005A2AC9 /* Onboarding Screen */ = {
 			isa = PBXGroup;
 			children = (
-				0B2227FE2C31D011005A2AC9 /* OnboardingViewController.swift */,
+				0B2227FE2C31D011005A2AC9 /* OnboardingMainViewController.swift */,
+				B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */,
+				B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */,
+				B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */,
 			);
 			path = "Onboarding Screen";
 			sourceTree = "<group>";
@@ -242,7 +251,10 @@
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
 				0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */,
-				0B2227FF2C31D011005A2AC9 /* OnboardingViewController.swift in Sources */,
+				B51172792C34AD47001A44E5 /* OnboardingPage2ViewController.swift in Sources */,
+				0B2227FF2C31D011005A2AC9 /* OnboardingMainViewController.swift in Sources */,
+				B51172772C3496C2001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
+				B511727B2C34AE71001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
 				0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */,
 				0B2227FC2C31CFBB005A2AC9 /* HomeViewController.swift in Sources */,
