@@ -12,7 +12,6 @@ class FavoriteCoordinator: Coordinator {
     override func start() {
         print("Init favorite screen")
         let vc = FavoriteViewController()
-        vc.view.backgroundColor = .red
         navigationController?.pushViewController(vc, animated: true)
     }
     

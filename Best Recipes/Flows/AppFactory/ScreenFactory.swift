@@ -27,14 +27,11 @@ struct AppFactory {
         onboardingCoordinator.start()
     }
     
-    static func makeTabBarFlow(
-        coordinator: AppCoordinator,
-        finishDelegate: CoordinatorFinishDelegate
-    ) -> TabBarController {
+    static func makeTabBarFlow(coordinator: AppCoordinator, finishDelegate: CoordinatorFinishDelegate) -> TabBarController {
         // MARK: - Вкладка home
         let homeNavigationController = UINavigationController()
         homeNavigationController.tabBarItem = UITabBarItem(
-            title: "Home",
+            title: nil,
             image: UIImage(systemName: "house.fill"),
             tag: 0
         )
@@ -48,39 +45,47 @@ struct AppFactory {
         // MARK: - Вкладка favorite
         let favoriteNavigationController = UINavigationController()
         favoriteNavigationController.tabBarItem = UITabBarItem(
-            title: "Favorite",
+            title: nil,
             image: UIImage(systemName: "bookmark"),
             tag: 1
         )
-        let favoriteCoordinator = HomeCoordinator(
-            type: .home,
+        let favoriteCoordinator = FavoriteCoordinator(
+            type: .favorite,
             navigationController: favoriteNavigationController
         )
         favoriteCoordinator.finishDelegate = finishDelegate
         favoriteCoordinator.start()
         
+        // MARK: - Spacer
+        let spacer = UINavigationController()
+        spacer.tabBarItem = UITabBarItem(
+            title: nil,
+            image: nil,
+            tag: 3
+        )
+        
         // MARK: - Влкадка notification
         let notificationNavigationController = UINavigationController()
         notificationNavigationController.tabBarItem = UITabBarItem(
-            title: "Notification",
+            title: nil,
             image: UIImage(systemName: "bell"),
-            tag: 2
+            tag: 4
         )
-        let notificationCoordinator = HomeCoordinator(
+        let notificationCoordinator = NotificationCoordinator(
             type: .notification,
             navigationController: notificationNavigationController
         )
         notificationCoordinator.finishDelegate = finishDelegate
         notificationCoordinator.start()
-
+        
         // MARK: - Вкладка profile
         let profileNavigationController = UINavigationController()
         profileNavigationController.tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: nil,
             image: UIImage(systemName: "person"),
-            tag: 3
+            tag: 5
         )
-        let profileCoordinator = HomeCoordinator(
+        let profileCoordinator = ProfileCoordinator(
             type: .profile,
             navigationController: profileNavigationController
         )
@@ -95,10 +100,10 @@ struct AppFactory {
         let tabbarControllers = [
             homeNavigationController,
             favoriteNavigationController,
+            spacer,
             notificationNavigationController,
             profileNavigationController
         ]
-        
         let tabbar = TabBarController(tabBarControllers: tabbarControllers)
         return tabbar
     }

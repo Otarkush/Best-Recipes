@@ -1,5 +1,5 @@
 //
-//  HomeCoordinator.swift
+//  NotificationCoordinator.swift
 //  Best Recipes
 //
 //  Created by dsm 5e on 01.07.2024.
@@ -7,12 +7,11 @@
 
 import Foundation
 
-class HomeCoordinator: Coordinator {
+class NotificationCoordinator: Coordinator {
     
     override func start() {
-        print("Init home screen")
-        let vc = HomeViewController()
-        vc.view.backgroundColor = .red
+        print("Init notification screen")
+        let vc = NotificationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

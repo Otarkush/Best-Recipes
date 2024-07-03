@@ -7,7 +7,9 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
+    
+    private let customTabBar = CustomTabBar()
     
     init(tabBarControllers: [UIViewController]) {
         super.init(nibName: nil, bundle: nil)
@@ -22,9 +24,6 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .red
+        setValue(customTabBar, forKey: "tabBar")
     }
-    
 }

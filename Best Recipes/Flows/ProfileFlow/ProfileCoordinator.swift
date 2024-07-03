@@ -1,5 +1,5 @@
 //
-//  NotificationCoordinator.swift
+//  ProfileCoordinator.swift
 //  Best Recipes
 //
 //  Created by dsm 5e on 01.07.2024.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-class NotificationCoordinator: Coordinator {
+class ProfileCoordinator: Coordinator {
     
     override func start() {
-        print("Init notification screen")
-        let vc = NotificationViewController()
-        vc.view.backgroundColor = .red
+        print("Init profile screen")
+        let vc = ProfileViewController()
+        vc.view.backgroundColor = .green
         navigationController?.pushViewController(vc, animated: true)
     }
     

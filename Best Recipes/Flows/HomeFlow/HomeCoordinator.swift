@@ -1,5 +1,5 @@
 //
-//  ProfileCoordinator.swift
+//  HomeCoordinator.swift
 //  Best Recipes
 //
 //  Created by dsm 5e on 01.07.2024.
@@ -7,12 +7,11 @@
 
 import Foundation
 
-class ProfileCoordinator: Coordinator {
+class HomeCoordinator: Coordinator {
     
     override func start() {
-        print("Init profile screen")
-        let vc = ProfileViewController()
-        vc.view.backgroundColor = .red
+        print("Init home screen")
+        let vc = HomeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

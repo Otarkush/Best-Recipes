@@ -16,6 +16,6 @@ final class  UserDefaultsService {
     // MARK: - Булька для проверки прошел ли пользователь онбординг
     var isOnboarding: Bool {
         get { UserDefaults.standard.bool(forKey: "isOnboaring") }
-        set { UserDefaults.standard.setValue(newValue, forKey: "isOnboaring")}
+        set { UserDefaults.standard.setValue(newValue, forKey: "isOnboaring") }
     }
 }
