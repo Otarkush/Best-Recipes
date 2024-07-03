@@ -18,7 +18,7 @@ final class HomeViewController: UIViewController {
         return collectionView
     }()
     
-    private let sections = MockData.shared
+    private let sections = MockData.shared.pageData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,11 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        <#code#>
+        sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        sections[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
