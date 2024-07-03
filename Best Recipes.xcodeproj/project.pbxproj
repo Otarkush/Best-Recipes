@@ -25,6 +25,7 @@
 		11FD0DCA2C34809D007EA1C7 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD0DC92C34809D007EA1C7 /* IngredientModel.swift */; };
 		3C1D552B2C35B70700AA6C40 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D552A2C35B70700AA6C40 /* PlusButton.swift */; };
 		3C1D552D2C35CB5500AA6C40 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D552C2C35CB5500AA6C40 /* CustomTabBar.swift */; };
+		3C1D55292C35A71500AA6C40 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* NetworkManager.swift */; };
 		3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBAF2C332EB200892324 /* RxBlocking */; };
 		3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB12C332EB200892324 /* RxCocoa */; };
 		3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB32C332EB200892324 /* RxRelay */; };
@@ -82,6 +83,7 @@
 		11FD0DC32C3470B3007EA1C7 /* TitleForIngredientsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleForIngredientsTableView.swift; sourceTree = "<group>"; };
 		11FD0DC72C347D50007EA1C7 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		11FD0DC92C34809D007EA1C7 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
+		3C1D55282C35A71500AA6C40 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,12 @@
 				11671AAF2C341B2C00FCD29A /* Helpers */,
 				0B2227F92C31CE3E005A2AC9 /* App */,
 				0B2228092C31D123005A2AC9 /* Model */,
+				0B2228062C31D0A6005A2AC9 /* Tab bar */,
+				0B2228032C31D070005A2AC9 /* Recipe Screen */,
+				0B2228002C31D032005A2AC9 /* Favorites Screen */,
+				0B2227FD2C31CFE8005A2AC9 /* Onboarding Screen */,
+				0B2227FA2C31CE8B005A2AC9 /* Home Screen */,
+				3C1D55272C35A70600AA6C40 /* Managers */,
 				3CB7EBBF2C33463000892324 /* Flows */,
 				3CB7EBE52C3352C900892324 /* Services */,
 			);
@@ -238,6 +246,14 @@
 				11FD0DC72C347D50007EA1C7 /* IngredientTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		3C1D55272C35A70600AA6C40 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3C1D55282C35A71500AA6C40 /* NetworkManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
@@ -433,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C1D55292C35A71500AA6C40 /* NetworkManager.swift in Sources */,
 				3CB7EBEA2C335AFE00892324 /* ScreenFactory.swift in Sources */,
 				0B22280B2C31D136005A2AC9 /* Model.swift in Sources */,
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
