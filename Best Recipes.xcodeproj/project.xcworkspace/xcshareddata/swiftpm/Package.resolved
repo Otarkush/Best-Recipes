@@ -1,4 +1,5 @@
 {
+  "originHash" : "8fab52d06117a63502d6239dc15186a36a465a2e0028c50fcceac1223c219f4f",
   "pins" : [
     {
       "identity" : "rxgesture",
@@ -28,5 +29,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

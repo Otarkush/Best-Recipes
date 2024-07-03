@@ -17,6 +17,11 @@
 		0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158C2C302DD800BA2CE9 /* SceneDelegate.swift */; };
 		0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158E2C302DD800BA2CE9 /* ViewController.swift */; };
 		0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA815932C302DD900BA2CE9 /* Assets.xcassets */; };
+		11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB12C341B6D00FCD29A /* UIColor + ext.swift */; };
+		11671AB42C341BCD00FCD29A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB32C341BCD00FCD29A /* Resources.swift */; };
+		11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB62C34263800FCD29A /* Poppins-Bold.ttf */; };
+		11671AB92C34266F00FCD29A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */; };
+		11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EBDE022C333BE900D9DB8B /* RecipeView.swift */; };
 		3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBAF2C332EB200892324 /* RxBlocking */; };
 		3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB12C332EB200892324 /* RxCocoa */; };
 		3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB32C332EB200892324 /* RxRelay */; };
@@ -44,6 +49,11 @@
 		B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
 		B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
 		B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
+		11671AB12C341B6D00FCD29A /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
+		11671AB32C341BCD00FCD29A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		11EBDE022C333BE900D9DB8B /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,7 @@
 		0B2228032C31D070005A2AC9 /* Recipe Screen */ = {
 			isa = PBXGroup;
 			children = (
+				11EBDE022C333BE900D9DB8B /* RecipeView.swift */,
 				0B2228042C31D095005A2AC9 /* RecipeViewController.swift */,
 			);
 			path = "Recipe Screen";
@@ -129,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA815892C302DD800BA2CE9 /* Best Recipes */,
+				11671AB52C34260300FCD29A /* Fonts */,
 				0BA815882C302DD800BA2CE9 /* Products */,
 				3CB7EBAE2C332EB200892324 /* Frameworks */,
 			);
@@ -146,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA815982C302DD900BA2CE9 /* Info.plist */,
+				11671AAF2C341B2C00FCD29A /* Helpers */,
 				0B2227F92C31CE3E005A2AC9 /* App */,
 				0B2228092C31D123005A2AC9 /* Model */,
 				0B2228062C31D0A6005A2AC9 /* Tab bar */,
@@ -155,6 +168,32 @@
 				0B2227FA2C31CE8B005A2AC9 /* Home Screen */,
 			);
 			path = "Best Recipes";
+			sourceTree = "<group>";
+		};
+		11671AAF2C341B2C00FCD29A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				11671AB02C341B3C00FCD29A /* Extensions */,
+				11671AB32C341BCD00FCD29A /* Resources.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		11671AB02C341B3C00FCD29A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				11671AB12C341B6D00FCD29A /* UIColor + ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		11671AB52C34260300FCD29A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */,
+				11671AB62C34263800FCD29A /* Poppins-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
@@ -235,7 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11671AB92C34266F00FCD29A /* Poppins-Regular.ttf in Resources */,
 				0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */,
+				11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,13 +290,16 @@
 				0B22280B2C31D136005A2AC9 /* Model.swift in Sources */,
 				0BA8158F2C302DD800BA2CE9 /* ViewController.swift in Sources */,
 				0B2228082C31D0D0005A2AC9 /* TabBarController.swift in Sources */,
+				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
+				11EBDE032C333BE900D9DB8B /* RecipeView.swift in Sources */,
 				0B2228052C31D095005A2AC9 /* RecipeViewController.swift in Sources */,
 				B51172792C34AD47001A44E5 /* OnboardingPage2ViewController.swift in Sources */,
 				0B2227FF2C31D011005A2AC9 /* OnboardingMainViewController.swift in Sources */,
 				B51172772C3496C2001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
 				B511727B2C34AE71001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
+				11671AB42C341BCD00FCD29A /* Resources.swift in Sources */,
 				0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */,
 				0B2227FC2C31CFBB005A2AC9 /* HomeViewController.swift in Sources */,
 			);
