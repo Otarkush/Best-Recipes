@@ -89,6 +89,17 @@ final class OnboardingPage2ViewController: UIViewController {
         return element
     }()
     
+    weak var coordinator: OnboardingCoordinator!
+    
+    init(coordinator: OnboardingCoordinator!) {
+        super.init(nibName: nil, bundle: nil)
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +123,7 @@ final class OnboardingPage2ViewController: UIViewController {
     // MARK: - Selector methods
     @objc private func continueButtonTapped() {
         print("continueButtonTapped")
-        navigationController?.pushViewController(OnboardingPage3ViewController(), animated: true)
+        navigationController?.pushViewController(OnboardingPage3ViewController(coordinator: coordinator), animated: true)
     }
     
     @objc private func skipButtonTapped() {
