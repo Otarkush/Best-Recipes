@@ -21,6 +21,7 @@ struct Recipe: Codable {
     let image: String?
     let imageType: String?
     let nutrition: Nutrition?
+    let sourceName: String?
 }
 
 struct Nutrition: Codable {

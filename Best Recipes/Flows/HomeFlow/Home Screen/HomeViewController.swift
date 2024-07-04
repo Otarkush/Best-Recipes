@@ -25,11 +25,26 @@ final class HomeViewController: UIViewController {
     
     private let sections = MockData.shared.pageData
     
+    private var recipe: [Recipe] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
         setDelegates()
+        
+        ApiService.random(10).request(type: RecipeResponse.self)  { [weak self] result in
+            switch result {
+            case .success(let success):
+                print(success.results?.count)
+                self?.recipe.append(contentsOf: success.recipes ?? [])
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }
 
@@ -45,7 +60,6 @@ private extension HomeViewController {
     func setupViews() {
         view.addSubview(collectionView)
         view.backgroundColor = .white
-        title = "Get amazing recipes for cooking"
         
         collectionView.register(
             TrendsCollectionViewCell.self,
@@ -90,13 +104,13 @@ private extension HomeViewController {
         UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
             let section = sections[sectionIndex]
             switch section {
-            case .trendingNow(_):
+            case .trendingNow:
                 return createTrendsSection()
-            case .popularCategory(_):
+            case .popularCategory:
                 return createPopularCategoriesSection()
-            case .recentRecipe(_):
+            case .recentRecipe:
                 return createRecentRecipeSection()
-            case .popularCuisines(_):
+            case .popularCuisines:
                 return createPopularCuisinesSection()
             }
         }
@@ -239,7 +253,11 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
+        if section == 0 {
+            return recipe.count
+        } else {
+            return sections[section].count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -247,22 +265,22 @@ extension HomeViewController: UICollectionViewDataSource {
         case .trendingNow(let trendingNow):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendsCollectionViewCell", for: indexPath)
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(imageName: trendingNow[indexPath.row].image)
+            cell.configure(recipe: recipe[indexPath.row])
             return cell
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
                     as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(imageName: popularCategory[indexPath.row].image)
+//            cell.configureCell(imageName: popularCategory[indexPath.row].image)
             return cell
         case .recentRecipe(let recentRecipe):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRecipeCollectionViewCell", for: indexPath)
                     as? RecentRecipeCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(imageName: recentRecipe[indexPath.row].image)
+//            cell.configureCell(imageName: recentRecipe[indexPath.row].image)
             return cell
         case .popularCuisines(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisinesCollectionView", for: indexPath)
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
-            cell.configureCell(imageName: popularCuisines[indexPath.row].image)
+//            cell.configureCell(imageName: popularCuisines[indexPath.row].image)
             return cell
         }
     }

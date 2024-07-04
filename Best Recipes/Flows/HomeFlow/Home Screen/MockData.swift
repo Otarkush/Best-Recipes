@@ -11,27 +11,53 @@ struct MockData {
     static let shared = MockData()
     
     private let trendingNow: ListSection = {
-        .trendingNow([.init(title: "Trending 1", image: "image"),
-                      .init(title: "Trending 2", image: "image"),
-                      .init(title: "Trending 3", image: "image")])
+        .trendingNow(
+            [.init(
+                id: 1234,
+                title: "2adssad",
+                image: "dsasad",
+                imageType: "dasda",
+                nutrition: nil, sourceName: ""
+            )]
+        )
     }()
     
     private let popularCategory: ListSection = {
-        .popularCategory([.init(title: "Popular 1", image: "image"),
-                          .init(title: "Popular 2", image: "image"),
-                          .init(title: "Popular 3", image: "image")])
+        .popularCategory(
+            [.init(
+                id: 1234,
+                title: "2adssad",
+                image: "dsasad",
+                imageType: "dasda",
+                nutrition: nil, sourceName: ""
+            )]
+        )
     }()
     
     private let recentRecipe: ListSection = {
-        .recentRecipe([.init(title: "Recent 1", image: "image"),
-                       .init(title: "Recent 2", image: "image"),
-                       .init(title: "Recent 3", image: "image")])
+        .recentRecipe(
+            [.init(
+                id: 1234,
+                title: "2adssad",
+                image: "dsasad",
+                imageType: "dasda",
+                nutrition: nil,
+                sourceName: ""
+            )]
+        )
     }()
     
     private let popularCuisines: ListSection = {
-        .popularCuisines([.init(title: "Cuisines 1", image: "image"),
-                          .init(title: "Cuisines 2", image: "image"),
-                          .init(title: "Cuisines 3", image: "image")])
+        .popularCuisines(
+            [.init(
+                id: 1234,
+                title: "2adssad",
+                image: "dsasad",
+                imageType: "dasda",
+                nutrition: nil,
+                sourceName: ""
+            )]
+        )
     }()
     
     var pageData: [ListSection] {
