@@ -18,6 +18,11 @@ final class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    private let searchBar: UISearchBar = {
+       let searchBar = UISearchBar()
+        return searchBar
+    }()
+    
     private let sections = MockData.shared.pageData
     
     override func viewDidLoad() {
@@ -32,12 +37,14 @@ final class HomeViewController: UIViewController {
 
 private extension HomeViewController {
     func setDelegates() {
+        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     func setupViews() {
-        view.backgroundColor = .clear
+        view.addSubview(collectionView)
+        view.backgroundColor = .white
         title = "Get amazing recipes for cooking"
         
         collectionView.register(
@@ -57,6 +64,7 @@ private extension HomeViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "HeaderSupplementaryView"
         )
+        collectionView.collectionViewLayout = createLayout()
     }
     
     func setConstraints() {
@@ -74,25 +82,29 @@ private extension HomeViewController {
     }
 }
 
+// MARK: - UISearchBarDelegate
+
+extension HomeViewController
+
 // MARK: - Create Layout
 
 private extension HomeViewController {
-//    func createLayout() -> UICollectionViewCompositionalLayout {
-//        
-//        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-//            let section = sections[sectionIndex]
-//            switch section {
-//            case .trendingNow(_):
-//                return
-//            case .popularCategory(_):
-//                return
-//            case .recentRecipe(_):
-//                return
-//            case .popularCuisines(_):
-//                return
-//            }
-//        }
-//    }
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        
+        UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
+            let section = sections[sectionIndex]
+            switch section {
+            case .trendingNow(_):
+                return createTrendsSection()
+            case .popularCategory(_):
+                return createPopularCategoriesSection()
+            case .recentRecipe(_):
+                return createRecentRecipeSection()
+            case .popularCuisines(_):
+                return createPopularCuisinesSection()
+            }
+        }
+    }
     
     func createLayoutSection(group: NSCollectionLayoutGroup,
                              behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
@@ -103,7 +115,7 @@ private extension HomeViewController {
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
         section.boundarySupplementaryItems = supplemetaryItems
-        section.supplementariesFollowContentInsets = contentInsets
+        section.supplementariesFollowContentInsets = contentInsets // заголовок секции
         
         return section
     }

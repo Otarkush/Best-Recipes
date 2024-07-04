@@ -12,7 +12,6 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -28,7 +27,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     }
     
     func setupView() {
-        addSubview(recipeImageView)
+        contentView.addSubview(recipeImageView)
     }
     
     func configureCell(imageName: String) {
@@ -38,14 +37,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     func setConstraints() {
         recipeImageView.snp.makeConstraints { make in
             make
-                .top
-                .equalToSuperview()
-            make
-                .bottom
-                .equalToSuperview()
-            make
-                .leading.trailing
-                .equalToSuperview()
+                .edges.equalToSuperview()
         }
     }
 }

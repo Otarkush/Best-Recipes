@@ -27,7 +27,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     }
     
     func setupView() {
-        addSubview(recipeImageView)
+        contentView.addSubview(recipeImageView)
     }
     
     func configureCell(imageName: String) {
@@ -37,14 +37,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     func setConstraints() {
         recipeImageView.snp.makeConstraints { make in
             make
-                .top
-                .equalToSuperview()
-            make
-                .bottom
-                .equalToSuperview()
-            make
-                .leading.trailing
-                .equalToSuperview()
+                .edges.equalToSuperview()
         }
     }
 }
