@@ -9,10 +9,15 @@ import UIKit
 import SnapKit
 
 final class OnboardingMainViewController: UIViewController {
+    
+    var pages = [UIViewController]()
+    let pageControl = UIPageControl() 
+    let initialPage = 0
+    
     // MARK: - UI Properties
     private lazy var backgroundImageView: UIImageView = {
         let element = UIImageView()
-        element.image = .onboardingBackground1
+        element.image = .obFirst
         element.contentMode = .scaleAspectFill
         return element
     }()
@@ -54,7 +59,7 @@ final class OnboardingMainViewController: UIViewController {
     private lazy var secondHeaderLabel: UILabel = {
         let element = UILabel()
         element.text = "Premium recipes"
-        element.font = .systemFont(ofSize: 20, weight: .regular)
+        element.font = .systemFont(ofSize: 20, weight: .regular)    
         element.textColor = .white
         return element
     }()
@@ -145,3 +150,5 @@ extension OnboardingMainViewController {
         }
     }
 }
+
+

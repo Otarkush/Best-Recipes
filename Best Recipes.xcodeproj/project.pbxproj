@@ -31,6 +31,7 @@
 		B51172772C3496C2001A44E5 /* OnboardingPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */; };
 		B51172792C34AD47001A44E5 /* OnboardingPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */; };
 		B511727B2C34AE71001A44E5 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */; };
+		B511727D2C35ECE4001A44E5 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511727C2C35ECE4001A44E5 /* OnboardingPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,14 +47,15 @@
 		0BA8158E2C302DD800BA2CE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BA815932C302DD900BA2CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA815982C302DD900BA2CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
-		B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
-		B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
 		11671AB12C341B6D00FCD29A /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
 		11671AB32C341BCD00FCD29A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		11EBDE022C333BE900D9DB8B /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
+		B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
+		B511727A2C34AE71001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
+		B511727C2C35ECE4001A44E5 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		0B2227FD2C31CFE8005A2AC9 /* Onboarding Screen */ = {
 			isa = PBXGroup;
 			children = (
+				B511727C2C35ECE4001A44E5 /* OnboardingPageViewController.swift */,
 				0B2227FE2C31D011005A2AC9 /* OnboardingMainViewController.swift */,
 				B51172762C3496C2001A44E5 /* OnboardingPage1ViewController.swift */,
 				B51172782C34AD47001A44E5 /* OnboardingPage2ViewController.swift */,
@@ -302,6 +305,7 @@
 				11671AB42C341BCD00FCD29A /* Resources.swift in Sources */,
 				0B2228022C31D052005A2AC9 /* FavoritesViewController.swift in Sources */,
 				0B2227FC2C31CFBB005A2AC9 /* HomeViewController.swift in Sources */,
+				B511727D2C35ECE4001A44E5 /* OnboardingPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

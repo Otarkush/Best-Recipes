@@ -8,11 +8,15 @@
 import UIKit
 import SnapKit
 
-final class OnboardingPage1ViewController: UIViewController {
+final class OnboardingPage1ViewController: UIPageViewController {
+    
+    var pages = [UIViewController]()
+
+    
     // MARK: - UI Properties
     private lazy var backgroundImageView: UIImageView = {
         let element = UIImageView()
-        element.image = .onboardingBackground2
+        element.image = .obSecond
         element.contentMode = .scaleAspectFill
         return element
     }()
@@ -165,4 +169,7 @@ extension OnboardingPage1ViewController {
         }
     }
 }
+
+
+
 

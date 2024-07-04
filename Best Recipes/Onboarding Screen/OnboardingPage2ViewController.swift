@@ -12,7 +12,7 @@ final class OnboardingPage2ViewController: UIViewController {
     // MARK: - UI Properties
     private lazy var backgroundImageView: UIImageView = {
         let element = UIImageView()
-        element.image = .onboardingBackground3
+        element.image = .obThird
         element.contentMode = .scaleAspectFill
         return element
     }()
