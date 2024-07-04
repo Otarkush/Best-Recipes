@@ -2,28 +2,56 @@
 //  HomeViewController.swift
 //  Best Recipes
 //
-//  Created by dsm 5e on 01.07.2024.
+//  Created by Андрей Линьков on 30.06.2024.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
+final class HomeViewController: UIViewController {
+    
+    private let collectionView: UICollectionView = {
+       let collectionViewLayout = UICollectionViewLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = .none
+        collectionView.bounces = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    private let sections = MockData.shared.pageData
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+// MARK: - Private Methods
+
+//private extension HomeViewController {
+//    func setDelegates() {
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//    }
+//}
+//
+//// MARK: - UICollectionViewDelegate
+//
+//extension HomeViewController: UICollectionViewDelegate {
+//    
+//}
+//
+//// MARK: - UICollectionViewDataSource
+//
+//extension HomeViewController: UICollectionViewDataSource {
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        sections.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        sections[section].count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//}
