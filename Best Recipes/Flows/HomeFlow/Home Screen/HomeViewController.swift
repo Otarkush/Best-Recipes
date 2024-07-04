@@ -188,6 +188,33 @@ private extension HomeViewController {
         
         return section
     }
+    
+    func createPopularCuisinesSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(0.9),
+                heightDimension: .fractionalHeight(0.2)
+            ),
+            subitems: [item]
+        )
+        
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            interGroupSpasing: 5,
+            supplemetaryItems: [],
+            contentInsets: false
+        )
+        
+        return section
+    }
 }
 
 // MARK: - UICollectionViewDelegate
