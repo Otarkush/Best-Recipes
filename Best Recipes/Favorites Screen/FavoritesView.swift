@@ -21,13 +21,13 @@ final class FavoritesView: UIView {
         return label
     }()
     
-    private lazy var favoriteTableView: UITableView = {
+     private lazy var favoriteTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = true
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-//        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

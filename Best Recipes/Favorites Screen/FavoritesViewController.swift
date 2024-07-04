@@ -9,19 +9,22 @@ import UIKit
 
 struct Recipe {
     let id: Int
-let title: String
-let image: String
+    let title: String
+    let image: String
+    let imageCuisine: String
+    let cuisine: String
+    let raiting: String
 }
 
 final class FavoritesViewController: UIViewController {
     
     private let favoritesView = FavoritesView()
     
-//    данные c API с картинкой и текстом
+    //    данные c API с картинкой и текстом
     let recipeGarlic = Recipe(id: 716429,
                               title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-                              image: "716429.jpg")
-    let recipePork = Recipe(id: 715538, title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta", image: "715538.jpg")
+                              image: "716429.jpg", imageCuisine: "fish.jpg", cuisine: "China", raiting: "5.0")
+    let recipePork = Recipe(id: 715538, title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta", image: "715538.jpg", imageCuisine: "fish.jpg", cuisine: "Tay", raiting: "4.5")
     
     lazy var recipe: [Recipe] = [recipeGarlic, recipePork, recipeGarlic, recipePork]
     
@@ -44,10 +47,9 @@ final class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return UITableView.automaticDimension
     }
-    
-
 }
 
 extension FavoritesViewController: UITableViewDataSource {
