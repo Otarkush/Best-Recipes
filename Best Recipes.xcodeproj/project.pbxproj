@@ -381,10 +381,10 @@
 		79E5C5DB2C36D76500124B88 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */,
-				79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */,
-				79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */,
 				79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */,
+				79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */,
+				79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */,
+				79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

@@ -11,27 +11,27 @@ struct MockData {
     static let shared = MockData()
     
     private let trendingNow: ListSection = {
-        .trendingNow([.init(title: "Trending 1", image: "homeIcon"),
-                      .init(title: "Trending 2", image: "homeIcon"),
-                      .init(title: "Trending 3", image: "homeIcon")])
+        .trendingNow([.init(title: "Trending 1", image: "image"),
+                      .init(title: "Trending 2", image: "image"),
+                      .init(title: "Trending 3", image: "image")])
     }()
     
     private let popularCategory: ListSection = {
-        .popularCategory([.init(title: "Popular 1", image: "homeIcon"),
-                          .init(title: "Popular 2", image: "homeIcon"),
-                          .init(title: "Popular 3", image: "homeIcon")])
+        .popularCategory([.init(title: "Popular 1", image: "image"),
+                          .init(title: "Popular 2", image: "image"),
+                          .init(title: "Popular 3", image: "image")])
     }()
     
     private let recentRecipe: ListSection = {
-        .recentRecipe([.init(title: "Recent 1", image: "homeIcon"),
-                       .init(title: "Recent 2", image: "homeIcon"),
-                       .init(title: "Recent 3", image: "homeIcon")])
+        .recentRecipe([.init(title: "Recent 1", image: "image"),
+                       .init(title: "Recent 2", image: "image"),
+                       .init(title: "Recent 3", image: "image")])
     }()
     
     private let popularCuisines: ListSection = {
-        .popularCuisines([.init(title: "Cuisines 1", image: "homeIcon"),
-                          .init(title: "Cuisines 2", image: "homeIcon"),
-                          .init(title: "Cuisines 3", image: "homeIcon")])
+        .popularCuisines([.init(title: "Cuisines 1", image: "image"),
+                          .init(title: "Cuisines 2", image: "image"),
+                          .init(title: "Cuisines 3", image: "image")])
     }()
     
     var pageData: [ListSection] {
