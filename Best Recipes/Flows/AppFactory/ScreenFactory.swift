@@ -9,8 +9,8 @@ import UIKit
 
 struct AppFactory {
     
-    static func makeOnboardingScene(coordinator: OnboardingCoordinator) -> OnboardingViewController {
-        return OnboardingViewController(coordinator: coordinator)
+    static func makeOnboardingScene(coordinator: OnboardingCoordinator) -> OnboardingPageViewController {
+        return OnboardingPageViewController(coordinator: coordinator)
     }
     
     static func makeOnboardingFlow(
