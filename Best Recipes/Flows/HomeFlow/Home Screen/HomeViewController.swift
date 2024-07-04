@@ -24,6 +24,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
+        setDelegates()
     }
 }
 
@@ -51,6 +52,11 @@ private extension HomeViewController {
         collectionView.register(
             PopularCuisinesCollectionViewCell.self,
             forCellWithReuseIdentifier: "PopularCuisinesCollectionView")
+        collectionView.register(
+            HeaderSupplementaryView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "HeaderSupplementaryView"
+        )
     }
     
     func setConstraints() {
@@ -107,6 +113,21 @@ extension HomeViewController: UICollectionViewDataSource {
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
             cell.configureCell(imageName: popularCuisines[indexPath.row].image)
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "header",
+                for: indexPath) as! HeaderSupplementaryView
+            header.configureHeader(categoryName: sections[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
         }
     }
 }

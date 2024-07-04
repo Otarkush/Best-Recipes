@@ -53,6 +53,7 @@
 		79E5C5E52C36D76500124B88 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DD2C36D76500124B88 /* ListItem.swift */; };
 		79E5C5E62C36D76500124B88 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DE2C36D76500124B88 /* MockData.swift */; };
 		79E5C5E72C36D76500124B88 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DF2C36D76500124B88 /* HomeViewController.swift */; };
+		79E5C5EB2C36F33300124B88 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		79E5C5DD2C36D76500124B88 /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		79E5C5DE2C36D76500124B88 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		79E5C5DF2C36D76500124B88 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 				79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */,
 				79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */,
 				79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */,
+				79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				3CCB5CC22C35E8E400F738AE /* NotificationCoordinator.swift in Sources */,
 				79E5C5E22C36D76500124B88 /* RecentRecipeCollectionViewCell.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
+				79E5C5EB2C36F33300124B88 /* HeaderSupplementaryView.swift in Sources */,
 				3CCB5CCC2C35E8E400F738AE /* PlusButton.swift in Sources */,
 				3CCB5CBE2C35E8E400F738AE /* Coordinator.swift in Sources */,
 				3CCB5CC32C35E8E400F738AE /* IngredientModel.swift in Sources */,
