@@ -74,6 +74,68 @@ private extension HomeViewController {
     }
 }
 
+// MARK: - Create Layout
+
+private extension HomeViewController {
+//    func createLayout() -> UICollectionViewCompositionalLayout {
+//        
+//        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+//            let section = sections[sectionIndex]
+//            switch section {
+//            case .trendingNow(_):
+//                return
+//            case .popularCategory(_):
+//                return
+//            case .recentRecipe(_):
+//                return
+//            case .popularCuisines(_):
+//                return
+//            }
+//        }
+//    }
+    
+    func createLayoutSection(group: NSCollectionLayoutGroup,
+                             behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
+                             interGroupSpasing: CGFloat,
+                             supplemetaryItems: [NSCollectionLayoutBoundarySupplementaryItem],
+                             contentInsets: Bool) -> NSCollectionLayoutSection {
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = behavior
+        section.interGroupSpacing = interGroupSpasing
+        section.boundarySupplementaryItems = supplemetaryItems
+        section.supplementariesFollowContentInsets = contentInsets
+        
+        return section
+    }
+    
+    func createTrendsSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(0.9),
+                heightDimension: .fractionalHeight(0.2)
+            ),
+            subitems: [item]
+        )
+        
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            interGroupSpasing: 5,
+            supplemetaryItems: [],
+            contentInsets: false
+        )
+        
+        return section
+    }
+}
+
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
@@ -122,7 +184,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: "header",
+                withReuseIdentifier: "HeaderSupplementaryView",
                 for: indexPath) as! HeaderSupplementaryView
             header.configureHeader(categoryName: sections[indexPath.section].title)
             return header
