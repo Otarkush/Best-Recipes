@@ -116,6 +116,7 @@ private extension TrendsCollectionViewCell {
                 .top
                 .equalTo(titleLabel.snp.bottom)
                 .offset(8)
+            make.bottom.equalToSuperview()
         }
     }
 }

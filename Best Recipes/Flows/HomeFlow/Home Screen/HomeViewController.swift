@@ -9,6 +9,15 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Get amazing recipes for cooking"
+        label.font = .systemFont(ofSize: 24,weight: .black)
+        label.numberOfLines = 0
+        label.textColor = .black
+        return label
+    }()
+    
     private let collectionView: UICollectionView = {
        let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -23,41 +32,57 @@ final class HomeViewController: UIViewController {
         return searchBar
     }()
     
-    private let sections = MockData.shared.pageData
-    
-    private var recipe: [Recipe] = []
-    
+    private var sections: [ListSection] = []
+            
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         setupViews()
         setConstraints()
         setDelegates()
-        
-        ApiService.random(10).request(type: RecipeResponse.self)  { [weak self] result in
-            switch result {
-            case .success(let success):
-                print(success.results?.count)
-                self?.recipe.append(contentsOf: success.recipes ?? [])
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
+        addDataToSections()
     }
 }
 
 // MARK: - Private Methods
 
 private extension HomeViewController {
-    func setDelegates() {
+    
+    func addDataToSections() {
+        ApiService.random(10).request(type: RecipeResponse.self)  { [weak self] result in
+            switch result {
+            case .success(let success):
+                if let recipes = success.recipes {
+                    let trendingNowRecipes = Array(recipes)
+                    let popularCategoryRecipes = Array(recipes)
+                    let recentRecipeRecipes = Array(recipes)
+                    let popularCuisinesRecipes = Array(recipes)
+                    
+                    self?.sections = [
+                        .trendingNow(trendingNowRecipes),
+                        .popularCategory(popularCategoryRecipes),
+                        .recentRecipe(recentRecipeRecipes),
+                        .popularCuisines(popularCuisinesRecipes)
+                    ]
+                    
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+
+        func setDelegates() {
 //        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     func setupViews() {
+        view.addSubview(titleLabel)
         view.addSubview(collectionView)
         view.backgroundColor = .white
         
@@ -82,16 +107,24 @@ private extension HomeViewController {
     }
     
     func setConstraints() {
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(60)
+        }
+        
         collectionView.snp.makeConstraints { make in
             make
                 .top
-                .equalToSuperview()
-            make
-                .bottom
-                .equalToSuperview()
+                .equalTo(titleLabel.snp.bottom)
+                .offset(20)
             make
                 .leading.trailing
                 .equalToSuperview()
+            make
+                .bottom
+                .equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -125,8 +158,14 @@ private extension HomeViewController {
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
         section.boundarySupplementaryItems = supplemetaryItems
-        section.supplementariesFollowContentInsets = contentInsets // заголовок секции
-        
+        section.supplementariesFollowContentInsets = true // заголовок секции
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .estimated(44)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        section.boundarySupplementaryItems = [sectionHeader]
+
         return section
     }
     
@@ -141,7 +180,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.9),
-                heightDimension: .fractionalHeight(0.2)
+                heightDimension: .fractionalHeight(0.4)
             ),
             subitems: [item]
         )
@@ -167,8 +206,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.9),
-                heightDimension: .fractionalHeight(0.2)
+                widthDimension: .fractionalWidth(0.3),
+                heightDimension: .fractionalHeight(0.3)
             ),
             subitems: [item]
         )
@@ -194,8 +233,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.9),
-                heightDimension: .fractionalHeight(0.2)
+                widthDimension: .fractionalWidth(0.3),
+                heightDimension: .fractionalHeight(0.3)
             ),
             subitems: [item]
         )
@@ -221,8 +260,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.9),
-                heightDimension: .fractionalHeight(0.2)
+                widthDimension: .fractionalWidth(0.3),
+                heightDimension: .fractionalHeight(0.3)
             ),
             subitems: [item]
         )
@@ -253,11 +292,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return recipe.count
-        } else {
             return sections[section].count
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -265,22 +300,22 @@ extension HomeViewController: UICollectionViewDataSource {
         case .trendingNow(let trendingNow):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendsCollectionViewCell", for: indexPath)
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
-            cell.configure(recipe: recipe[indexPath.row])
+            cell.configure(recipe: trendingNow[indexPath.row])
             return cell
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
                     as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
-//            cell.configureCell(imageName: popularCategory[indexPath.row].image)
+            cell.configureCell(imageName: popularCategory[indexPath.item].image ?? "")
             return cell
         case .recentRecipe(let recentRecipe):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRecipeCollectionViewCell", for: indexPath)
                     as? RecentRecipeCollectionViewCell else { return UICollectionViewCell() }
-//            cell.configureCell(imageName: recentRecipe[indexPath.row].image)
+            cell.configureCell(imageName: recentRecipe[indexPath.row].image ?? "")
             return cell
         case .popularCuisines(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisinesCollectionView", for: indexPath)
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
-//            cell.configureCell(imageName: popularCuisines[indexPath.row].image)
+            cell.configureCell(imageName: popularCuisines[indexPath.row].image ?? "")
             return cell
         }
     }

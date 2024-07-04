@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -31,7 +32,9 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(imageName: String) {
-        recipeImageView.image = UIImage(named: imageName)
+        if let imageUrl = URL(string: imageName) {
+            recipeImageView.kf.setImage(with: imageUrl)
+        }
     }
     
     func setConstraints() {

@@ -10,8 +10,8 @@ import UIKit
 final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -31,9 +31,11 @@ final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(imageName: String) {
-        recipeImageView.image = UIImage(named: imageName)
+        if let imageUrl = URL(string: imageName) {
+            recipeImageView.kf.setImage(with: imageUrl)
+        }
     }
-    
+
     func setConstraints() {
         recipeImageView.snp.makeConstraints { make in
             make
