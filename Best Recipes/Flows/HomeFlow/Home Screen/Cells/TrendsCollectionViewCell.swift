@@ -7,12 +7,22 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class TrendsCollectionViewCell: UICollectionViewCell {
+    
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        
+    }()
+    
+    private let authorImageView: UIImageView = {
+        
     }()
     
     override init(frame: CGRect) {

@@ -37,7 +37,7 @@ final class HomeViewController: UIViewController {
 
 private extension HomeViewController {
     func setDelegates() {
-        searchBar.delegate = self
+//        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -81,10 +81,6 @@ private extension HomeViewController {
         }
     }
 }
-
-// MARK: - UISearchBarDelegate
-
-extension HomeViewController
 
 // MARK: - Create Layout
 

@@ -55,6 +55,7 @@
 		79E5C5E62C36D76500124B88 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DE2C36D76500124B88 /* MockData.swift */; };
 		79E5C5E72C36D76500124B88 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DF2C36D76500124B88 /* HomeViewController.swift */; };
 		79E5C5EB2C36F33300124B88 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */; };
+		79E5C5EE2C3718E300124B88 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 79E5C5ED2C3718E300124B88 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 			files = (
 				3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */,
 				3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */,
+				79E5C5EE2C3718E300124B88 /* Kingfisher in Frameworks */,
 				3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */,
 				3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */,
 				3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */,
@@ -164,7 +166,6 @@
 				0B2227F92C31CE3E005A2AC9 /* App */,
 				0B2228092C31D123005A2AC9 /* Model */,
 				3CCB5C932C35E8E400F738AE /* Flows */,
-				3C1D55272C35A70600AA6C40 /* Managers */,
 				3CB7EBE52C3352C900892324 /* Services */,
 				0BA815982C302DD900BA2CE9 /* Info.plist */,
 			);
@@ -195,13 +196,6 @@
 				11671AB62C34263800FCD29A /* Poppins-Bold.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		3C1D55272C35A70600AA6C40 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
@@ -418,6 +412,7 @@
 				3CB7EBB52C332EB200892324 /* RxSwift */,
 				3CB7EBB92C332EB200892324 /* SnapKit */,
 				3CB7EBBB2C332EB200892324 /* RxGesture */,
+				79E5C5ED2C3718E300124B88 /* Kingfisher */,
 			);
 			productName = "Best Recipes";
 			productReference = 0BA815872C302DD800BA2CE9 /* Best Recipes.app */;
@@ -451,6 +446,7 @@
 				3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3CB7EBAC2C332E8000892324 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				3CB7EBAD2C332E9100892324 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				79E5C5EC2C3718E300124B88 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 0BA815882C302DD800BA2CE9 /* Products */;
 			projectDirPath = "";
@@ -496,7 +492,6 @@
 				3CCB5CC52C35E8E400F738AE /* RatingAndReviewsView.swift in Sources */,
 				3CCB5CCB2C35E8E400F738AE /* FavoriteCoordinator.swift in Sources */,
 				79E5C5E62C36D76500124B88 /* MockData.swift in Sources */,
-				0B22280B2C31D136005A2AC9 /* Model.swift in Sources */,
 				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				79E5C5E52C36D76500124B88 /* ListItem.swift in Sources */,
 				3CCB5CC22C35E8E400F738AE /* NotificationCoordinator.swift in Sources */,
@@ -757,6 +752,14 @@
 				minimumVersion = 4.0.4;
 			};
 		};
+		79E5C5EC2C3718E300124B88 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -789,6 +792,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CB7EBAD2C332E9100892324 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		79E5C5ED2C3718E300124B88 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79E5C5EC2C3718E300124B88 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
