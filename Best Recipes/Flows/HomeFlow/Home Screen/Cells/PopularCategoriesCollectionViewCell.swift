@@ -58,15 +58,19 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
+    private let bookmarkView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+        return view
+    }()
+    
     private let bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "bookmarkIcon")
-        imageView.backgroundColor = .white
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
-        
         return imageView
     }()
     
@@ -104,10 +108,12 @@ private extension PopularCategoriesCollectionViewCell {
         
         backView.addSubview(timeStackView)
         backView.addSubview(titleRecipeLabel)
-        backView.addSubview(bookmarkImageView)
+        backView.addSubview(bookmarkView)
         
         timeStackView.addArrangedSubview(timeLabel)
         timeStackView.addArrangedSubview(timeOfRecipeLabel)
+        
+        bookmarkView.addSubview(bookmarkImageView)
     }
     
     func setConstraints() {
@@ -149,7 +155,7 @@ private extension PopularCategoriesCollectionViewCell {
                 .equalToSuperview()
         }
         
-        bookmarkImageView.snp.makeConstraints { make in
+        bookmarkView.snp.makeConstraints { make in
             make
                 .trailing.bottom
                 .equalToSuperview()
@@ -157,6 +163,15 @@ private extension PopularCategoriesCollectionViewCell {
             make
                 .height.width
                 .equalTo(24)
+        }
+        
+        bookmarkImageView.snp.makeConstraints { make in
+            make
+                .height.width
+                .equalTo(14)
+            make
+                .centerX.centerY
+                .equalToSuperview()
         }
     }
 }

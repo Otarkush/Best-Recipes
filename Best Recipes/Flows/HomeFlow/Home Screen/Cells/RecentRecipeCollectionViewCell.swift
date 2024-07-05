@@ -35,6 +35,7 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 16
+        stackView.alignment = .fill
         return stackView
     }()
     
@@ -80,13 +81,13 @@ private extension RecentRecipeCollectionViewCell {
                 .equalToSuperview()
             make
                 .height
-                .equalTo(240)
+                .equalTo(200)
         }
         
         recipeImageView.snp.makeConstraints { make in
             make
                 .height.width
-                .equalTo(200)
+                .equalTo(140)
         }
     }
 }

@@ -243,8 +243,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.3),
-                heightDimension: .fractionalHeight(0.3)
+                widthDimension: .fractionalWidth(0.4),
+                heightDimension: .fractionalHeight(0.4)
             ),
             subitems: [item]
         )
