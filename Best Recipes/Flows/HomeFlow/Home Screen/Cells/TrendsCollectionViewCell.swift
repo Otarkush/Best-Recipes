@@ -46,7 +46,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 8
-        stack.alignment = .leading
+        stack.alignment = .center
         return stack
     }()
     
@@ -66,7 +66,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         }
         
         titleLabel.text = recipe.title?.capitalized
-        authorNameLabel.text = recipe.sourceName ?? ""
+        authorNameLabel.text = "By \(recipe.sourceName ?? "")"
     }
 }
 
