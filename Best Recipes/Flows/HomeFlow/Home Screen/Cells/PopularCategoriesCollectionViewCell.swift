@@ -28,7 +28,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
     private let titleRecipeLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -72,9 +72,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupUI()
-        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +89,8 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     }
     
 }
+
+// MARK: - Private Methods
 
 private extension PopularCategoriesCollectionViewCell {
     func setupUI() {

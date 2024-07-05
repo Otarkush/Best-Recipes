@@ -15,20 +15,30 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let titleRecipeLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textAlignment = .left
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private let authorNameLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .gray
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupView()
-        setConstraints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
-        contentView.addSubview(recipeImageView)
-    }
     
     func configureCell(imageName: String) {
         if let imageUrl = URL(string: imageName) {
@@ -36,10 +46,20 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
         }
     }
 
+}
+
+// MARK: - Private Methods
+private extension RecentRecipeCollectionViewCell {
+    func setupUI() {
+        addSubviews()
+        setConstraints()
+    }
+    
+    func addSubviews() {
+        
+    }
+    
     func setConstraints() {
-        recipeImageView.snp.makeConstraints { make in
-            make
-                .edges.equalToSuperview()
-        }
+        
     }
 }
