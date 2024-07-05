@@ -40,10 +40,12 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func configureCell(imageName: String) {
-        if let imageUrl = URL(string: imageName) {
+    func configure(recipe: Recipe) {
+        if let imageUrl = URL(string: recipe.image ?? "") {
             recipeImageView.kf.setImage(with: imageUrl)
         }
+        titleRecipeLabel.text = recipe.title
+        authorNameLabel.text = "By \(recipe.sourceName ?? "")"
     }
 
 }

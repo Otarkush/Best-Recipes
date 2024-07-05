@@ -80,7 +80,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func configureCell(recipe: Recipe) {
+    func configure(recipe: Recipe) {
         if let imageURL = URL(string: recipe.image ?? "") {
             recipeImageView.kf.setImage(with: imageURL)
         }

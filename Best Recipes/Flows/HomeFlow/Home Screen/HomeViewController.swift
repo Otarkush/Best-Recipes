@@ -315,12 +315,12 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
                     as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(recipe: popularCategory[indexPath.row])
+            cell.configure(recipe: popularCategory[indexPath.row])
             return cell
         case .recentRecipe(let recentRecipe):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRecipeCollectionViewCell", for: indexPath)
                     as? RecentRecipeCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(imageName: recentRecipe[indexPath.row].image ?? "")
+            cell.configure(recipe: recentRecipe[indexPath.row])
             return cell
         case .popularCuisines(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisinesCollectionView", for: indexPath)
