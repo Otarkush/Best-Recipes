@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  Best Recipes
 //
-//  Created by Андрей Линьков on 30.06.2024.
+//  Created by Иван Семикин on 30.06.2024.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ final class HomeViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Get amazing recipes for cooking"
-        label.font = .systemFont(ofSize: 24,weight: .black)
+        label.font = .systemFont(ofSize: 28,weight: .bold)
         label.numberOfLines = 0
         label.textColor = .black
         return label
@@ -109,9 +109,18 @@ private extension HomeViewController {
     func setConstraints() {
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(60)
+            make
+                .top
+                .equalToSuperview()
+                .offset(64)
+            make
+                .leading
+                .trailing
+                .equalToSuperview()
+                .inset(16)
+            make
+                .height
+                .equalTo(78)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -122,6 +131,7 @@ private extension HomeViewController {
             make
                 .leading.trailing
                 .equalToSuperview()
+                .offset(16)
             make
                 .bottom
                 .equalTo(view.safeAreaLayoutGuide)
@@ -179,8 +189,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.9),
-                heightDimension: .fractionalHeight(0.4)
+                widthDimension: .fractionalWidth(0.8),
+                heightDimension: .fractionalHeight(0.5)
             ),
             subitems: [item]
         )
@@ -188,7 +198,7 @@ private extension HomeViewController {
         let section = createLayoutSection(
             group: group,
             behavior: .groupPaging,
-            interGroupSpasing: 5,
+            interGroupSpasing: 16,
             supplemetaryItems: [],
             contentInsets: false
         )
@@ -206,8 +216,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.3),
-                heightDimension: .fractionalHeight(0.3)
+                widthDimension: .fractionalWidth(0.4),
+                heightDimension: .fractionalHeight(0.45)
             ),
             subitems: [item]
         )
@@ -215,7 +225,7 @@ private extension HomeViewController {
         let section = createLayoutSection(
             group: group,
             behavior: .groupPaging,
-            interGroupSpasing: 5,
+            interGroupSpasing: 16,
             supplemetaryItems: [],
             contentInsets: false
         )
@@ -242,7 +252,7 @@ private extension HomeViewController {
         let section = createLayoutSection(
             group: group,
             behavior: .groupPaging,
-            interGroupSpasing: 5,
+            interGroupSpasing: 16,
             supplemetaryItems: [],
             contentInsets: false
         )
@@ -261,7 +271,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.3),
-                heightDimension: .fractionalHeight(0.3)
+                heightDimension: .fractionalHeight(0.4)
             ),
             subitems: [item]
         )
@@ -269,7 +279,7 @@ private extension HomeViewController {
         let section = createLayoutSection(
             group: group,
             behavior: .groupPaging,
-            interGroupSpasing: 5,
+            interGroupSpasing: 16,
             supplemetaryItems: [],
             contentInsets: false
         )
@@ -305,7 +315,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
                     as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(imageName: popularCategory[indexPath.item].image ?? "")
+            cell.configureCell(recipe: popularCategory[indexPath.row])
             return cell
         case .recentRecipe(let recentRecipe):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRecipeCollectionViewCell", for: indexPath)

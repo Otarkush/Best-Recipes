@@ -15,13 +15,13 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
        let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.textColor = .black
         return label
     }()
@@ -30,7 +30,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 14
+        imageView.layer.cornerRadius = 18
         return imageView
     }()
     
@@ -69,6 +69,8 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         authorNameLabel.text = recipe.sourceName ?? ""
     }
 }
+
+// MARK: - Private Methods
 
 private extension TrendsCollectionViewCell {
     func setupUI() {
