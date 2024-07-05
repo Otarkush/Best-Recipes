@@ -17,7 +17,6 @@ final class RecipeView: UIScrollView {
         label.font = Resources.Fonts.poppinsBold(of: 24)
         label.textColor = Resources.Colors.black
         label.numberOfLines = 0
-        label.text = "How to make Tasty Fish (point & Kill)"
         return label
     }()
     
@@ -57,6 +56,14 @@ final class RecipeView: UIScrollView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
+    }
+    
+    func configure(with recipe: Recipe) {
+        titleLabel.text = recipe.title
+        
+        if let image = recipe.image {
+            imageView
+        }
     }
 }
 

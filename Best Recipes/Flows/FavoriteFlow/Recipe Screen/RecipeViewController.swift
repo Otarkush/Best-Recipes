@@ -21,15 +21,20 @@ final class RecipeViewController: UIViewController {
     ]
     
     private let recipeView = RecipeView()
+    private var recipe: Recipe?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchRecipe()
     }
-    
-    // MARK: - Setup UI
+}
+
+//MARK: - Private Methods
+
+extension RecipeViewController {
     
     private func setupUI() {
         view.addSubview(recipeView)
@@ -42,6 +47,28 @@ final class RecipeViewController: UIViewController {
         }
     }
     
+    // Запрос на получение рецепта
+    func fetchRecipe() {
+        ApiService.detail("716429").request(type: Recipe.self) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+                self.recipe = success
+                DispatchQueue.main.async {
+                    self.updateRecipeView()
+                }
+            case .failure(let failure):
+                print("ошибка!!!\(failure)")
+            }
+        }
+    }
+    
+    //Update RecipeView
+    func updateRecipeView() {
+        guard let recipe = recipe else { return }
+        
+        recipeView.configure(with: recipe)
+    }
 }
 
 //MARK: - UITableViewDataSource and UITableViewDelegate

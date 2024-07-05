@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		11671AB42C341BCD00FCD29A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB32C341BCD00FCD29A /* Resources.swift */; };
 		11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB62C34263800FCD29A /* Poppins-Bold.ttf */; };
 		11671AB92C34266F00FCD29A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */; };
+		117455C92C3800BA00FEEA45 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117455C82C3800BA00FEEA45 /* SeeAllViewController.swift */; };
+		117455CC2C3801A700FEEA45 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117455CB2C3801A700FEEA45 /* RecipeTableViewCell.swift */; };
 		3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* HTTPClient.swift */; };
 		3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */; };
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
@@ -63,6 +65,8 @@
 		11671AB32C341BCD00FCD29A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		117455C82C3800BA00FEEA45 /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
+		117455CB2C3801A700FEEA45 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		3C1D55282C35A71500AA6C40 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponseModel.swift; sourceTree = "<group>"; };
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -188,6 +192,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		117455C72C37FFD500FEEA45 /* SeeAllScreen */ = {
+			isa = PBXGroup;
+			children = (
+				117455CA2C38015800FEEA45 /* Cell */,
+				117455C82C3800BA00FEEA45 /* SeeAllViewController.swift */,
+			);
+			path = SeeAllScreen;
+			sourceTree = "<group>";
+		};
+		117455CA2C38015800FEEA45 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				117455CB2C3801A700FEEA45 /* RecipeTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +229,7 @@
 		3CCB5C932C35E8E400F738AE /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				117455C72C37FFD500FEEA45 /* SeeAllScreen */,
 				3CCB5C982C35E8E400F738AE /* Coordinator */,
 				3CCB5C9B2C35E8E400F738AE /* OnboardingFlow */,
 				3CCB5C9F2C35E8E400F738AE /* NotificationFlow */,
@@ -297,9 +319,9 @@
 		3CCB5CA42C35E8E400F738AE /* Recipe Screen */ = {
 			isa = PBXGroup;
 			children = (
-				3CCB5CA52C35E8E400F738AE /* IngredientModel.swift */,
 				3CCB5CA62C35E8E400F738AE /* Cell */,
 				3CCB5CA82C35E8E400F738AE /* Views */,
+				3CCB5CA52C35E8E400F738AE /* IngredientModel.swift */,
 				3CCB5CAD2C35E8E400F738AE /* RecipeViewController.swift */,
 			);
 			path = "Recipe Screen";
@@ -411,7 +433,7 @@
 				};
 			};
 			buildConfigurationList = 0BA815822C302DD800BA2CE9 /* Build configuration list for PBXProject "Best Recipes" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -457,6 +479,7 @@
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
 				3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */,
 				3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */,
+				117455C92C3800BA00FEEA45 /* SeeAllViewController.swift in Sources */,
 				B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
 				3CCB5CBB2C35E8E400F738AE /* ProfileCoordinator.swift in Sources */,
 				3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */,
@@ -477,6 +500,7 @@
 				3CCB5CCD2C35E8E400F738AE /* CustomTabBar.swift in Sources */,
 				3CB7EBE72C3352DD00892324 /* UserDefaultsService.swift in Sources */,
 				3CCB5CC72C35E8E400F738AE /* RecipeView.swift in Sources */,
+				117455CC2C3801A700FEEA45 /* RecipeTableViewCell.swift in Sources */,
 				3CCB5CC12C35E8E400F738AE /* NotificationViewController.swift in Sources */,
 				B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
 				3CCB5CC92C35E8E400F738AE /* RecipeViewController.swift in Sources */,
