@@ -12,6 +12,7 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -28,6 +29,13 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 12)
         label.textColor = .gray
         return label
+    }()
+    
+    private let recipeInfoStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
     }()
     
     override init(frame: CGRect) {
@@ -58,10 +66,27 @@ private extension RecentRecipeCollectionViewCell {
     }
     
     func addSubviews() {
+        contentView.addSubview(recipeInfoStackView)
         
+        recipeInfoStackView.addArrangedSubview(recipeImageView)
+        recipeInfoStackView.addArrangedSubview(titleRecipeLabel)
+        recipeInfoStackView.addArrangedSubview(authorNameLabel)
     }
     
     func setConstraints() {
+        recipeInfoStackView.snp.makeConstraints { make in
+            make
+                .top.bottom.leading.trailing
+                .equalToSuperview()
+            make
+                .height
+                .equalTo(240)
+        }
         
+        recipeImageView.snp.makeConstraints { make in
+            make
+                .height.width
+                .equalTo(200)
+        }
     }
 }
