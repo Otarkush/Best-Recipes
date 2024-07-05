@@ -12,11 +12,11 @@ final class FavoritesView: UIView {
     // MARK: -  Property UI
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Saved recipes"
-        label.textColor = .black
+        label.textColor = Resources.Colors.black
+        label.font = Resources.Fonts.poppinsBold(of: 24)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.text = "Saved recipes"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

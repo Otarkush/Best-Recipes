@@ -17,7 +17,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -31,6 +31,8 @@ final class FavoritesTableViewCell: UITableViewCell {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.font = Resources.Fonts.poppinsBold(of: 14)
+        label.textColor = Resources.Colors.black
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -47,7 +49,8 @@ final class FavoritesTableViewCell: UITableViewCell {
     
     private lazy var raitingLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Resources.Colors.white
+        label.font = Resources.Fonts.poppinsBold(of: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,6 +72,8 @@ final class FavoritesTableViewCell: UITableViewCell {
     private lazy var cuisineLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.font = Resources.Fonts.poppinsRegular(of: 14)
+        label.textColor = Resources.Colors.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -100,7 +105,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with recipe: Recipe) {
+    func configure(with recipe: Recipes) {
         
         recipesImageView.image = UIImage(named: recipe.image)
         descriptionLabel.text = recipe.title
@@ -109,15 +114,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         cuisineLabel.text = recipe.cuisine
         
 //        звезда из системного символа
-        let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "star.fill")
-        attachment.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
-        let attachmentString = NSAttributedString(attachment: attachment)
-        let complexText = NSMutableAttributedString(string: "")
-        complexText.append(attachmentString)
-        let textAfterIcon = NSAttributedString(string: " \(recipe.raiting)")
-        complexText.append(textAfterIcon)
-        raitingLabel.attributedText = complexText
+        raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(recipe.raiting)", size: 12)
     }
     
     // MARK: - Constraints
@@ -131,7 +128,7 @@ final class FavoritesTableViewCell: UITableViewCell {
             recipesImageView.heightAnchor.constraint(equalToConstant: 180),
 
 //            название рецепта
-            descriptionLabel.topAnchor.constraint(equalTo: recipesImageView.bottomAnchor, constant: 50),
+            descriptionLabel.topAnchor.constraint(equalTo: recipesImageView.bottomAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
@@ -160,7 +157,7 @@ final class FavoritesTableViewCell: UITableViewCell {
             cuisineImageView.bottomAnchor.constraint(equalTo: conteinerView.bottomAnchor, constant: -10),
             cuisineImageView.heightAnchor.constraint(equalToConstant: 32),
             
-            cuisineLabel.leadingAnchor.constraint(equalTo: cuisineImageView.trailingAnchor, constant: 10),
+            cuisineLabel.leadingAnchor.constraint(equalTo: cuisineImageView.trailingAnchor, constant: 4),
             cuisineLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -10),
             cuisineLabel.centerYAnchor.constraint(equalTo: conteinerView.centerYAnchor)
         ])

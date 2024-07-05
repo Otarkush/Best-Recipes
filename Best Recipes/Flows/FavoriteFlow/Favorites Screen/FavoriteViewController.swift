@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Recipe {
+struct Recipes {
     let id: Int
     let title: String
     let image: String
@@ -21,12 +21,12 @@ final class FavoritesViewController: UIViewController {
     private let favoritesView = FavoritesView()
     
     //    данные c API с картинкой и текстом
-    let recipeGarlic = Recipe(id: 716429,
-                              title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
+    let recipeGarlic = Recipes(id: 716429,
+                              title: "Pasta with Garlic, Scallions",
                               image: "716429.jpg", imageCuisine: "fish.jpg", cuisine: "China", raiting: "5.0")
-    let recipePork = Recipe(id: 715538, title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta", image: "715538.jpg", imageCuisine: "fish.jpg", cuisine: "Tay", raiting: "4.5")
+    let recipePork = Recipes(id: 715538, title: "What to make for dinner", image: "715538.jpg", imageCuisine: "fish.jpg", cuisine: "Tay", raiting: "4.5")
     
-    lazy var recipe: [Recipe] = [recipeGarlic, recipePork, recipeGarlic, recipePork]
+    lazy var recipe: [Recipes] = [recipeGarlic, recipePork, recipeGarlic, recipePork]
     
     
     // MARK: - Life Cycle
