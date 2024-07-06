@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Apikeys
- enum ApiKeys: String {
+ enum ApiKeys: String, CaseIterable {
     case one
     case two
     case three

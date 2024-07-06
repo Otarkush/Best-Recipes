@@ -84,7 +84,7 @@ enum ApiService {
 extension ApiService: HTTPClient {
     
     var apiKey: ApiKeys {
-        return .one
+        return .allCases.randomElement()!
     }
     
     var baseURL: String {
