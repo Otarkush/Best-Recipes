@@ -190,12 +190,16 @@ class AddRecipeViewController: UIViewController {
         
         createRecipeButton.rx.tap
             .bind { [weak self] in
-                ApiService.create.request(type: RecipeResponse.self) { result in
-                    switch result {
-                    case .success(let success):
-                        print(success)
-                    case .failure(let failure):
-                        print(failure)
+                self?.showLoader()
+                ApiService.random(10).request(type: RecipeResponse.self) { result in
+                    DispatchQueue.main.async {
+                        self?.hideLoader()
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                        case .failure(let failure):
+                            self?.showErrorAlert(message: failure.localizedDescription)
+                        }
                     }
                 }
             }

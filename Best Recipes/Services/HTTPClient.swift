@@ -37,12 +37,27 @@ import Foundation
 }
 
 //MARK: - Errors
-enum HTTPClientError: Error {
+enum HTTPClientError: Error, LocalizedError {
     case badURL
     case badDataTask
     case badParametrSerialization
     case badDecode
     case deadApiKey
+
+    var errorDescription: String? {
+        switch self {
+        case .badURL:
+            return "УРЛ не валидный."
+        case .badDataTask:
+            return "Запрос завершился с ошибкой."
+        case .badParametrSerialization:
+            return "Переданы неверные параметры."
+        case .badDecode:
+            return "Невозможно декодировать дату."
+        case .deadApiKey:
+            return "Смените апи ключ."
+        }
+    }
 }
 
 // MARK: - ClientProtocol
@@ -94,9 +109,21 @@ extension HTTPClient {
                 switch httpResponse.statusCode {
                 case 402:
                     completion(.failure(.deadApiKey))
+                    return
                 default:
                     break
                 }
+            }
+
+            if let data = data {
+                do {
+                    completion(.success(try JSONDecoder().decode(type, from: data)))
+                } catch {
+                    completion(.failure(.badDecode))
+                    return
+                }
+            } else {
+                completion(.failure(.badDataTask))
             }
         }
 
