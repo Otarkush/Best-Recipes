@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxGesture
 
 final class TabBarController: UITabBarController {
     
     private let customTabBar = CustomTabBar()
+    
+    private let disposeBag = DisposeBag()
     
     init(tabBarControllers: [UIViewController]) {
         super.init(nibName: nil, bundle: nil)
@@ -25,5 +29,10 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setValue(customTabBar, forKey: "tabBar")
+        customTabBar.plusButton.rx.tap
+            .bind { [weak self] in
+                self?.selectedIndex = 2
+            }
+            .disposed(by: disposeBag)
     }
 }

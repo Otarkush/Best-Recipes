@@ -8,7 +8,7 @@
 import UIKit
 
 struct Ingredient {
-    let image: UIImage
+    let image: String
     let name: String
     let quantity: Int
 }

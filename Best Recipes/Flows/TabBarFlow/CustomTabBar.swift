@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxGesture
 
 final class CustomTabBar: UITabBar {
     
@@ -22,6 +24,8 @@ final class CustomTabBar: UITabBar {
         setupConstraints()
     }
     
+    private let disposeBag = DisposeBag()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -29,8 +33,13 @@ final class CustomTabBar: UITabBar {
     private func setupTabBar() {
         tintColor = .red
         unselectedItemTintColor = .gray
+
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 0, height: -4)
+        layer.shadowRadius = 4
     }
-    
+
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         plusButton.frame.contains(point) ? plusButton : super.hitTest(point, with: event)
     }
