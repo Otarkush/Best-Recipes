@@ -6,27 +6,21 @@
 //
 
 import UIKit
+import Kingfisher
 
-struct Recipes {
-    let id: Int
-    let title: String
-    let image: String
-    let imageCuisine: String
-    let cuisine: String
-    let raiting: String
-}
 
 final class FavoritesViewController: UIViewController {
     
     private let favoritesView = FavoritesView()
+    private let recipeService = RecipeService()
     
-    //    данные c API с картинкой и текстом
-    let recipeGarlic = Recipes(id: 716429,
-                              title: "Pasta with Garlic, Scallions",
-                              image: "716429.jpg", imageCuisine: "fish.jpg", cuisine: "China", raiting: "5.0")
-    let recipePork = Recipes(id: 715538, title: "What to make for dinner", image: "715538.jpg", imageCuisine: "fish.jpg", cuisine: "Tay", raiting: "4.5")
+    // MARK: - temp properties
     
-    lazy var recipe: [Recipes] = [recipeGarlic, recipePork, recipeGarlic, recipePork]
+    private var score = 0
+    private var recipeTitle = ""
+    private var image = ""
+    private var cuisine = ["Home"]
+    private var recipes: [RecipeModel] = []
     
     
     // MARK: - Life Cycle
@@ -39,11 +33,30 @@ final class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         
         favoritesView.setDelegate(self)
+        recipeService.delegate = self
+//        запрос
+        recipeService.performRequest("https://api.spoonacular.com/recipes/random?number=4", key: "3aadffa0a33849f4ac3edcaa269851d8")
     }
-    
 }
 
 // MARK: - Extinsions
+
+extension FavoritesViewController: RequestRecipeDelegate {
+    func didReceiveRecipe(recipeData: [RecipeModel]) {
+//        обновление данных в контроллере
+        self.recipes = recipeData
+        
+//        обновление таблицы
+        DispatchQueue.main.async {
+            self.favoritesView.favoriteTableView.reloadData()
+        }
+    }
+    func didFailWithError(error: Error) {
+        print("We have parse error: \(error)")
+    }
+}
+
+// MARK: - Extensions TableViewDelegate
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -54,14 +67,14 @@ extension FavoritesViewController: UITableViewDelegate {
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipe.count
+        return recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = FavoritesTableViewCell.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.configure(with: recipe[indexPath.row])
+        cell.configure(with: recipes[indexPath.row])
         return cell
     }
     

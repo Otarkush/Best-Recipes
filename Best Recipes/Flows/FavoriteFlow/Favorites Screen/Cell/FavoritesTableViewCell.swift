@@ -26,6 +26,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "bookmark")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
         return button
     }()
     
@@ -105,16 +106,28 @@ final class FavoritesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with recipe: Recipes) {
+    func configure(with recipe: RecipeModel) {
         
-        recipesImageView.image = UIImage(named: recipe.image)
+        if let url = URL(string: recipe.image) {
+            recipesImageView.kf.setImage(with: url)
+        }
         descriptionLabel.text = recipe.title
         
-        cuisineImageView.image = UIImage(named: recipe.imageCuisine)
-        cuisineLabel.text = recipe.cuisine
+        cuisineImageView.image = UIImage(named: "cuisine")
+        
+        if !recipe.cuisines.isEmpty {
+            cuisineLabel.text = recipe.cuisines[0]
+        } else {
+            cuisineLabel.text = "World cuisine"
+        }
         
 //        звезда из системного символа
-        raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(recipe.raiting)", size: 12)
+        let raitingScore = String(recipe.score)
+        raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(raitingScore)", size: 12)
+    }
+    
+    @objc private func addBookmark() {
+        print("Add or Remove from bookmarsks")
     }
     
     // MARK: - Constraints
@@ -126,6 +139,7 @@ final class FavoritesTableViewCell: UITableViewCell {
             recipesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             recipesImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             recipesImageView.heightAnchor.constraint(equalToConstant: 180),
+            recipesImageView.widthAnchor.constraint(equalToConstant: 180),
 
 //            название рецепта
             descriptionLabel.topAnchor.constraint(equalTo: recipesImageView.bottomAnchor, constant: 20),
@@ -156,6 +170,7 @@ final class FavoritesTableViewCell: UITableViewCell {
             cuisineImageView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor),
             cuisineImageView.bottomAnchor.constraint(equalTo: conteinerView.bottomAnchor, constant: -10),
             cuisineImageView.heightAnchor.constraint(equalToConstant: 32),
+            cuisineImageView.widthAnchor.constraint(equalToConstant: 32),
             
             cuisineLabel.leadingAnchor.constraint(equalTo: cuisineImageView.trailingAnchor, constant: 4),
             cuisineLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -10),

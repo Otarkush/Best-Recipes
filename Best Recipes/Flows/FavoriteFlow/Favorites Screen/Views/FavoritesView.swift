@@ -21,7 +21,7 @@ final class FavoritesView: UIView {
         return label
     }()
     
-     private lazy var favoriteTableView: UITableView = {
+    var favoriteTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = true
