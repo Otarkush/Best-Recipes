@@ -105,7 +105,7 @@ private extension HomeViewController {
             TrendsCollectionViewCell.self,
             forCellWithReuseIdentifier: "TrendsCollectionViewCell")
         collectionView.register(
-            PopularCategoriesCollectionViewCell.self,
+            PopularCategoriesRecipesCollectionViewCell.self,
             forCellWithReuseIdentifier: "PopiularCategoriesViewCell")
         collectionView.register(
             RecentRecipeCollectionViewCell.self,
@@ -346,7 +346,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case .popularCategoryRecipes(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
-                    as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
+                    as? PopularCategoriesRecipesCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: popularCategory[indexPath.row])
             return cell
         case .recentRecipe(let recentRecipe):

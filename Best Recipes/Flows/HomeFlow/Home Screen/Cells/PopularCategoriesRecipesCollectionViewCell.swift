@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
+final class PopularCategoriesRecipesCollectionViewCell: UICollectionViewCell {
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
@@ -96,7 +96,7 @@ final class PopularCategoriesCollectionViewCell: UICollectionViewCell {
 
 // MARK: - Private Methods
 
-private extension PopularCategoriesCollectionViewCell {
+private extension PopularCategoriesRecipesCollectionViewCell {
     func setupUI() {
         addSubviews()
         setConstraints()

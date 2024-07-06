@@ -46,7 +46,8 @@
 		3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB42C35E8E400F738AE /* TabBarController.swift */; };
 		3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB62C35E8E400F738AE /* ScreenFactory.swift */; };
 		3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB82C35E8E400F738AE /* HomeCoordinator.swift */; };
-		79E5C5E02C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */; };
+		79ADA46C2C396372004EC09E /* PopularCategoryTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ADA46B2C396372004EC09E /* PopularCategoryTitleCollectionViewCell.swift */; };
+		79E5C5E02C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D72C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift */; };
 		79E5C5E12C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */; };
 		79E5C5E22C36D76500124B88 /* RecentRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */; };
 		79E5C5E32C36D76500124B88 /* TrendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */; };
@@ -95,7 +96,8 @@
 		3CCB5CB42C35E8E400F738AE /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3CCB5CB62C35E8E400F738AE /* ScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		3CCB5CB82C35E8E400F738AE /* HomeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		79ADA46B2C396372004EC09E /* PopularCategoryTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoryTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		79E5C5D72C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCategoriesRecipesCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCuisinesCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -387,7 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */,
-				79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */,
+				79ADA46B2C396372004EC09E /* PopularCategoryTitleCollectionViewCell.swift */,
+				79E5C5D72C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift */,
 				79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */,
 				79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */,
 				79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */,
@@ -484,6 +487,7 @@
 				3CCB5CCA2C35E8E400F738AE /* FavoriteViewController.swift in Sources */,
 				3CCB5CC62C35E8E400F738AE /* InstructionsView.swift in Sources */,
 				3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */,
+				79ADA46C2C396372004EC09E /* PopularCategoryTitleCollectionViewCell.swift in Sources */,
 				79E5C5E72C36D76500124B88 /* HomeViewController.swift in Sources */,
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
 				79E5C5E42C36D76500124B88 /* ListSection.swift in Sources */,
@@ -508,7 +512,7 @@
 				3CCB5CBE2C35E8E400F738AE /* Coordinator.swift in Sources */,
 				3CCB5CC32C35E8E400F738AE /* IngredientModel.swift in Sources */,
 				3CCB5CCD2C35E8E400F738AE /* CustomTabBar.swift in Sources */,
-				79E5C5E02C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift in Sources */,
+				79E5C5E02C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift in Sources */,
 				3CB7EBE72C3352DD00892324 /* UserDefaultsService.swift in Sources */,
 				79E5C5E32C36D76500124B88 /* TrendsCollectionViewCell.swift in Sources */,
 				3CCB5CC72C35E8E400F738AE /* RecipeView.swift in Sources */,
