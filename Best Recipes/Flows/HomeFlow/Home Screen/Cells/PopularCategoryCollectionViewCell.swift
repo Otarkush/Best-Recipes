@@ -7,32 +7,36 @@
 
 import UIKit
 
-final class PopularCategoryTitleCollectionViewCell: UICollectionViewCell {
+final class PopularCategoryCollectionViewCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textAlignment = .center
+        label.textColor = .white
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(titleCtegory title: String) {
+    func configure(titleCategory title: String) {
         titleLabel.text = title.capitalized
     }
 }
 
 // MARK: - Private Methods
 
-private extension PopularCategoryTitleCollectionViewCell {
+private extension PopularCategoryCollectionViewCell {
     func setupUI() {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
+        contentView.backgroundColor = .systemRed
         addSubviews()
         setConstraints()
     }
@@ -44,16 +48,8 @@ private extension PopularCategoryTitleCollectionViewCell {
     func setConstraints() {
         titleLabel.snp.makeConstraints { make in
             make
-                .centerY
+                .centerX.centerY
                 .equalToSuperview()
-            make
-                .leading
-                .equalToSuperview()
-                .inset(12)
-            make
-                .trailing
-                .equalToSuperview()
-                .inset(-16)
         }
     }
 }

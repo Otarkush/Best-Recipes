@@ -9,17 +9,20 @@ import Foundation
 
 enum ListSection {
     case trendingNow([Recipe])
+    case popularCategory([String])
     case popularCategoryRecipes([Recipe])
     case recentRecipe([Recipe])
     case popularCuisines([Recipe])
     
-    var items: [Recipe] {
+    var items: [Any] {
         switch self {
         case .trendingNow(let items),
                 .popularCategoryRecipes(let items),
                 .recentRecipe(let items),
                 .popularCuisines(let items):
             return items
+        case .popularCategory(let titles):
+            return titles
         }
     }
     
@@ -31,8 +34,10 @@ enum ListSection {
         switch self {
         case .trendingNow(_):
             return "Trending now 🔥"
-        case .popularCategoryRecipes(_):
+        case .popularCategory(_):
             return "Popular category"
+        case .popularCategoryRecipes(_):
+            return ""
         case .recentRecipe(_):
             return "Recent recipe"
         case .popularCuisines(_):

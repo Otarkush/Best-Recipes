@@ -61,6 +61,7 @@ private extension HomeViewController {
                     
                     self?.sections = [
                         .trendingNow(trendingNowRecipes),
+                        .popularCategory(SpoonacularMealType.allCases.map {$0.rawValue }),
                         .popularCategoryRecipes(popularCategoryRecipes),
                         .recentRecipe(recentRecipeRecipes),
                         .popularCuisines(popularCuisinesRecipes)
@@ -77,7 +78,6 @@ private extension HomeViewController {
     }
 
         func setDelegates() {
-//        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -103,8 +103,11 @@ private extension HomeViewController {
             TrendsCollectionViewCell.self,
             forCellWithReuseIdentifier: "TrendsCollectionViewCell")
         collectionView.register(
+            PopularCategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: "PopularCategoryViewCell")
+        collectionView.register(
             PopularCategoriesRecipesCollectionViewCell.self,
-            forCellWithReuseIdentifier: "PopiularCategoriesViewCell")
+            forCellWithReuseIdentifier: "PopularCategoryRecipesViewCell")
         collectionView.register(
             RecentRecipeCollectionViewCell.self,
             forCellWithReuseIdentifier: "RecentRecipeCollectionViewCell")
@@ -179,8 +182,10 @@ private extension HomeViewController {
             switch section {
             case .trendingNow:
                 return createTrendsSection()
+            case .popularCategory:
+                return createPopularCategorySection()
             case .popularCategoryRecipes:
-                return createPopularCategoriesSection()
+                return createPopularCategoryRecipesSection()
             case .recentRecipe:
                 return createRecentRecipeSection()
             case .popularCuisines:
@@ -236,7 +241,34 @@ private extension HomeViewController {
         return section
     }
     
-    func createPopularCategoriesSection() -> NSCollectionLayoutSection {
+    func createPopularCategorySection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(0.4),
+                heightDimension: .fractionalHeight(0.08)
+            ),
+            subitems: [item]
+        )
+        
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            interGroupSpasing: 16,
+            supplemetaryItems: [],
+            contentInsets: false
+        )
+        
+        return section
+    }
+    
+    func createPopularCategoryRecipesSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
@@ -342,10 +374,15 @@ extension HomeViewController: UICollectionViewDataSource {
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: trendingNow[indexPath.row])
             return cell
-        case .popularCategoryRecipes(let popularCategory):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
+        case .popularCategory(let popularCategory):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)
+                    as? PopularCategoryCollectionViewCell else { return UICollectionViewCell()}
+            cell.configure(titleCategory: popularCategory[indexPath.row])
+            return cell
+        case .popularCategoryRecipes(let popularCategoryRecipes):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryRecipesViewCell", for: indexPath)
                     as? PopularCategoriesRecipesCollectionViewCell else { return UICollectionViewCell() }
-            cell.configure(recipe: popularCategory[indexPath.row])
+            cell.configure(recipe: popularCategoryRecipes[indexPath.row])
             return cell
         case .recentRecipe(let recentRecipe):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRecipeCollectionViewCell", for: indexPath)
@@ -370,7 +407,9 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as! HeaderSupplementaryView
             header.configureHeader(
                 titleSection: sections[indexPath.section].title,
-                isButtonVisible: sections[indexPath.section].title == "Popular category" ? false : true
+                isButtonVisible:
+                    sections[indexPath.section].title == "Popular category"
+                    || sections[indexPath.section].title == "" ? false : true
             )
             return header
         default:

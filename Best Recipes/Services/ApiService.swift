@@ -23,7 +23,7 @@ import Foundation
 //}
 
 // MARK: - Spoonacular Meal Type
-enum SpoonacularMealType: String {
+enum SpoonacularMealType: String, CaseIterable {
     case mainCourse = "main course"
     case sideDish = "side dish"
     case dessert = "dessert"
@@ -38,6 +38,25 @@ enum SpoonacularMealType: String {
     case fingerfood = "fingerfood"
     case snack = "snack"
     case drink = "drink"
+    
+    static var allCases: [SpoonacularMealType] {
+            return [
+                .mainCourse,
+                .sideDish,
+                .dessert,
+                .appetizer,
+                .salad,
+                .bread,
+                .breakfast,
+                .soup,
+                .beverage,
+                .sauce,
+                .marinade,
+                .fingerfood,
+                .snack,
+                .drink
+            ]
+        }
 }
 
 // MARK: - Spoonacular Cuisines Type
