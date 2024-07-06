@@ -26,9 +26,16 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         button.contentHorizontalAlignment = .right
         button.semanticContentAttribute = .forceRightToLeft
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
-        button.setImage(UIImage(systemName: "arrow.right", withConfiguration: imageConfig), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.tintColor = .gray
+        let image = UIImage(systemName: "arrow.right", withConfiguration: imageConfig)?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
+        
+        // Настройка отступов изображения с использованием UIButtonConfiguration
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePadding = 10 // Установите нужные вам отступы
+        
+        // Применение конфигурации к кнопке
+        button.configuration = buttonConfig
+        
         return button
     }()
     
@@ -41,8 +48,11 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHeader(categoryName: String) {
-        headerLabel.text = categoryName
+    func configureHeader(titleSection title: String, isButtonVisible: Bool) {
+        headerLabel.text = title
+        if !isButtonVisible {
+            headerSeeAllButton.isHidden = true
+        }
     }
     
 }
@@ -78,7 +88,7 @@ extension HeaderSupplementaryView {
             make
                 .trailing
                 .equalToSuperview()
-                .offset(-16)
+                .offset(10)
         }
     }
 }

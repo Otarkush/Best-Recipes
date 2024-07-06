@@ -342,7 +342,10 @@ extension HomeViewController: UICollectionViewDataSource {
                 ofKind: kind,
                 withReuseIdentifier: "HeaderSupplementaryView",
                 for: indexPath) as! HeaderSupplementaryView
-            header.configureHeader(categoryName: sections[indexPath.section].title)
+            header.configureHeader(
+                titleSection: sections[indexPath.section].title,
+                isButtonVisible: sections[indexPath.section].title == "Popular category" ? false : true
+            )
             return header
         default:
             return UICollectionReusableView()
