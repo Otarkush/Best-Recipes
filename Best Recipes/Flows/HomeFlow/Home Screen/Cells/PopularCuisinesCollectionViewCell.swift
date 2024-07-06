@@ -17,25 +17,33 @@ final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupView()
-        setConstraints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
-        contentView.addSubview(recipeImageView)
-    }
-    
-    func configureCell(imageName: String) {
+    func configure(imageName: String) {
         if let imageUrl = URL(string: imageName) {
             recipeImageView.kf.setImage(with: imageUrl)
         }
     }
+}
 
+// MARK: - Private Methods
+
+private extension PopularCuisinesCollectionViewCell {
+    func setupUI() {
+        contentView.addSubview(recipeImageView)
+        addSubviews()
+        setConstraints()
+    }
+    
+    func addSubviews() {
+        
+    }
+    
     func setConstraints() {
         recipeImageView.snp.makeConstraints { make in
             make

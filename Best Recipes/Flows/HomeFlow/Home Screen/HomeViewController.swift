@@ -31,8 +31,6 @@ final class HomeViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search recipes"
         searchBar.searchBarStyle = .minimal
-        searchBar.backgroundImage = UIImage() // Устанавливаем пустое изображение для фона
-        searchBar.isTranslucent = true // Делаем searchBar прозрачным
         searchBar.layer.cornerRadius = 15
         searchBar.layer.borderWidth = 1.0
         searchBar.layer.borderColor = UIColor.systemGray4.cgColor
@@ -43,8 +41,8 @@ final class HomeViewController: UIViewController {
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         addDataToSections()
+        setupUI()
     }
 }
 
@@ -357,7 +355,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCuisines(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisinesCollectionView", for: indexPath)
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
-            cell.configureCell(imageName: popularCuisines[indexPath.row].image ?? "")
+            cell.configure(imageName: popularCuisines[indexPath.row].image ?? "")
             return cell
         }
     }

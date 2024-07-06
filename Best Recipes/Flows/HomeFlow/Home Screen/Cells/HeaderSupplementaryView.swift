@@ -25,15 +25,13 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         button.setTitleColor(.red, for: .normal)
         button.contentHorizontalAlignment = .right
         button.semanticContentAttribute = .forceRightToLeft
+        
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
         let image = UIImage(systemName: "arrow.right", withConfiguration: imageConfig)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
         
-        // Настройка отступов изображения с использованием UIButtonConfiguration
         var buttonConfig = UIButton.Configuration.plain()
-        buttonConfig.imagePadding = 10 // Установите нужные вам отступы
-        
-        // Применение конфигурации к кнопке
+        buttonConfig.imagePadding = 10
         button.configuration = buttonConfig
         
         return button
