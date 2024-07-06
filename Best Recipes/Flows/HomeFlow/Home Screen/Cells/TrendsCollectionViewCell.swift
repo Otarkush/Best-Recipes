@@ -19,21 +19,10 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let recipeRateStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 5
-        stackView.clipsToBounds = true
-        stackView.layer.cornerRadius = 8
-        return stackView
-    }()
-    
     private let blurredBackgroundView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.layer.cornerRadius = 8
+        visualEffectView.layer.cornerRadius = 10
         visualEffectView.clipsToBounds = true
         return visualEffectView
     }()
@@ -135,9 +124,8 @@ private extension TrendsCollectionViewCell {
         contentView.addSubview(recipeImageView)
         
         recipeImageView.addSubview(blurredBackgroundView)
-        blurredBackgroundView.contentView.addSubview(recipeRateStackView)
-        recipeRateStackView.addArrangedSubview(starLabel)
-        recipeRateStackView.addArrangedSubview(rateLabel)
+        blurredBackgroundView.contentView.addSubview(starLabel)
+        blurredBackgroundView.contentView.addSubview(rateLabel)
         
         recipeImageView.addSubview(bookmarkView)
         bookmarkView.addSubview(bookmarkImageView)
@@ -165,17 +153,29 @@ private extension TrendsCollectionViewCell {
                 .equalToSuperview()
                 .offset(10)
             make
-                .edges
-                .equalTo(recipeRateStackView)
-        }
-        
-        recipeRateStackView.snp.makeConstraints { make in
-            make
                 .height
-                .equalTo(28)
+                .equalTo(30)
             make
                 .width
-                .equalTo(64)
+                .equalTo(60)
+        }
+        
+        starLabel.snp.makeConstraints { make in
+            make
+                .centerY
+                .equalToSuperview()
+            make
+                .leading
+                .equalTo(8)
+        }
+        
+        rateLabel.snp.makeConstraints { make in
+            make
+                .centerY
+                .equalToSuperview()
+            make
+                .trailing
+                .equalTo(-8)
         }
         
         bookmarkView.snp.makeConstraints { make in
