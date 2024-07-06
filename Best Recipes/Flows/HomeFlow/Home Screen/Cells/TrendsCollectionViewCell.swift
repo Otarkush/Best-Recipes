@@ -23,6 +23,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
+        stackView.distribution = .fillEqually
         stackView.spacing = 5
         stackView.backgroundColor = .black
         stackView.alpha = 0.4
@@ -110,7 +111,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = recipe.title?.capitalized
         authorNameLabel.text = "By \(recipe.sourceName ?? "")"
-        rateLabel.text = "4.8"
+        rateLabel.text = "4,8"
     }
 }
 
@@ -123,19 +124,20 @@ private extension TrendsCollectionViewCell {
     }
     
     func addSubviews() {
-        authorStackView.addArrangedSubview(authorImageView)
-        authorStackView.addArrangedSubview(authorNameLabel)
-        
         contentView.addSubview(recipeImageView)
-        recipeImageView.addSubview(recipeRateStackView)
-        recipeImageView.addSubview(bookmarkView)
-        bookmarkView.addSubview(bookmarkImageView)
         
+        recipeImageView.addSubview(recipeRateStackView)
         recipeRateStackView.addArrangedSubview(rateImageView)
         recipeRateStackView.addArrangedSubview(rateLabel)
         
+        recipeImageView.addSubview(bookmarkView)
+        bookmarkView.addSubview(bookmarkImageView)
+        
         contentView.addSubview(titleLabel)
+        
         contentView.addSubview(authorStackView)
+        authorStackView.addArrangedSubview(authorImageView)
+        authorStackView.addArrangedSubview(authorNameLabel)
     }
     
     func setupConstraints() {
@@ -158,7 +160,7 @@ private extension TrendsCollectionViewCell {
                 .equalTo(28)
             make
                 .width
-                .equalTo(56)
+                .equalTo(64)
         }
         
         rateImageView.snp.makeConstraints { make in

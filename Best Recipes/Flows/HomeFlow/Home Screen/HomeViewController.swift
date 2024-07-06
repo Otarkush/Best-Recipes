@@ -36,10 +36,7 @@ final class HomeViewController: UIViewController {
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
-        setupViews()
-        setConstraints()
-        setDelegates()
+        setupUI()
         addDataToSections()
     }
 }
@@ -47,7 +44,6 @@ final class HomeViewController: UIViewController {
 // MARK: - Private Methods
 
 private extension HomeViewController {
-    
     func addDataToSections() {
         ApiService.random(10).request(type: RecipeResponse.self)  { [weak self] result in
             switch result {
@@ -81,11 +77,22 @@ private extension HomeViewController {
         collectionView.dataSource = self
     }
     
-    func setupViews() {
-        view.addSubview(titleLabel)
-        view.addSubview(collectionView)
+    func setupUI() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
+        setDelegates()
+        addSubviews()
+        registerCollectionViewCells()
+        setConstraints()
+    }
+    
+    func addSubviews() {
+        view.addSubview(titleLabel)
+        view.addSubview(collectionView)
+    }
+    
+    func registerCollectionViewCells() {
         collectionView.register(
             TrendsCollectionViewCell.self,
             forCellWithReuseIdentifier: "TrendsCollectionViewCell")
@@ -107,7 +114,6 @@ private extension HomeViewController {
     }
     
     func setConstraints() {
-        
         titleLabel.snp.makeConstraints { make in
             make
                 .top
