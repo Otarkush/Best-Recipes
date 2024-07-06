@@ -109,11 +109,10 @@ private extension PopularCategoriesCollectionViewCell {
         backView.addSubview(timeStackView)
         backView.addSubview(titleRecipeLabel)
         backView.addSubview(bookmarkView)
+        bookmarkView.addSubview(bookmarkImageView)
         
         timeStackView.addArrangedSubview(timeLabel)
         timeStackView.addArrangedSubview(timeOfRecipeLabel)
-        
-        bookmarkView.addSubview(bookmarkImageView)
     }
     
     func setConstraints() {

@@ -12,18 +12,29 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "header"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = .black
         return label
+    }()
+    
+    private let headerSeeAllButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("See all", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.setTitleColor(.red, for: .normal)
+        button.contentHorizontalAlignment = .right
+        button.semanticContentAttribute = .forceRightToLeft
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
+        button.setImage(UIImage(systemName: "arrow.right", withConfiguration: imageConfig), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        button.tintColor = .gray
+        return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clear
-        addSubview(headerLabel)
-        setConstraints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +45,23 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         headerLabel.text = categoryName
     }
     
-    private func setConstraints() {
+}
+
+// MARK: - Private Methods
+
+extension HeaderSupplementaryView {
+    func setupUI() {
+        backgroundColor = .clear
+        addSubviews()
+        setConstraints()
+    }
+    
+    func addSubviews() {
+        addSubview(headerLabel)
+        addSubview(headerSeeAllButton)
+    }
+    
+    func setConstraints() {
         headerLabel.snp.makeConstraints { make in
             make
                 .centerY
@@ -42,7 +69,16 @@ final class HeaderSupplementaryView: UICollectionReusableView {
             make
                 .leading
                 .equalToSuperview()
-                .offset(16)
+        }
+        
+        headerSeeAllButton.snp.makeConstraints { make in
+            make
+                .centerY
+                .equalToSuperview()
+            make
+                .trailing
+                .equalToSuperview()
+                .offset(-16)
         }
     }
 }

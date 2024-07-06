@@ -127,11 +127,15 @@ private extension HomeViewController {
             make
                 .top
                 .equalTo(titleLabel.snp.bottom)
-                .offset(20)
+                .offset(16)
             make
-                .leading.trailing
+                .leading
                 .equalToSuperview()
                 .offset(16)
+            make
+                .trailing
+                .equalToSuperview()
+                .offset(-16)
             make
                 .bottom
                 .equalTo(view.safeAreaLayoutGuide)
@@ -168,10 +172,10 @@ private extension HomeViewController {
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
         section.boundarySupplementaryItems = supplemetaryItems
-        section.supplementariesFollowContentInsets = true // заголовок секции
+        section.supplementariesFollowContentInsets = false // заголовок секции
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(44)),
+                                               heightDimension: .estimated(54)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -243,8 +247,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.4)
+                widthDimension: .fractionalWidth(0.35),
+                heightDimension: .fractionalHeight(0.38)
             ),
             subitems: [item]
         )

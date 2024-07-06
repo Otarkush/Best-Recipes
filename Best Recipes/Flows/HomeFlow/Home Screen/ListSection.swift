@@ -30,7 +30,7 @@ enum ListSection {
     var title: String {
         switch self {
         case .trendingNow(_):
-            return "Tranding now 🔥"
+            return "Trending now 🔥"
         case .popularCategory(_):
             return "Popular category"
         case .recentRecipe(_):

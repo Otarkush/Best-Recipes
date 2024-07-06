@@ -19,6 +19,49 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let recipeRateStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 5
+        stackView.backgroundColor = .black
+        stackView.alpha = 0.4
+        stackView.clipsToBounds = true
+        stackView.layer.cornerRadius = 8
+        return stackView
+    }()
+    
+    private let rateImageView: UIImageView = {
+        let imageView  = UIImageView()
+        imageView.image = UIImage(systemName: "star.fill")
+        imageView.tintColor = .black
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let rateLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let bookmarkView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 18
+        return view
+    }()
+    
+    private let bookmarkImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "bookmarkIcon")
+        imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -67,6 +110,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = recipe.title?.capitalized
         authorNameLabel.text = "By \(recipe.sourceName ?? "")"
+        rateLabel.text = "4.8"
     }
 }
 
@@ -81,7 +125,15 @@ private extension TrendsCollectionViewCell {
     func addSubviews() {
         authorStackView.addArrangedSubview(authorImageView)
         authorStackView.addArrangedSubview(authorNameLabel)
+        
         contentView.addSubview(recipeImageView)
+        recipeImageView.addSubview(recipeRateStackView)
+        recipeImageView.addSubview(bookmarkView)
+        bookmarkView.addSubview(bookmarkImageView)
+        
+        recipeRateStackView.addArrangedSubview(rateImageView)
+        recipeRateStackView.addArrangedSubview(rateLabel)
+        
         contentView.addSubview(titleLabel)
         contentView.addSubview(authorStackView)
     }
@@ -94,6 +146,48 @@ private extension TrendsCollectionViewCell {
             make
                 .height
                 .equalTo(200)
+        }
+        
+        recipeRateStackView.snp.makeConstraints { make in
+            make
+                .top.leading
+                .equalToSuperview()
+                .offset(10)
+            make
+                .height
+                .equalTo(28)
+            make
+                .width
+                .equalTo(56)
+        }
+        
+        rateImageView.snp.makeConstraints { make in
+            make
+                .height.width
+                .equalTo(15)
+        }
+        
+        bookmarkView.snp.makeConstraints { make in
+            make
+                .top
+                .equalToSuperview()
+                .offset(10)
+            make
+                .trailing
+                .equalToSuperview()
+                .offset(-10)
+            make
+                .height.width
+                .equalTo(36)
+        }
+        
+        bookmarkImageView.snp.makeConstraints { make in
+            make
+                .height.width
+                .equalTo(20)
+            make
+                .centerX.centerY
+                .equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
