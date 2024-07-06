@@ -36,6 +36,7 @@ final class RecentRecipeCollectionViewCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.alignment = .fill
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -77,17 +78,17 @@ private extension RecentRecipeCollectionViewCell {
     func setConstraints() {
         recipeInfoStackView.snp.makeConstraints { make in
             make
-                .top.bottom.leading.trailing
+                .top.leading.trailing
                 .equalToSuperview()
-            make
-                .height
-                .equalTo(200)
         }
         
         recipeImageView.snp.makeConstraints { make in
             make
-                .height.width
-                .equalTo(140)
+                .leading.trailing
+                .equalToSuperview()
+            make
+                .height
+                .equalTo(recipeImageView.snp.width)
         }
     }
 }

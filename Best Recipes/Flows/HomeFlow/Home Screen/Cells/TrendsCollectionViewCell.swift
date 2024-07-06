@@ -23,13 +23,19 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.spacing = 5
-        stackView.backgroundColor = .black
-        stackView.alpha = 0.4
         stackView.clipsToBounds = true
         stackView.layer.cornerRadius = 8
         return stackView
+    }()
+    
+    private let blurredBackgroundView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.layer.cornerRadius = 8
+        visualEffectView.clipsToBounds = true
+        return visualEffectView
     }()
     
     private let starLabel: UILabel = {
@@ -37,7 +43,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         label.text = "★"
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .right
         return label
     }()
     
@@ -45,6 +51,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .white
+        label.textAlignment = .left
         return label
     }()
     
@@ -127,7 +134,8 @@ private extension TrendsCollectionViewCell {
     func addSubviews() {
         contentView.addSubview(recipeImageView)
         
-        recipeImageView.addSubview(recipeRateStackView)
+        recipeImageView.addSubview(blurredBackgroundView)
+        blurredBackgroundView.contentView.addSubview(recipeRateStackView)
         recipeRateStackView.addArrangedSubview(starLabel)
         recipeRateStackView.addArrangedSubview(rateLabel)
         
@@ -151,23 +159,23 @@ private extension TrendsCollectionViewCell {
                 .equalTo(200)
         }
         
-        recipeRateStackView.snp.makeConstraints { make in
+        blurredBackgroundView.snp.makeConstraints { make in
             make
                 .top.leading
                 .equalToSuperview()
                 .offset(10)
+            make
+                .edges
+                .equalTo(recipeRateStackView)
+        }
+        
+        recipeRateStackView.snp.makeConstraints { make in
             make
                 .height
                 .equalTo(28)
             make
                 .width
                 .equalTo(64)
-        }
-        
-        starLabel.snp.makeConstraints { make in
-            make
-                .height.width
-                .equalTo(15)
         }
         
         bookmarkView.snp.makeConstraints { make in
