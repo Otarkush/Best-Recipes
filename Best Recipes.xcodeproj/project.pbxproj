@@ -19,6 +19,7 @@
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
 		3C35BC022C3875B900033CDD /* AddRecipeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BC012C3875B900033CDD /* AddRecipeCoordinator.swift */; };
 		3C35BC052C3875E500033CDD /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BC042C3875E500033CDD /* AddRecipeViewController.swift */; };
+		3C35BC072C3932A500033CDD /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BC062C3932A500033CDD /* UIView + Ext.swift */; };
 		3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBAF2C332EB200892324 /* RxBlocking */; };
 		3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB12C332EB200892324 /* RxCocoa */; };
 		3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3CB7EBB32C332EB200892324 /* RxRelay */; };
@@ -70,6 +71,7 @@
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		3C35BC012C3875B900033CDD /* AddRecipeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeCoordinator.swift; sourceTree = "<group>"; };
 		3C35BC042C3875E500033CDD /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
+		3C35BC062C3932A500033CDD /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		3CB7EBE62C3352DD00892324 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		3CCB5C952C35E8E400F738AE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		3CCB5C972C35E8E400F738AE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				11671AB12C341B6D00FCD29A /* UIColor + ext.swift */,
+				3C35BC062C3932A500033CDD /* UIView + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 			files = (
 				3CCB5CCA2C35E8E400F738AE /* FavoriteViewController.swift in Sources */,
 				3CCB5CC62C35E8E400F738AE /* InstructionsView.swift in Sources */,
+				3C35BC072C3932A500033CDD /* UIView + Ext.swift in Sources */,
 				3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */,
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
 				3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */,

@@ -111,13 +111,14 @@ class AddRecipeViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(imageView)
-        contentView.addSubview(nameTextField)
-        contentView.addSubview(servesButton)
-        contentView.addSubview(cookTimeButton)
-        contentView.addSubview(createRecipeButton)
+        contentView.addSubviews(
+            titleLabel,
+            imageView,
+            nameTextField,
+            servesButton,
+            cookTimeButton,
+            createRecipeButton
+        )
     }
 
     private func setupConstraints() {

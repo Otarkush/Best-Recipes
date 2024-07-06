@@ -60,7 +60,7 @@ extension HTTPClient {
     var url: String {
         return baseURL + path + endpoint
     }
-    
+        
     func request<T:Codable>(type: T.Type, completion: @escaping (Result<T, HTTPClientError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.badURL))
@@ -89,16 +89,17 @@ extension HTTPClient {
                 completion(.failure(.badDataTask))
                 return
             }
-            if let data = data {
-                do {
-                    completion(.success(try JSONDecoder().decode(type, from: data)))
-                } catch {
-                    completion(.failure(.badDecode))
-                    return
+
+            if let httpResponse = response as? HTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 402:
+                    completion(.failure(.deadApiKey))
+                default:
+                    break
                 }
             }
         }
-        
+
         dataTask.resume()
     }
 }
