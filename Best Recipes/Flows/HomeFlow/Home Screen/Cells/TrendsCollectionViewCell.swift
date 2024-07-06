@@ -32,12 +32,13 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let rateImageView: UIImageView = {
-        let imageView  = UIImageView()
-        imageView.image = UIImage(systemName: "star.fill")
-        imageView.tintColor = .black
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    private let starLabel: UILabel = {
+        let label = UILabel()
+        label.text = "★"
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
     }()
     
     private let rateLabel: UILabel = {
@@ -127,7 +128,7 @@ private extension TrendsCollectionViewCell {
         contentView.addSubview(recipeImageView)
         
         recipeImageView.addSubview(recipeRateStackView)
-        recipeRateStackView.addArrangedSubview(rateImageView)
+        recipeRateStackView.addArrangedSubview(starLabel)
         recipeRateStackView.addArrangedSubview(rateLabel)
         
         recipeImageView.addSubview(bookmarkView)
@@ -163,7 +164,7 @@ private extension TrendsCollectionViewCell {
                 .equalTo(64)
         }
         
-        rateImageView.snp.makeConstraints { make in
+        starLabel.snp.makeConstraints { make in
             make
                 .height.width
                 .equalTo(15)
