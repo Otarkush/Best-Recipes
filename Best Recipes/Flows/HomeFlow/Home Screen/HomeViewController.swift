@@ -28,7 +28,14 @@ final class HomeViewController: UIViewController {
     }()
     
     private let searchBar: UISearchBar = {
-       let searchBar = UISearchBar()
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search recipes"
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundImage = UIImage() // Устанавливаем пустое изображение для фона
+        searchBar.isTranslucent = true // Делаем searchBar прозрачным
+        searchBar.layer.cornerRadius = 15
+        searchBar.layer.borderWidth = 1.0
+        searchBar.layer.borderColor = UIColor.systemGray4.cgColor
         return searchBar
     }()
     
@@ -56,7 +63,7 @@ private extension HomeViewController {
                     
                     self?.sections = [
                         .trendingNow(trendingNowRecipes),
-                        .popularCategory(popularCategoryRecipes),
+                        .popularCategoryRecipes(popularCategoryRecipes),
                         .recentRecipe(recentRecipeRecipes),
                         .popularCuisines(popularCuisinesRecipes)
                     ]
@@ -89,6 +96,7 @@ private extension HomeViewController {
     
     func addSubviews() {
         view.addSubview(titleLabel)
+        view.addSubview(searchBar)
         view.addSubview(collectionView)
     }
     
@@ -129,11 +137,25 @@ private extension HomeViewController {
                 .equalTo(78)
         }
         
-        collectionView.snp.makeConstraints { make in
+        searchBar.snp.makeConstraints { make in
             make
                 .top
                 .equalTo(titleLabel.snp.bottom)
                 .offset(16)
+            make
+                .leading
+                .equalToSuperview()
+                .offset(16)
+            make
+                .trailing
+                .equalToSuperview()
+                .offset(-16)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make
+                .top
+                .equalTo(searchBar.snp.bottom)
             make
                 .leading
                 .equalToSuperview()
@@ -159,7 +181,7 @@ private extension HomeViewController {
             switch section {
             case .trendingNow:
                 return createTrendsSection()
-            case .popularCategory:
+            case .popularCategoryRecipes:
                 return createPopularCategoriesSection()
             case .recentRecipe:
                 return createRecentRecipeSection()
@@ -178,10 +200,10 @@ private extension HomeViewController {
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
         section.boundarySupplementaryItems = supplemetaryItems
-        section.supplementariesFollowContentInsets = false // заголовок секции
+        section.supplementariesFollowContentInsets = false
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(54)),
+                                               heightDimension: .estimated(80)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -200,7 +222,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.8),
-                heightDimension: .fractionalHeight(0.5)
+                heightDimension: .fractionalHeight(0.45)
             ),
             subitems: [item]
         )
@@ -227,7 +249,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.45)
+                heightDimension: .fractionalHeight(0.4)
             ),
             subitems: [item]
         )
@@ -322,7 +344,7 @@ extension HomeViewController: UICollectionViewDataSource {
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: trendingNow[indexPath.row])
             return cell
-        case .popularCategory(let popularCategory):
+        case .popularCategoryRecipes(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopiularCategoriesViewCell", for: indexPath)
                     as? PopularCategoriesCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: popularCategory[indexPath.row])

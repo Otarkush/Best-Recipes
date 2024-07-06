@@ -46,21 +46,18 @@
 		3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB42C35E8E400F738AE /* TabBarController.swift */; };
 		3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB62C35E8E400F738AE /* ScreenFactory.swift */; };
 		3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CB82C35E8E400F738AE /* HomeCoordinator.swift */; };
-		3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB5CBA2C35E8E400F738AE /* HomeViewController.swift */; };
-		B51172892C374013001A44E5 /* OnboardingPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172842C374012001A44E5 /* OnboardingPage2ViewController.swift */; };
-		B511728A2C374013001A44E5 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172852C374012001A44E5 /* OnboardingPageViewController.swift */; };
-		B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */; };
-		B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */; };
-		B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172882C374013001A44E5 /* OnboardingMainViewController.swift */; };
 		79E5C5E02C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */; };
 		79E5C5E12C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */; };
 		79E5C5E22C36D76500124B88 /* RecentRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */; };
 		79E5C5E32C36D76500124B88 /* TrendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */; };
 		79E5C5E42C36D76500124B88 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DC2C36D76500124B88 /* ListSection.swift */; };
-		79E5C5E52C36D76500124B88 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DD2C36D76500124B88 /* ListItem.swift */; };
-		79E5C5E62C36D76500124B88 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DE2C36D76500124B88 /* MockData.swift */; };
 		79E5C5E72C36D76500124B88 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5DF2C36D76500124B88 /* HomeViewController.swift */; };
 		79E5C5EB2C36F33300124B88 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */; };
+		B51172892C374013001A44E5 /* OnboardingPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172842C374012001A44E5 /* OnboardingPage2ViewController.swift */; };
+		B511728A2C374013001A44E5 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172852C374012001A44E5 /* OnboardingPageViewController.swift */; };
+		B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */; };
+		B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */; };
+		B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172882C374013001A44E5 /* OnboardingMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,21 +95,18 @@
 		3CCB5CB42C35E8E400F738AE /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3CCB5CB62C35E8E400F738AE /* ScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		3CCB5CB82C35E8E400F738AE /* HomeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		3CCB5CBA2C35E8E400F738AE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		B51172842C374012001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
-		B51172852C374012001A44E5 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
-		B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
-		B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
-		B51172882C374013001A44E5 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
 		79E5C5D72C36D76500124B88 /* PopularCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5D82C36D76500124B88 /* PopularCuisinesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCuisinesCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5D92C36D76500124B88 /* RecentRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5DA2C36D76500124B88 /* TrendsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		79E5C5DC2C36D76500124B88 /* ListSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
-		79E5C5DD2C36D76500124B88 /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
-		79E5C5DE2C36D76500124B88 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		79E5C5DF2C36D76500124B88 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		79E5C5EA2C36F33300124B88 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
+		B51172842C374012001A44E5 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
+		B51172852C374012001A44E5 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
+		B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
+		B51172882C374013001A44E5 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,9 +378,7 @@
 			children = (
 				79E5C5DB2C36D76500124B88 /* Cells */,
 				79E5C5DF2C36D76500124B88 /* HomeViewController.swift */,
-				79E5C5DD2C36D76500124B88 /* ListItem.swift */,
 				79E5C5DC2C36D76500124B88 /* ListSection.swift */,
-				79E5C5DE2C36D76500124B88 /* MockData.swift */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -493,7 +485,6 @@
 				3CCB5CC62C35E8E400F738AE /* InstructionsView.swift in Sources */,
 				3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */,
 				79E5C5E72C36D76500124B88 /* HomeViewController.swift in Sources */,
-				3CCB5CC02C35E8E400F738AE /* OnboardingViewController.swift in Sources */,
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
 				79E5C5E42C36D76500124B88 /* ListSection.swift in Sources */,
 				3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */,
@@ -507,10 +498,8 @@
 				B511728A2C374013001A44E5 /* OnboardingPageViewController.swift in Sources */,
 				3CCB5CC52C35E8E400F738AE /* RatingAndReviewsView.swift in Sources */,
 				3CCB5CCB2C35E8E400F738AE /* FavoriteCoordinator.swift in Sources */,
-				79E5C5E62C36D76500124B88 /* MockData.swift in Sources */,
 				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */,
-				79E5C5E52C36D76500124B88 /* ListItem.swift in Sources */,
 				3CCB5CC22C35E8E400F738AE /* NotificationCoordinator.swift in Sources */,
 				79E5C5E22C36D76500124B88 /* RecentRecipeCollectionViewCell.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,

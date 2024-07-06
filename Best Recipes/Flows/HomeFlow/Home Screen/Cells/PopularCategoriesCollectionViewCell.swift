@@ -122,7 +122,7 @@ private extension PopularCategoriesCollectionViewCell {
                 .equalToSuperview()
             make
                 .height
-                .equalTo(180)
+                .equalTo(170)
         }
         
         recipeImageView.snp.makeConstraints { make in
