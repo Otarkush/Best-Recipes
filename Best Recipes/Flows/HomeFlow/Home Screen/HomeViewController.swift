@@ -50,7 +50,7 @@ final class HomeViewController: UIViewController {
 
 private extension HomeViewController {
     func addDataToSections() {
-        ApiService.random(10).request(type: RecipeResponse.self)  { [weak self] result in
+        ApiService.random(10).request(type: RandomResponse.self)  { [weak self] result in
             switch result {
             case .success(let success):
                 if let recipes = success.recipes {

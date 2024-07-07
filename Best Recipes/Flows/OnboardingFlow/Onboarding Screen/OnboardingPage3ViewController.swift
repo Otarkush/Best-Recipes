@@ -124,7 +124,7 @@ final class OnboardingPage3ViewController: UIViewController {
 extension OnboardingPage3ViewController: OnboardingPage3ViewOutput {
     func onboardingFinish() {
         // MARK: - Раскоментировать если нужно сохранять стейт онбординга
-//        userDefaultService.isOnboarding = true
+        UserDefaultsService.shared.isOnboarding = true
         coordinator.finish()
     }
 }
