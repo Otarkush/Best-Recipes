@@ -22,7 +22,7 @@ enum Resources {
         static var backgroundGray = UIColor(hexString: "#F1F1F1")
         
         static var roseBackTabBar = UIColor(hexString: "#F9D8D8")
-        static var redBorderTabBar = UIColor(hexString: "#E23E3E   ")
+        static var redBorderTabBar = UIColor(hexString: "#E23E3E")
     }
     
     enum Images {

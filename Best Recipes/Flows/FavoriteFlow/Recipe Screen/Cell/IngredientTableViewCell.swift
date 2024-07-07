@@ -58,7 +58,7 @@ final class IngredientTableViewCell: UITableViewCell {
     // MARK: - Configuration
     
     func configure(with ingredient: Ingredient) {
-        ingredientImageView.image = ingredient.image
+//        ingredientImageView.image = ingredient.image
         ingredientLabel.text = ingredient.name
         quantityLabel.text = "\(ingredient.quantity)g"
     }
