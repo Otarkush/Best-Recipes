@@ -11,18 +11,22 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddRecipeViewController: UIViewController {
+    
+    enum Section {
+        case main
+    }
     
     private let scrollView: UIScrollView = {
-         let scrollView = UIScrollView()
-         scrollView.alwaysBounceVertical = true
-         return scrollView
-     }()
-
-     private let contentView: UIView = {
-         let view = UIView()
-         return view
-     }()
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -36,32 +40,18 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private let recipeNameTF: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
         textField.placeholder = "Enter recipe name"
+        textField.layer.cornerRadius = 10
+        textField.layer.borderColor = Resources.Colors.red.cgColor
+        textField.layer.borderWidth = 1
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
         return textField
     }()
     
-    private let servesButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Serves: 3", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 10
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        return button
-    }()
-    
-    private let cookTimeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Cook time: 20 min", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 10
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        return button
-    }()
+    private let servesPicker = PickerView(type: .serves)
+    private let timePicker = PickerView(type: .cookTime)
     
     private let createRecipeButton: UIButton = {
         let button = UIButton()
@@ -75,16 +65,16 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
     private let ingredientsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AddIngredientCell.self, forCellReuseIdentifier: AddIngredientCell.identifier)
-        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         return tableView
     }()
-
-    private let disposeBag = DisposeBag()
-    private var selectedButton: UIButton?
     
+    private let disposeBag = DisposeBag()
+    
+    private var dataSource: UITableViewDiffableDataSource<Section, ExtendedIngredient>!
     
     private let viewModel: AddRecipeViewModel!
-
+    
     init(viewModel: AddRecipeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -97,13 +87,52 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
+        
+        dataSource = UITableViewDiffableDataSource<Section, ExtendedIngredient>(tableView: ingredientsTableView) { tableView, indexPath, ingredient in
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientCell.identifier, for: indexPath) as! AddIngredientCell
+            let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+            cell.configure(with: isLast)
+            
+            cell.button.rx.tap
+                .bind(onNext: { [weak self] in
+                    isLast ? self?.addIngredient() : self?.removeIngredient()
+                })
+                .disposed(by: cell.disposeBag)
+            
+            return cell
+        }
+
+        updateData()
         
         setupSubviews()
         setupConstraints()
-        setupGesture()
-        configurePickers()
+        setupBindings()
+    }
+    
+    private func updateData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ExtendedIngredient>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel.ingredients)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    private func addIngredient() {
+        let newIngredient = ExtendedIngredient(id: UUID().hashValue, aisle: "", image: "", consistency: "", name: "", nameClean: "", original: "", originalName: "", amount: nil, unit: "", meta: [], measures: .init(us: .init(amount: nil, unitShort: "", unitLong: ""), metric: nil))
+        viewModel.ingredients.append(newIngredient)
+        var snapshot = dataSource.snapshot()
+        snapshot.appendItems([newIngredient])
+        dataSource.apply(snapshot, animatingDifferences: true)
+        ingredientsTableView.reloadData()
+    }
+
+    private func removeIngredient() {
+        if let lastIngredient = viewModel.ingredients.last {
+            viewModel.ingredients.removeLast()
+            var snapshot = dataSource.snapshot()
+            snapshot.deleteItems([lastIngredient])
+            dataSource.apply(snapshot, animatingDifferences: true)
+        }
+        ingredientsTableView.reloadData()
     }
     
     private func setupSubviews() {
@@ -112,8 +141,8 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
         contentView.addSubviews(
             imageView,
             recipeNameTF,
-            servesButton,
-            cookTimeButton,
+            servesPicker,
+            timePicker,
             createRecipeButton,
             ingredientsTableView
         )
@@ -124,52 +153,57 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
-
+        
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
-
+        
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView)
             make.width.equalTo(scrollView)
-            make.height.greaterThanOrEqualTo(scrollView)
+            make.height.greaterThanOrEqualTo(scrollView).inset(50)
         }
-
+        
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(200)
         }
-
+        
         recipeNameTF.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(44)
         }
-
-        servesButton.snp.makeConstraints { make in
+        
+        servesPicker.snp.makeConstraints { make in
             make.top.equalTo(recipeNameTF.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-
-        cookTimeButton.snp.makeConstraints { make in
-            make.top.equalTo(servesButton.snp.bottom).offset(10)
+        
+        timePicker.snp.makeConstraints { make in
+            make.top.equalTo(servesPicker.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-
-        createRecipeButton.snp.makeConstraints { make in
-            make.top.equalTo(cookTimeButton.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-
+        
         ingredientsTableView.snp.makeConstraints { make in
-            make.top.equalTo(createRecipeButton.snp.bottom).offset(20)
+            make.top.equalTo(timePicker.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(createRecipeButton.snp.top).inset(-10)
+        }
+        
+        createRecipeButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(55)
         }
     }
-
-    private func setupGesture() {
+    
+    private func setupBindings() {
+        
+        
         imageView.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
@@ -177,25 +211,21 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
             })
             .disposed(by: disposeBag)
         
-        servesButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-
-            })
-            .disposed(by: disposeBag)
-        
-        cookTimeButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-
+        Observable.combineLatest(recipeNameTF.rx.text.orEmpty, imageView.imageRelay.asObservable())
+            .map { recipeName, image in
+                return !recipeName.isEmpty && image != nil
+            }
+            .bind(onNext: { [weak self] isEnabled in
+                self?.createRecipeButton.isEnabled = isEnabled
+                self?.createRecipeButton.backgroundColor = isEnabled ? Resources.Colors.red : Resources.Colors.lightGray
             })
             .disposed(by: disposeBag)
         
         createRecipeButton.rx.tap
             .bind { [weak self] in
                 self?.showLoader()
-                
-                // Create the CreateRequest object
                 let createRequest = CreateRequestDTO(
-                    title: self?.recipeNameTF.text ?? "",
+                    title: self?.recipeNameTF.text ?? "asdad",
                     ingredients: "2 cups of green beans\n1 cup of olive oil",
                     instructions: "Cook the beans\nMix with oil",
                     readyInMinutes: 30,
@@ -224,7 +254,8 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
                                             self?.present(bottomSheetVC, animated: true, completion: nil)
                                         }
                                     }
-                                }.resume()
+                                }
+                                .resume()
                             }
                         case .failure(let error):
                             self?.showErrorAlert(message: error.localizedDescription)
@@ -235,64 +266,11 @@ class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableVie
             .disposed(by: disposeBag)
     }
     
-    private func configurePickers() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
-        toolBar.setItems([doneButton], animated: false)
-        
-        recipeNameTF.inputAccessoryView = toolBar
-    }
-    
-    @objc private func doneTapped() {
-        recipeNameTF.resignFirstResponder()
-    }
-    
     private func presentImagePicker() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
-    }
-    
-    // MARK: - Table View Data Source and Delegate
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.ingredients.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientCell.identifier, for: indexPath) as? AddIngredientCell else {
-            return UITableViewCell()
-        }
-        
-        let ingredient = viewModel.ingredients[indexPath.row]
-        cell.configure(with: ingredient)
-        cell.minusButton.isHidden = (indexPath.row == viewModel.ingredients.count - 1)
-        cell.plusButton.isHidden = (indexPath.row != viewModel.ingredients.count - 1)
-        
-        cell.minusButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.removeIngredient(at: indexPath.row)
-            })
-            .disposed(by: cell.disposeBag)
-        
-        cell.plusButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.addIngredient()
-            })
-            .disposed(by: cell.disposeBag)
-        
-        return cell
-    }
-    
-    private func addIngredient() {
-        viewModel.ingredients.append(("", ""))
-        ingredientsTableView.reloadData()
-    }
-    
-    private func removeIngredient(at index: Int) {
-        viewModel.ingredients.remove(at: index)
-        ingredientsTableView.reloadData()
     }
 }
 

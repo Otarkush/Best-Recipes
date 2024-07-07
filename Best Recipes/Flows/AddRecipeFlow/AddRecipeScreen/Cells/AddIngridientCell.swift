@@ -14,36 +14,43 @@ class AddIngredientCell: UITableViewCell {
     
     let ingredientNameTextField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
         textField.placeholder = "Ingredient"
+        textField.layer.borderColor = Resources.Colors.lightGray.cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 10
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
         return textField
     }()
     
     let quantityTextField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
         textField.placeholder = "Quantity"
+        textField.layer.borderColor = Resources.Colors.lightGray.cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 10
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
         return textField
     }()
-    
-    let minusButton: UIButton = {
+        
+    let button: UIButton = {
         let button = UIButton()
-        button.setTitle("-", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
+        button.setTitleColor(Resources.Colors.lightGray, for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 1
+        button.layer.borderColor = Resources.Colors.lightGray.cgColor
         return button
     }()
     
-    let plusButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("+", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .green
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        return button
+    private let contentStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 12
+        stack.distribution = .fillEqually
+        return stack
     }()
         
     let disposeBag = DisposeBag()
@@ -57,50 +64,57 @@ class AddIngredientCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with ingredient: (name: String, quantity: String)) {
-        ingredientNameTextField.text = ingredient.name
-        quantityTextField.text = ingredient.quantity
+    func configure(with isLast: Bool) {
+        button.setTitle(isLast ? "+" : "-", for: .normal)
     }
 }
 
 private extension AddIngredientCell {
-    func setupUI() {
+    private func setupUI() {
+        selectionStyle = .none
         addSubviews()
         setupConstraints()
     }
     
     private func addSubviews() {
-        contentView.addSubviews(
+        contentStack.addArrangedSubviews(
             ingredientNameTextField,
-            quantityTextField,
-            minusButton,
-            plusButton
+            quantityTextField
+        )
+        contentView.addSubviews(
+            contentStack,
+            button
         )
     }
-
+    
     private func setupConstraints() {
-        ingredientNameTextField.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(100)
+        contentStack.snp.makeConstraints { make in
+            make
+                .top
+                .leading
+                .equalToSuperview()
+            make
+                .trailing.equalTo(button.snp.leading)
+                .offset(-10)
+            make
+                .bottom
+                .equalToSuperview()
+                .inset(20)
+            make
+                .height
+                .equalTo(44)
         }
         
-        quantityTextField.snp.makeConstraints { make in
-            make.leading.equalTo(ingredientNameTextField.snp.trailing).offset(20)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(100)
-        }
-        
-        minusButton.snp.makeConstraints { make in
-            make.leading.equalTo(quantityTextField.snp.trailing).offset(20)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(30)
-        }
-        
-        plusButton.snp.makeConstraints { make in
-            make.leading.equalTo(minusButton.snp.trailing).offset(20)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(30)
+        button.snp.makeConstraints { make in
+            make
+                .trailing
+                .equalToSuperview()
+            make
+                .centerY
+                .equalTo(ingredientNameTextField)
+            make
+                .size
+                .equalTo(30)
         }
     }
 }

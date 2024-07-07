@@ -35,9 +35,9 @@ final class CustomTabBar: UITabBar {
         unselectedItemTintColor = .gray
 
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.2
+        layer.shadowOpacity = 0.1
         layer.shadowOffset = CGSize(width: 0, height: -4)
-        layer.shadowRadius = 4
+        layer.shadowRadius = 5
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

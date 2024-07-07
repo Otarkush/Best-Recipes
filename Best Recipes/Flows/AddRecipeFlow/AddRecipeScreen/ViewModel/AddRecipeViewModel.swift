@@ -11,7 +11,22 @@ class AddRecipeViewModel {
     
      let servesOptions = ["1", "2", "3", "4", "5"]
      let cookTimeOptions = ["5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]
-     var ingredients: [(name: String, quantity: String)] = [("Pasta", "250gr"), ("Green Beans", "150gr")]
+    var ingredients: [ExtendedIngredient] = [
+        .init(
+            id: UUID().hashValue,
+            aisle: "",
+            image: "",
+            consistency: "",
+            name: "namewe w",
+            nameClean: "",
+            original: "",
+            originalName: "",
+            amount: 23,
+            unit: "",
+            meta: [],
+            measures: nil
+        )
+    ]
 
     init() {
         

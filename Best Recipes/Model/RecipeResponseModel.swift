@@ -67,7 +67,7 @@ struct Length: Codable {
 }
 
 // MARK: - ExtendedIngredient
-struct ExtendedIngredient: Codable {
+struct ExtendedIngredient: Codable, Hashable {
     let id: Int?
     let aisle, image: String?
     let consistency: String?
@@ -76,15 +76,19 @@ struct ExtendedIngredient: Codable {
     let unit: String?
     let meta: [String]?
     let measures: Measures?
+    
+    static func == (lhs: ExtendedIngredient, rhs: ExtendedIngredient) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 // MARK: - Measures
-struct Measures: Codable {
+struct Measures: Codable, Hashable {
     let us, metric: Metric?
 }
 
 // MARK: - Metric
-struct Metric: Codable {
+struct Metric: Codable, Hashable {
     let amount: Double?
     let unitShort, unitLong: String?
 }

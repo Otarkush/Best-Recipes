@@ -12,13 +12,14 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
+import RxSwift
+import RxCocoa
+
 class ImagePickerView: UIView {
-        
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "person.fill")
         imageView.layer.cornerRadius = 20
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = Resources.Colors.lightGray.cgColor
@@ -33,9 +34,15 @@ class ImagePickerView: UIView {
         return imageView
     }()
 
+    let imageRelay = BehaviorRelay<UIImage?>(value: nil)
+
     var image: UIImage? {
-        didSet {
-            imageView.image = image
+        get {
+            return imageRelay.value
+        }
+        set {
+            imageRelay.accept(newValue)
+            imageView.image = newValue
         }
     }
 

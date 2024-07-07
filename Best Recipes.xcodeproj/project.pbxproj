@@ -21,6 +21,7 @@
 		3C1470EA2C3A6CB70034280C /* CreateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470E92C3A6CB70034280C /* CreateRequestModel.swift */; };
 		3C1470EC2C3A72920034280C /* AddRecipeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470EB2C3A72920034280C /* AddRecipeBottomSheet.swift */; };
 		3C1470EF2C3A7B5A0034280C /* ImagePickerVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */; };
+		3C1470F22C3A87890034280C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F12C3A87890034280C /* PickerView.swift */; };
 		3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* HTTPClient.swift */; };
 		3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */; };
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
@@ -80,6 +81,7 @@
 		3C1470E92C3A6CB70034280C /* CreateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestModel.swift; sourceTree = "<group>"; };
 		3C1470EB2C3A72920034280C /* AddRecipeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeBottomSheet.swift; sourceTree = "<group>"; };
 		3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerVIew.swift; sourceTree = "<group>"; };
+		3C1470F12C3A87890034280C /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		3C1D55282C35A71500AA6C40 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponseModel.swift; sourceTree = "<group>"; };
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */,
+				3C1470F12C3A87890034280C /* PickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
 				3CCB5CC92C35E8E400F738AE /* RecipeViewController.swift in Sources */,
 				3C1470E62C3A5DAA0034280C /* AddRecipeViewModel.swift in Sources */,
+				3C1470F22C3A87890034280C /* PickerView.swift in Sources */,
 				3C1470E02C39A8FB0034280C /* UIViewController + Ext.swift in Sources */,
 				3CCB5CC42C35E8E400F738AE /* IngredientTableViewCell.swift in Sources */,
 				3CCB5CBC2C35E8E400F738AE /* ProfileViewController.swift in Sources */,
