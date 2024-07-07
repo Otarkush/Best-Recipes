@@ -198,7 +198,8 @@ private extension HomeViewController {
                              behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
                              interGroupSpasing: CGFloat,
                              supplemetaryItems: [NSCollectionLayoutBoundarySupplementaryItem],
-                             contentInsets: Bool) -> NSCollectionLayoutSection {
+                             contentInsets: Bool,
+                             heightOfHeader: CGFloat) -> NSCollectionLayoutSection {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
@@ -206,7 +207,7 @@ private extension HomeViewController {
         section.supplementariesFollowContentInsets = false
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(80)),
+                                               heightDimension: .estimated(heightOfHeader)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -235,7 +236,8 @@ private extension HomeViewController {
             behavior: .groupPaging,
             interGroupSpasing: 16,
             supplemetaryItems: [],
-            contentInsets: false
+            contentInsets: false,
+            heightOfHeader: 80
         )
         
         return section
@@ -262,7 +264,8 @@ private extension HomeViewController {
             behavior: .groupPaging,
             interGroupSpasing: 16,
             supplemetaryItems: [],
-            contentInsets: false
+            contentInsets: false,
+            heightOfHeader: 80
         )
         
         return section
@@ -289,7 +292,8 @@ private extension HomeViewController {
             behavior: .groupPaging,
             interGroupSpasing: 16,
             supplemetaryItems: [],
-            contentInsets: false
+            contentInsets: false,
+            heightOfHeader: 32
         )
         
         return section
@@ -316,7 +320,8 @@ private extension HomeViewController {
             behavior: .groupPaging,
             interGroupSpasing: 16,
             supplemetaryItems: [],
-            contentInsets: false
+            contentInsets: false,
+            heightOfHeader: 80
         )
         
         return section
@@ -343,7 +348,8 @@ private extension HomeViewController {
             behavior: .groupPaging,
             interGroupSpasing: 16,
             supplemetaryItems: [],
-            contentInsets: false
+            contentInsets: false,
+            heightOfHeader: 80
         )
         
         return section
