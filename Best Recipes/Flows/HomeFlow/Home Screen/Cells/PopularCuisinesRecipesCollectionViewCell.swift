@@ -104,6 +104,7 @@ private extension PopularCuisinesRecipesCollectionViewCell {
             make
                 .top
                 .equalToSuperview()
+                .offset(-16)
             make
                 .height
                 .equalTo(circleView.snp.width)
@@ -111,7 +112,10 @@ private extension PopularCuisinesRecipesCollectionViewCell {
         
         recipeImageView.snp.makeConstraints { make in
             make
-                .top.leading
+                .top
+                .equalToSuperview()
+            make
+                .leading
                 .equalToSuperview()
                 .inset(16)
             make
