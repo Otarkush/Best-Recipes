@@ -10,7 +10,7 @@ import UIKit
 final class PopularCategoryCollectionViewCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .systemFont(ofSize: 15, weight: .bold)
         label.textAlignment = .center
         label.textColor = .white
         return label

@@ -8,11 +8,12 @@
 import UIKit
 
 final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
-    private let recipeImageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+    private let titleLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -24,10 +25,8 @@ final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(imageName: String) {
-        if let imageUrl = URL(string: imageName) {
-            recipeImageView.kf.setImage(with: imageUrl)
-        }
+    func configure(titleCuisine title: String) {
+        titleLabel.text = title.capitalized
     }
 }
 
@@ -35,19 +34,22 @@ final class PopularCuisinesCollectionViewCell: UICollectionViewCell {
 
 private extension PopularCuisinesCollectionViewCell {
     func setupUI() {
-        contentView.addSubview(recipeImageView)
+        contentView.clipsToBounds = true
+        contentView.layer.cornerRadius = 15
+        contentView.backgroundColor = .systemRed
         addSubviews()
         setConstraints()
     }
     
     func addSubviews() {
-        
+        contentView.addSubview(titleLabel)
     }
     
     func setConstraints() {
-        recipeImageView.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make
-                .edges.equalToSuperview()
+                .centerX.centerY
+                .equalToSuperview()
         }
     }
 }
