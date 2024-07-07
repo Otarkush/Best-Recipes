@@ -118,7 +118,20 @@ class AddRecipeViewController: UIViewController {
     }
 
     private func addIngredient() {
-        let newIngredient = ExtendedIngredient(id: UUID().hashValue, aisle: "", image: "", consistency: "", name: "", nameClean: "", original: "", originalName: "", amount: nil, unit: "", meta: [], measures: .init(us: .init(amount: nil, unitShort: "", unitLong: ""), metric: nil))
+        let newIngredient = ExtendedIngredient(
+            id: UUID().hashValue,
+            aisle: "",
+            image: "",
+            consistency: "",
+            name: "",
+            nameClean: "",
+            original: "",
+            originalName: "",
+            amount: nil,
+            unit: "",
+            meta: [],
+            measures: .init(us: .init(amount: nil, unitShort: "", unitLong: ""), metric: nil)
+        )
         viewModel.ingredients.append(newIngredient)
         var snapshot = dataSource.snapshot()
         snapshot.appendItems([newIngredient])
@@ -224,18 +237,25 @@ class AddRecipeViewController: UIViewController {
         createRecipeButton.rx.tap
             .bind { [weak self] in
                 self?.showLoader()
+                var ingredientsString = ""
+                if let snapshot = self?.dataSource.snapshot() {
+                    snapshot.itemIdentifiers.forEach { ingridient in
+                        ingredientsString += "\(ingridient.amount?.description ?? "")" + " " + "\(ingridient.name ?? "")\n"
+                    }
+                }
+
                 let createRequest = CreateRequestDTO(
-                    title: self?.recipeNameTF.text ?? "asdad",
+                    title: self?.recipeNameTF.text ?? "",
                     ingredients: "2 cups of green beans\n1 cup of olive oil",
                     instructions: "Cook the beans\nMix with oil",
-                    readyInMinutes: 30,
-                    servings: 4,
+                    readyInMinutes: self?.timePicker.selectedValue.value ?? 0,
+                    servings: self?.servesPicker.selectedValue.value ?? 0,
                     mask: "ellipseMask",
                     backgroundImage: "background1",
                     author: "John Doe",
                     backgroundColor: "#ffffff",
                     fontColor: "#333333",
-                    source: "mywebsite.com",
+                    source: "DEVRUSH MARATHONE",
                     image: self?.imageView.image
                 )
                 

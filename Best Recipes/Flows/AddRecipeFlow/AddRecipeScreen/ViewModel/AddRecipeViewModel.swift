@@ -9,25 +9,26 @@ import Foundation
 
 class AddRecipeViewModel {
     
-     let servesOptions = ["1", "2", "3", "4", "5"]
-     let cookTimeOptions = ["5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]
+    let servesOptions = ["1", "2", "3", "4", "5"]
+    let cookTimeOptions = ["5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]
+    
     var ingredients: [ExtendedIngredient] = [
         .init(
             id: UUID().hashValue,
             aisle: "",
             image: "",
             consistency: "",
-            name: "namewe w",
+            name: "",
             nameClean: "",
             original: "",
             originalName: "",
-            amount: 23,
+            amount: nil,
             unit: "",
             meta: [],
             measures: nil
         )
     ]
-
+    
     init() {
         
     }

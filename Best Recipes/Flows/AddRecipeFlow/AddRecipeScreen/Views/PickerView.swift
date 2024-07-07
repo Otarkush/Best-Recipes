@@ -7,12 +7,13 @@
 
 import UIKit
 import SnapKit
-
-import UIKit
-import SnapKit
+import RxSwift
+import RxCocoa
 
 class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var selectedValue = BehaviorRelay<Int?>(value: nil)
+    
     enum PickerType: String {
         case serves
         case cookTime
@@ -45,14 +46,14 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         return imageView
     }()
     
-    private let pickerView = UIPickerView()
+    let picker = UIPickerView()
     private var data: [String] = []
     private var type: PickerType
 
     init(type: PickerType) {
         self.type = type
         super.init(frame: .zero)
-        pickerView.delegate = self
+        picker.delegate = self
         setupView()
         switch type {
         case .serves:
@@ -118,8 +119,8 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
 
         let alert = UIAlertController(title: "Select", message: "\n\n\n\n\n\n", preferredStyle: .alert)
-        alert.view.addSubview(pickerView)
-        pickerView.snp.makeConstraints { make in
+        alert.view.addSubview(picker)
+        picker.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(50)
@@ -150,5 +151,6 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         case .cookTime:
             selectLabel.text = data[row] + " min"
         }
+        selectedValue.accept(Int(data[row]))
     }
 }
