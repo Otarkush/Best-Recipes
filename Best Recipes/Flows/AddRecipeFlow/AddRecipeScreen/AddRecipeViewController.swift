@@ -91,11 +91,27 @@ class AddRecipeViewController: UIViewController {
         dataSource = UITableViewDiffableDataSource<Section, ExtendedIngredient>(tableView: ingredientsTableView) { tableView, indexPath, ingredient in
             let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientCell.identifier, for: indexPath) as! AddIngredientCell
             let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+            
             cell.configure(with: isLast)
             
+            cell.ingredientNameTextField.rx.text.orEmpty
+                .bind(onNext: { [weak self] text in
+                    self?.viewModel.ingredients[indexPath.row].name = text
+                })
+                .disposed(by: cell.disposeBag)
+
+            cell.quantityTextField.rx.text.orEmpty
+                .bind(onNext: { [weak self] text in
+                    let components = text.components(separatedBy: " ")
+                    if let amount = Double(components.first ?? "") {
+                        self?.viewModel.ingredients[indexPath.row].amount = amount
+                    }
+                })
+                .disposed(by: cell.disposeBag)
+
             cell.button.rx.tap
                 .bind(onNext: { [weak self] in
-                    isLast ? self?.addIngredient() : self?.removeIngredient()
+                        isLast ? self?.addIngredient() : self?.removeIngredient()
                     print(indexPath)
                 })
                 .disposed(by: cell.disposeBag)
@@ -238,15 +254,15 @@ class AddRecipeViewController: UIViewController {
             .bind { [weak self] in
                 self?.showLoader()
                 var ingredientsString = ""
-                if let snapshot = self?.dataSource.snapshot() {
-                    snapshot.itemIdentifiers.forEach { ingridient in
+                if let ingridients = self?.viewModel.ingredients {
+                    ingridients.forEach { ingridient in
                         ingredientsString += "\(ingridient.amount?.description ?? "")" + " " + "\(ingridient.name ?? "")\n"
                     }
                 }
 
                 let createRequest = CreateRequestDTO(
                     title: self?.recipeNameTF.text ?? "",
-                    ingredients: "2 cups of green beans\n1 cup of olive oil",
+                    ingredients: ingredientsString,
                     instructions: "Cook the beans\nMix with oil",
                     readyInMinutes: self?.timePicker.selectedValue.value ?? 0,
                     servings: self?.servesPicker.selectedValue.value ?? 0,

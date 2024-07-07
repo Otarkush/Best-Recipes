@@ -71,9 +71,9 @@ struct ExtendedIngredient: Codable, Hashable {
     let id: Int?
     let aisle, image: String?
     let consistency: String?
-    let name, nameClean, original, originalName: String?
-    let amount: Double?
-    let unit: String?
+    var name, nameClean, original, originalName: String?
+    var amount: Double?
+    var unit: String?
     let meta: [String]?
     let measures: Measures?
     
