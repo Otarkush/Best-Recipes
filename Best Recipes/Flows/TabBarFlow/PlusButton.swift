@@ -25,7 +25,7 @@ final class PlusButton: UIButton {
     
     private func configure() {
         tintColor = .white
-        backgroundColor = .red
+        backgroundColor = Resources.Colors.red
         setImage(UIImage(systemName: "plus"), for: .normal)
     }
 }

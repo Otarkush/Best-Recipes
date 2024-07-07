@@ -9,12 +9,18 @@ import UIKit
 
 class AppCoordinator: Coordinator, CoordinatorFinishDelegate {
     
+    var window: UIWindow?
     private let userDefaultService = UserDefaultsService.shared
     
     override func start() {
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.isHidden = true
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        self.navigationController = navigationController
         userDefaultService.isOnboarding ? showTabbarFlow() : showOnboardingFlow()
     }
-    
+
     override func finish() {
         print("AppCoordinator finish")
     }

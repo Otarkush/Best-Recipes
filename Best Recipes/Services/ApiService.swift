@@ -7,21 +7,6 @@
 
 import Foundation
 
-// MARK: - Пример использования
-//ApiService
-//    .search("juice")
-//    .request(type: RecipeResponse.self) { result in
-//    switch result {
-//    case .success(let success):
-//        print(success)
-//        success.results?.forEach({ Recipe in
-//            print(Recipe.title)
-//        })
-//    case .failure(let failure):
-//        print(failure)
-//    }
-//}
-
 // MARK: - Spoonacular Meal Type
 enum SpoonacularMealType: String, CaseIterable {
     case mainCourse = "main course"
@@ -77,12 +62,13 @@ enum ApiService {
     case detail(String)
     case mealType(SpoonacularMealType)
     case cuisineType(SpoonacularCuisinesType)
-    case create
+    case create(CreateRequestDTO)
 }
 
 extension ApiService: HTTPClient {
+    
     var apiKey: ApiKeys {
-        return .two
+        return .allCases.randomElement()!
     }
     
     var baseURL: String {
@@ -100,7 +86,7 @@ extension ApiService: HTTPClient {
         case .mealType:
             return "recipes/complexSearch?query="
         case .create:
-            return ""
+            return "recipes/visualizeRecipe"
         case .cuisineType:
             return ""
         }
@@ -133,13 +119,48 @@ extension ApiService: HTTPClient {
     }
     
     var parameters: [String : String]? {
-        nil
+        switch self {
+        case let .create(request):
+            return [
+                "title": request.title,
+                "ingredients": request.ingredients,
+                "instructions": request.instructions,
+                "readyInMinutes": String(request.readyInMinutes),
+                "servings": String(request.servings),
+                "mask": request.mask,
+                "backgroundImage": request.backgroundImage,
+                "author": request.author,
+                "backgroundColor": request.backgroundColor,
+                "fontColor": request.fontColor,
+                "source": request.source
+            ]
+        default:
+            return nil
+        }
+    }
+    
+    var data: Data? {
+        switch self {
+        case .create(let request):
+            return request.image?.jpegData(compressionQuality: 1.0)
+        default:
+            return nil
+
+        }
     }
     
     var headers: [String : String]? {
-        [
-            "Content-type": "application/json",
-            "x-api-key": apiKey.rawValue
-        ]
+        switch self {
+        case .create:
+            [
+                "Content-Type": "multipart/form-data",
+                "x-api-key": apiKey.rawValue
+            ]
+        default:
+            [
+                "Content-type": "application/json",
+                "x-api-key": apiKey.rawValue
+            ]
+        }
     }
 }
