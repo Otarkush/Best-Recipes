@@ -11,7 +11,8 @@ class FavoriteCoordinator: Coordinator {
     
     override func start() {
         print("Init favorite screen")
-        let vc = RecipeViewController()
+//        let vc = RecipeViewController()
+        let vc = FavoritesViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

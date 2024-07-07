@@ -14,6 +14,13 @@
 		11671AB42C341BCD00FCD29A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB32C341BCD00FCD29A /* Resources.swift */; };
 		11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB62C34263800FCD29A /* Poppins-Bold.ttf */; };
 		11671AB92C34266F00FCD29A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */; };
+		1172E72A2C37D59100572013 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7282C37D58F00572013 /* FavoritesView.swift */; };
+		1172E72B2C37D59100572013 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7292C37D59000572013 /* FavoritesTableViewCell.swift */; };
+		1172E7312C37EBD700572013 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7302C37EBD700572013 /* Characters.swift */; };
+		1172E7372C38365600572013 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7362C38365600572013 /* RecipeService.swift */; };
+		1172E7392C383DFB00572013 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7382C383DFB00572013 /* RecipeData.swift */; };
+		1172E73B2C38466800572013 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E73A2C38466800572013 /* RecipeModel.swift */; };
+		1172E73E2C385BF200572013 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1172E73D2C385BF200572013 /* Kingfisher */; };
 		3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* HTTPClient.swift */; };
 		3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */; };
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
@@ -63,6 +70,12 @@
 		11671AB32C341BCD00FCD29A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		1172E7282C37D58F00572013 /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		1172E7292C37D59000572013 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		1172E7302C37EBD700572013 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
+		1172E7362C38365600572013 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
+		1172E7382C383DFB00572013 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
+		1172E73A2C38466800572013 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		3C1D55282C35A71500AA6C40 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponseModel.swift; sourceTree = "<group>"; };
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -103,6 +116,7 @@
 			files = (
 				3CB7EBB42C332EB200892324 /* RxRelay in Frameworks */,
 				3CB7EBB22C332EB200892324 /* RxCocoa in Frameworks */,
+				1172E73E2C385BF200572013 /* Kingfisher in Frameworks */,
 				3CB7EBBA2C332EB200892324 /* SnapKit in Frameworks */,
 				3CB7EBB62C332EB200892324 /* RxSwift in Frameworks */,
 				3CB7EBB02C332EB200892324 /* RxBlocking in Frameworks */,
@@ -167,6 +181,7 @@
 			children = (
 				11671AB02C341B3C00FCD29A /* Extensions */,
 				11671AB32C341BCD00FCD29A /* Resources.swift */,
+				1172E7302C37EBD700572013 /* Characters.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -186,6 +201,22 @@
 				11671AB62C34263800FCD29A /* Poppins-Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1172E72C2C37E31800572013 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1172E7292C37D59000572013 /* FavoritesTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		1172E72D2C37E33D00572013 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1172E7282C37D58F00572013 /* FavoritesView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
@@ -327,7 +358,12 @@
 		3CCB5CAE2C35E8E400F738AE /* Favorites Screen */ = {
 			isa = PBXGroup;
 			children = (
+				1172E72C2C37E31800572013 /* Cell */,
+				1172E72D2C37E33D00572013 /* Views */,
 				3CCB5CAF2C35E8E400F738AE /* FavoriteViewController.swift */,
+				1172E7362C38365600572013 /* RecipeService.swift */,
+				1172E7382C383DFB00572013 /* RecipeData.swift */,
+				1172E73A2C38466800572013 /* RecipeModel.swift */,
 			);
 			path = "Favorites Screen";
 			sourceTree = "<group>";
@@ -390,6 +426,7 @@
 				3CB7EBB52C332EB200892324 /* RxSwift */,
 				3CB7EBB92C332EB200892324 /* SnapKit */,
 				3CB7EBBB2C332EB200892324 /* RxGesture */,
+				1172E73D2C385BF200572013 /* Kingfisher */,
 			);
 			productName = "Best Recipes";
 			productReference = 0BA815872C302DD800BA2CE9 /* Best Recipes.app */;
@@ -423,6 +460,7 @@
 				3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3CB7EBAC2C332E8000892324 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				3CB7EBAD2C332E9100892324 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				1172E73C2C385BF200572013 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 0BA815882C302DD800BA2CE9 /* Products */;
 			projectDirPath = "";
@@ -458,7 +496,11 @@
 				3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */,
 				3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */,
 				B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
+				1172E7312C37EBD700572013 /* Characters.swift in Sources */,
+				1172E72B2C37D59100572013 /* FavoritesTableViewCell.swift in Sources */,
 				3CCB5CBB2C35E8E400F738AE /* ProfileCoordinator.swift in Sources */,
+				1172E7392C383DFB00572013 /* RecipeData.swift in Sources */,
+				1172E72A2C37D59100572013 /* FavoritesView.swift in Sources */,
 				3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */,
 				3CCB5CBF2C35E8E400F738AE /* OnboardingCoordinator.swift in Sources */,
 				3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */,
@@ -470,6 +512,7 @@
 				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */,
 				3CCB5CC22C35E8E400F738AE /* NotificationCoordinator.swift in Sources */,
+				1172E73B2C38466800572013 /* RecipeModel.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
 				3CCB5CCC2C35E8E400F738AE /* PlusButton.swift in Sources */,
 				3CCB5CBE2C35E8E400F738AE /* Coordinator.swift in Sources */,
@@ -478,6 +521,7 @@
 				3CB7EBE72C3352DD00892324 /* UserDefaultsService.swift in Sources */,
 				3CCB5CC72C35E8E400F738AE /* RecipeView.swift in Sources */,
 				3CCB5CC12C35E8E400F738AE /* NotificationViewController.swift in Sources */,
+				1172E7372C38365600572013 /* RecipeService.swift in Sources */,
 				B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
 				3CCB5CC92C35E8E400F738AE /* RecipeViewController.swift in Sources */,
 				3CCB5CC42C35E8E400F738AE /* IngredientTableViewCell.swift in Sources */,
@@ -700,6 +744,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1172E73C2C385BF200572013 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 		3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -727,6 +779,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1172E73D2C385BF200572013 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1172E73C2C385BF200572013 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		3CB7EBAF2C332EB200892324 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3CB7EBAB2C332E7800892324 /* XCRemoteSwiftPackageReference "RxSwift" */;
