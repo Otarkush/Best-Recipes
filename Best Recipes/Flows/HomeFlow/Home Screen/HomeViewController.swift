@@ -78,7 +78,7 @@ private extension HomeViewController {
         }
     }
 
-        func setDelegates() {
+    func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -420,6 +420,9 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)
                     as? PopularCategoryCollectionViewCell else { return UICollectionViewCell()}
             cell.configure(titleCategory: popularCategory[indexPath.row])
+            
+//            cell.isSelected = indexPath.item == 0 ? true : false
+//            print(indexPath.item)
             return cell
         case .popularCategoryRecipes(let popularCategoryRecipes):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryRecipesViewCell", for: indexPath)

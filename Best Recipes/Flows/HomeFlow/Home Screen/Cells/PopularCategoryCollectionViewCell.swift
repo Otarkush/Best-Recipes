@@ -12,10 +12,17 @@ final class PopularCategoryCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .bold)
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .red
         return label
     }()
 
+    override var isSelected: Bool {
+        didSet {
+            titleLabel.textColor = isSelected ? .white : .red
+            contentView.backgroundColor = isSelected ? .red : .clear
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -36,7 +43,6 @@ private extension PopularCategoryCollectionViewCell {
     func setupUI() {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
-        contentView.backgroundColor = .systemRed
         addSubviews()
         setConstraints()
     }
