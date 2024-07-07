@@ -21,6 +21,17 @@
 		1172E7392C383DFB00572013 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E7382C383DFB00572013 /* RecipeData.swift */; };
 		1172E73B2C38466800572013 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172E73A2C38466800572013 /* RecipeModel.swift */; };
 		1172E73E2C385BF200572013 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1172E73D2C385BF200572013 /* Kingfisher */; };
+		3C1470F42C3AC25E0034280C /* ComplexSearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F32C3AC25E0034280C /* ComplexSearchResponseModel.swift */; };
+		3C1470F62C3AC26F0034280C /* CreateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F52C3AC26F0034280C /* CreateRequestModel.swift */; };
+		3C1471032C3AC28F0034280C /* AddRecipeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F82C3AC28F0034280C /* AddRecipeCoordinator.swift */; };
+		3C1471042C3AC28F0034280C /* AddRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470FB2C3AC28F0034280C /* AddRecipeViewModel.swift */; };
+		3C1471052C3AC28F0034280C /* AddIngridientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470FD2C3AC28F0034280C /* AddIngridientCell.swift */; };
+		3C1471062C3AC28F0034280C /* AddRecipeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470FE2C3AC28F0034280C /* AddRecipeBottomSheet.swift */; };
+		3C1471072C3AC28F0034280C /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470FF2C3AC28F0034280C /* AddRecipeViewController.swift */; };
+		3C1471082C3AC28F0034280C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1471012C3AC28F0034280C /* PickerView.swift */; };
+		3C1471092C3AC28F0034280C /* ImagePickerVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1471022C3AC28F0034280C /* ImagePickerVIew.swift */; };
+		3C14710B2C3AC29F0034280C /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14710A2C3AC29F0034280C /* UIViewController + Ext.swift */; };
+		3C14710D2C3AC2A50034280C /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14710C2C3AC2A50034280C /* UIView + Ext.swift */; };
 		3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* HTTPClient.swift */; };
 		3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */; };
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
@@ -76,6 +87,17 @@
 		1172E7362C38365600572013 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		1172E7382C383DFB00572013 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		1172E73A2C38466800572013 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
+		3C1470F32C3AC25E0034280C /* ComplexSearchResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexSearchResponseModel.swift; sourceTree = "<group>"; };
+		3C1470F52C3AC26F0034280C /* CreateRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRequestModel.swift; sourceTree = "<group>"; };
+		3C1470F82C3AC28F0034280C /* AddRecipeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeCoordinator.swift; sourceTree = "<group>"; };
+		3C1470FB2C3AC28F0034280C /* AddRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeViewModel.swift; sourceTree = "<group>"; };
+		3C1470FD2C3AC28F0034280C /* AddIngridientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngridientCell.swift; sourceTree = "<group>"; };
+		3C1470FE2C3AC28F0034280C /* AddRecipeBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeBottomSheet.swift; sourceTree = "<group>"; };
+		3C1470FF2C3AC28F0034280C /* AddRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
+		3C1471012C3AC28F0034280C /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		3C1471022C3AC28F0034280C /* ImagePickerVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerVIew.swift; sourceTree = "<group>"; };
+		3C14710A2C3AC29F0034280C /* UIViewController + Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		3C14710C2C3AC2A50034280C /* UIView + Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		3C1D55282C35A71500AA6C40 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponseModel.swift; sourceTree = "<group>"; };
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -140,6 +162,8 @@
 		0B2228092C31D123005A2AC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3C1470F52C3AC26F0034280C /* CreateRequestModel.swift */,
+				3C1470F32C3AC25E0034280C /* ComplexSearchResponseModel.swift */,
 				3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */,
 			);
 			path = Model;
@@ -189,6 +213,8 @@
 		11671AB02C341B3C00FCD29A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3C14710C2C3AC2A50034280C /* UIView + Ext.swift */,
+				3C14710A2C3AC29F0034280C /* UIViewController + Ext.swift */,
 				11671AB12C341B6D00FCD29A /* UIColor + ext.swift */,
 			);
 			path = Extensions;
@@ -219,6 +245,52 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3C1470F72C3AC28F0034280C /* AddRecipeFlow */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470F82C3AC28F0034280C /* AddRecipeCoordinator.swift */,
+				3C1470F92C3AC28F0034280C /* AddRecipeScreen */,
+			);
+			path = AddRecipeFlow;
+			sourceTree = "<group>";
+		};
+		3C1470F92C3AC28F0034280C /* AddRecipeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470FA2C3AC28F0034280C /* ViewModel */,
+				3C1470FC2C3AC28F0034280C /* Cells */,
+				3C1470FE2C3AC28F0034280C /* AddRecipeBottomSheet.swift */,
+				3C1470FF2C3AC28F0034280C /* AddRecipeViewController.swift */,
+				3C1471002C3AC28F0034280C /* Views */,
+			);
+			path = AddRecipeScreen;
+			sourceTree = "<group>";
+		};
+		3C1470FA2C3AC28F0034280C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470FB2C3AC28F0034280C /* AddRecipeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3C1470FC2C3AC28F0034280C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470FD2C3AC28F0034280C /* AddIngridientCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3C1471002C3AC28F0034280C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C1471012C3AC28F0034280C /* PickerView.swift */,
+				3C1471022C3AC28F0034280C /* ImagePickerVIew.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3CB7EBAE2C332EB200892324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +311,7 @@
 		3CCB5C932C35E8E400F738AE /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				3C1470F72C3AC28F0034280C /* AddRecipeFlow */,
 				3CCB5C982C35E8E400F738AE /* Coordinator */,
 				3CCB5C9B2C35E8E400F738AE /* OnboardingFlow */,
 				3CCB5C9F2C35E8E400F738AE /* NotificationFlow */,
@@ -493,24 +566,35 @@
 				3CCB5CC62C35E8E400F738AE /* InstructionsView.swift in Sources */,
 				3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */,
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
+				3C1470F62C3AC26F0034280C /* CreateRequestModel.swift in Sources */,
 				3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */,
+				3C14710D2C3AC2A50034280C /* UIView + Ext.swift in Sources */,
 				3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */,
 				B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
 				1172E7312C37EBD700572013 /* Characters.swift in Sources */,
 				1172E72B2C37D59100572013 /* FavoritesTableViewCell.swift in Sources */,
 				3CCB5CBB2C35E8E400F738AE /* ProfileCoordinator.swift in Sources */,
 				1172E7392C383DFB00572013 /* RecipeData.swift in Sources */,
+				3C1471092C3AC28F0034280C /* ImagePickerVIew.swift in Sources */,
 				1172E72A2C37D59100572013 /* FavoritesView.swift in Sources */,
 				3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */,
+				3C1471042C3AC28F0034280C /* AddRecipeViewModel.swift in Sources */,
 				3CCB5CBF2C35E8E400F738AE /* OnboardingCoordinator.swift in Sources */,
 				3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */,
 				3CCB5CBD2C35E8E400F738AE /* AppCoordinator.swift in Sources */,
+				3C1470F42C3AC25E0034280C /* ComplexSearchResponseModel.swift in Sources */,
+				3C1471082C3AC28F0034280C /* PickerView.swift in Sources */,
+				3C1471032C3AC28F0034280C /* AddRecipeCoordinator.swift in Sources */,
 				3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */,
+				3C1471062C3AC28F0034280C /* AddRecipeBottomSheet.swift in Sources */,
 				B511728A2C374013001A44E5 /* OnboardingPageViewController.swift in Sources */,
+				3C1471052C3AC28F0034280C /* AddIngridientCell.swift in Sources */,
+				3C1471072C3AC28F0034280C /* AddRecipeViewController.swift in Sources */,
 				3CCB5CC52C35E8E400F738AE /* RatingAndReviewsView.swift in Sources */,
 				3CCB5CCB2C35E8E400F738AE /* FavoriteCoordinator.swift in Sources */,
 				11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */,
 				B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */,
+				3C14710B2C3AC29F0034280C /* UIViewController + Ext.swift in Sources */,
 				3CCB5CC22C35E8E400F738AE /* NotificationCoordinator.swift in Sources */,
 				1172E73B2C38466800572013 /* RecipeModel.swift in Sources */,
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,

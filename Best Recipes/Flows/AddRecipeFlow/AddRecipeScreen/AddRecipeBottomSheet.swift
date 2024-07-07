@@ -37,7 +37,10 @@ class AddRecipeBottomSheet: UIViewController {
     }
 
     private func setupSubviews() {
-        view.addSubviews(imageView, closeButton)
+        view.addSubviews(
+            imageView,
+            closeButton
+        )
     }
 
     private func setupConstraints() {
