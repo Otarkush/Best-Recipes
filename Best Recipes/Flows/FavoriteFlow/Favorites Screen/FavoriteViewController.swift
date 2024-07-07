@@ -35,7 +35,7 @@ final class FavoritesViewController: UIViewController {
         favoritesView.setDelegate(self)
         recipeService.delegate = self
 //        запрос
-        recipeService.performRequest("https://api.spoonacular.com/recipes/random?number=4", key: "3aadffa0a33849f4ac3edcaa269851d8")
+        recipeService.performRequest("https://api.spoonacular.com/recipes/random?number=4", key: "02426a682de448578c9e4d9ea5b72ee3")
     }
 }
 

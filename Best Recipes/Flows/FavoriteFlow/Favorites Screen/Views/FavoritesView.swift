@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class FavoritesView: UIView {
     
@@ -65,16 +66,15 @@ final class FavoritesView: UIView {
     // MARK: - Constraints
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            
-            favoriteTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
-            favoriteTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            favoriteTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            favoriteTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-            
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
+        }
+        
+        favoriteTableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.trailing.leading.equalTo(self.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-20)
+        }
     }
 }

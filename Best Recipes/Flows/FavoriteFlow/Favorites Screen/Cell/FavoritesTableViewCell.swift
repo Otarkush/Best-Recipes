@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class FavoritesTableViewCell: UITableViewCell {
     
@@ -133,48 +134,51 @@ final class FavoritesTableViewCell: UITableViewCell {
     // MARK: - Constraints
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-//            image
-            recipesImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            recipesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            recipesImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            recipesImageView.heightAnchor.constraint(equalToConstant: 180),
-            recipesImageView.widthAnchor.constraint(equalToConstant: 180),
-
-//            название рецепта
-            descriptionLabel.topAnchor.constraint(equalTo: recipesImageView.bottomAnchor, constant: 20),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            
-//            bookmark
-            bookmarkButton.topAnchor.constraint(equalTo: recipesImageView.topAnchor, constant: 8),
-            bookmarkButton.trailingAnchor.constraint(equalTo: recipesImageView.trailingAnchor, constant: -8),
-            
-//            райтинг рецепта
-            raitingContainer.topAnchor.constraint(equalTo: recipesImageView.topAnchor, constant: 8),
-            raitingContainer.leadingAnchor.constraint(equalTo: recipesImageView.leadingAnchor, constant: 8),
-            raitingContainer.widthAnchor.constraint(equalToConstant: 58),
-            raitingContainer.heightAnchor.constraint(equalToConstant: 28),
-            
-            raitingLabel.centerYAnchor.constraint(equalTo: raitingContainer.centerYAnchor),
-            raitingLabel.centerXAnchor.constraint(equalTo: raitingContainer.centerXAnchor),
-            
-            
-//            контейнер кухня + текста
-            conteinerView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
-            conteinerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            conteinerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            conteinerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            
-            cuisineImageView.topAnchor.constraint(equalTo: conteinerView.topAnchor, constant: 10),
-            cuisineImageView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor),
-            cuisineImageView.bottomAnchor.constraint(equalTo: conteinerView.bottomAnchor, constant: -10),
-            cuisineImageView.heightAnchor.constraint(equalToConstant: 32),
-            cuisineImageView.widthAnchor.constraint(equalToConstant: 32),
-            
-            cuisineLabel.leadingAnchor.constraint(equalTo: cuisineImageView.trailingAnchor, constant: 4),
-            cuisineLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -10),
-            cuisineLabel.centerYAnchor.constraint(equalTo: conteinerView.centerYAnchor)
-        ])
+        //            image
+        recipesImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalTo(contentView).inset(10)
+            make.height.equalTo(180)
+        }
+        //            название рецепта
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(recipesImageView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+        //            bookmark
+        bookmarkButton.snp.makeConstraints { make in
+            make.top.equalTo(recipesImageView).offset(8)
+            make.trailing.equalTo(recipesImageView).offset(-8)
+        }
+        //            райтинг рецепта
+        raitingContainer.snp.makeConstraints { make in
+            make.top.equalTo(recipesImageView).offset(8)
+            make.leading.equalTo(recipesImageView).offset(8)
+            make.width.equalTo(58)
+            make.height.equalTo(28)
+        }
+        
+        raitingLabel.snp.makeConstraints { make in
+            make.center.equalTo(raitingContainer)
+        }
+        //            контейнер кухня + текста
+        conteinerView.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalTo(contentView)
+            make.bottom.equalTo(contentView).offset(-10)
+        }
+        
+        cuisineImageView.snp.makeConstraints { make in
+            make.top.equalTo(conteinerView).offset(10)
+            make.leading.equalTo(conteinerView)
+            make.bottom.equalTo(conteinerView).offset(-10)
+            make.size.equalTo(32)
+        }
+        
+        cuisineLabel.snp.makeConstraints { make in
+            make.leading.equalTo(cuisineImageView.snp.trailing).offset(4)
+            make.trailing.equalTo(conteinerView.snp.trailing).offset(-10)
+            make.centerY.equalTo(conteinerView)
+        }
     }
 }
