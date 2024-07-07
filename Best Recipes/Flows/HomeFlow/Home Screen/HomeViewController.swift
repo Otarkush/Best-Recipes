@@ -167,7 +167,6 @@ private extension HomeViewController {
             make
                 .bottom
                 .equalTo(view.safeAreaLayoutGuide)
-                .offset(-64)
         }
     }
 }
