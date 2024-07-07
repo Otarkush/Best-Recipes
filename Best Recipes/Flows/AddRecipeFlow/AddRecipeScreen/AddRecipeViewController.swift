@@ -96,6 +96,7 @@ class AddRecipeViewController: UIViewController {
             cell.button.rx.tap
                 .bind(onNext: { [weak self] in
                     isLast ? self?.addIngredient() : self?.removeIngredient()
+                    print(indexPath)
                 })
                 .disposed(by: cell.disposeBag)
             
@@ -132,7 +133,6 @@ class AddRecipeViewController: UIViewController {
             snapshot.deleteItems([lastIngredient])
             dataSource.apply(snapshot, animatingDifferences: true)
         }
-        ingredientsTableView.reloadData()
     }
     
     private func setupSubviews() {

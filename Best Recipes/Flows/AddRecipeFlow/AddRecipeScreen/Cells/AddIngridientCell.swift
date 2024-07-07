@@ -53,7 +53,7 @@ class AddIngredientCell: UITableViewCell {
         return stack
     }()
         
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,6 +62,10 @@ class AddIngredientCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        disposeBag = .init()
     }
     
     func configure(with isLast: Bool) {
