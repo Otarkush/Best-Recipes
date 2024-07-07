@@ -38,25 +38,6 @@ enum SpoonacularMealType: String, CaseIterable {
     case fingerfood = "fingerfood"
     case snack = "snack"
     case drink = "drink"
-    
-    static var allCases: [SpoonacularMealType] {
-            return [
-                .mainCourse,
-                .sideDish,
-                .dessert,
-                .appetizer,
-                .salad,
-                .bread,
-                .breakfast,
-                .soup,
-                .beverage,
-                .sauce,
-                .marinade,
-                .fingerfood,
-                .snack,
-                .drink
-            ]
-        }
 }
 
 // MARK: - Spoonacular Cuisines Type
@@ -68,7 +49,6 @@ enum SpoonacularCuisinesType: String, CaseIterable {
     case cajun = "Cajun"
     case caribbean = "Caribbean"
     case chinese = "Chinese"
-    case easternEuropean = "Eastern European"
     case european = "European"
     case french = "French"
     case german = "German"

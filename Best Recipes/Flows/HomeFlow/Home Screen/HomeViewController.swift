@@ -57,14 +57,13 @@ private extension HomeViewController {
                     let trendingNowRecipes = Array(recipes)
                     let popularCategoryRecipes = Array(recipes)
                     let recentRecipeRecipes = Array(recipes)
-                    let popularCuisinesRecipes = Array(recipes)
                     
                     self?.sections = [
                         .trendingNow(trendingNowRecipes),
-                        .popularCategory(SpoonacularMealType.allCases.map {$0.rawValue }),
+                        .popularCategory(SpoonacularMealType.allCases.map { $0.rawValue }),
                         .popularCategoryRecipes(popularCategoryRecipes),
                         .recentRecipe(recentRecipeRecipes),
-                        .popularCuisines(popularCuisinesRecipes)
+                        .popularCuisines(SpoonacularCuisinesType.allCases.map { $0.rawValue })
                     ]
                     
                     DispatchQueue.main.async {
@@ -168,6 +167,7 @@ private extension HomeViewController {
             make
                 .bottom
                 .equalTo(view.safeAreaLayoutGuide)
+                .offset(-64)
         }
     }
 }
@@ -337,8 +337,8 @@ private extension HomeViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.3),
-                heightDimension: .fractionalHeight(0.4)
+                widthDimension: .fractionalWidth(0.35),
+                heightDimension: .fractionalHeight(0.08)
             ),
             subitems: [item]
         )
@@ -398,7 +398,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCuisines(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisinesCollectionView", for: indexPath)
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
-            cell.configure(imageName: popularCuisines[indexPath.row].image ?? "")
+            cell.configure(titleCuisine: popularCuisines[indexPath.row])
             return cell
         }
     }

@@ -12,16 +12,16 @@ enum ListSection {
     case popularCategory([String])
     case popularCategoryRecipes([Recipe])
     case recentRecipe([Recipe])
-    case popularCuisines([Recipe])
+    case popularCuisines([String])
     
     var items: [Any] {
         switch self {
         case .trendingNow(let items),
                 .popularCategoryRecipes(let items),
-                .recentRecipe(let items),
-                .popularCuisines(let items):
+                .recentRecipe(let items):
             return items
-        case .popularCategory(let titles):
+        case .popularCategory(let titles),
+                .popularCuisines(let titles):
             return titles
         }
     }
