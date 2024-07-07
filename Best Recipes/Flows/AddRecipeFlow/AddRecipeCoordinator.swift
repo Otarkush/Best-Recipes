@@ -11,7 +11,8 @@ class AddRecipeCoordinator: Coordinator {
     
     override func start() {
         print("Init Add Recipe screen")
-        let vc = AddRecipeViewController()
+        let viewModel = AddRecipeViewModel()
+        let vc = AddRecipeViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
     

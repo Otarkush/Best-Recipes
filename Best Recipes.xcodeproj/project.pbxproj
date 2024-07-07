@@ -15,6 +15,12 @@
 		11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB62C34263800FCD29A /* Poppins-Bold.ttf */; };
 		11671AB92C34266F00FCD29A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */; };
 		3C1470E02C39A8FB0034280C /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470DF2C39A8FB0034280C /* UIViewController + Ext.swift */; };
+		3C1470E42C3A5CBC0034280C /* AddIngridientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470E32C3A5CBC0034280C /* AddIngridientCell.swift */; };
+		3C1470E62C3A5DAA0034280C /* AddRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470E52C3A5DAA0034280C /* AddRecipeViewModel.swift */; };
+		3C1470E82C3A5FD30034280C /* ComplexSearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470E72C3A5FD30034280C /* ComplexSearchResponseModel.swift */; };
+		3C1470EA2C3A6CB70034280C /* CreateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470E92C3A6CB70034280C /* CreateRequestModel.swift */; };
+		3C1470EC2C3A72920034280C /* AddRecipeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470EB2C3A72920034280C /* AddRecipeBottomSheet.swift */; };
+		3C1470EF2C3A7B5A0034280C /* ImagePickerVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */; };
 		3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D55282C35A71500AA6C40 /* HTTPClient.swift */; };
 		3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */; };
 		3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35BBBE2C36FDD100033CDD /* ApiService.swift */; };
@@ -68,6 +74,12 @@
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		11671AB82C34266F00FCD29A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		3C1470DF2C39A8FB0034280C /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		3C1470E32C3A5CBC0034280C /* AddIngridientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngridientCell.swift; sourceTree = "<group>"; };
+		3C1470E52C3A5DAA0034280C /* AddRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewModel.swift; sourceTree = "<group>"; };
+		3C1470E72C3A5FD30034280C /* ComplexSearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexSearchResponseModel.swift; sourceTree = "<group>"; };
+		3C1470E92C3A6CB70034280C /* CreateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestModel.swift; sourceTree = "<group>"; };
+		3C1470EB2C3A72920034280C /* AddRecipeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeBottomSheet.swift; sourceTree = "<group>"; };
+		3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerVIew.swift; sourceTree = "<group>"; };
 		3C1D55282C35A71500AA6C40 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponseModel.swift; sourceTree = "<group>"; };
 		3C35BBBE2C36FDD100033CDD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -135,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				3C35BBBC2C36E4C100033CDD /* RecipeResponseModel.swift */,
+				3C1470E72C3A5FD30034280C /* ComplexSearchResponseModel.swift */,
+				3C1470E92C3A6CB70034280C /* CreateRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +212,30 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		3C1470E22C3A5CAA0034280C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470E32C3A5CBC0034280C /* AddIngridientCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3C1470ED2C3A7B4E0034280C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470EE2C3A7B5A0034280C /* ImagePickerVIew.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3C1470F02C3A85AA0034280C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C1470E52C3A5DAA0034280C /* AddRecipeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3C35BC002C38758000033CDD /* AddRecipeFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +248,11 @@
 		3C35BC032C3875CC00033CDD /* AddRecipeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				3C1470F02C3A85AA0034280C /* ViewModel */,
+				3C1470ED2C3A7B4E0034280C /* Views */,
+				3C1470E22C3A5CAA0034280C /* Cells */,
 				3C35BC042C3875E500033CDD /* AddRecipeViewController.swift */,
+				3C1470EB2C3A72920034280C /* AddRecipeBottomSheet.swift */,
 			);
 			path = AddRecipeScreen;
 			sourceTree = "<group>";
@@ -483,6 +525,7 @@
 				3CCB5CC62C35E8E400F738AE /* InstructionsView.swift in Sources */,
 				3C35BC072C3932A500033CDD /* UIView + Ext.swift in Sources */,
 				3CCB5CCF2C35E8E400F738AE /* ScreenFactory.swift in Sources */,
+				3C1470EA2C3A6CB70034280C /* CreateRequestModel.swift in Sources */,
 				3CCB5CD02C35E8E400F738AE /* HomeCoordinator.swift in Sources */,
 				3CCB5CD12C35E8E400F738AE /* HomeViewController.swift in Sources */,
 				3CCB5CCE2C35E8E400F738AE /* TabBarController.swift in Sources */,
@@ -490,10 +533,12 @@
 				B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */,
 				3CCB5CBB2C35E8E400F738AE /* ProfileCoordinator.swift in Sources */,
 				3C35BBBD2C36E4C100033CDD /* RecipeResponseModel.swift in Sources */,
+				3C1470EC2C3A72920034280C /* AddRecipeBottomSheet.swift in Sources */,
 				3CCB5CBF2C35E8E400F738AE /* OnboardingCoordinator.swift in Sources */,
 				3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */,
 				3CCB5CBD2C35E8E400F738AE /* AppCoordinator.swift in Sources */,
 				3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */,
+				3C1470EF2C3A7B5A0034280C /* ImagePickerVIew.swift in Sources */,
 				B511728A2C374013001A44E5 /* OnboardingPageViewController.swift in Sources */,
 				3CCB5CC52C35E8E400F738AE /* RatingAndReviewsView.swift in Sources */,
 				3CCB5CCB2C35E8E400F738AE /* FavoriteCoordinator.swift in Sources */,
@@ -503,6 +548,7 @@
 				0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */,
 				3CCB5CCC2C35E8E400F738AE /* PlusButton.swift in Sources */,
 				3CCB5CBE2C35E8E400F738AE /* Coordinator.swift in Sources */,
+				3C1470E42C3A5CBC0034280C /* AddIngridientCell.swift in Sources */,
 				3CCB5CC32C35E8E400F738AE /* IngredientModel.swift in Sources */,
 				3CCB5CCD2C35E8E400F738AE /* CustomTabBar.swift in Sources */,
 				3CB7EBE72C3352DD00892324 /* UserDefaultsService.swift in Sources */,
@@ -510,12 +556,14 @@
 				3CCB5CC12C35E8E400F738AE /* NotificationViewController.swift in Sources */,
 				B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */,
 				3CCB5CC92C35E8E400F738AE /* RecipeViewController.swift in Sources */,
+				3C1470E62C3A5DAA0034280C /* AddRecipeViewModel.swift in Sources */,
 				3C1470E02C39A8FB0034280C /* UIViewController + Ext.swift in Sources */,
 				3CCB5CC42C35E8E400F738AE /* IngredientTableViewCell.swift in Sources */,
 				3CCB5CBC2C35E8E400F738AE /* ProfileViewController.swift in Sources */,
 				3C35BC052C3875E500033CDD /* AddRecipeViewController.swift in Sources */,
 				B51172892C374013001A44E5 /* OnboardingPage2ViewController.swift in Sources */,
 				0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */,
+				3C1470E82C3A5FD30034280C /* ComplexSearchResponseModel.swift in Sources */,
 				3CCB5CC82C35E8E400F738AE /* TitleForIngredientsTableView.swift in Sources */,
 				11671AB42C341BCD00FCD29A /* Resources.swift in Sources */,
 			);

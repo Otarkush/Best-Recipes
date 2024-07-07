@@ -11,19 +11,19 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-class AddRecipeViewController: UIViewController {
-
+class AddRecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.alwaysBounceVertical = true
-        return scrollView
-    }()
+         let scrollView = UIScrollView()
+         scrollView.alwaysBounceVertical = true
+         return scrollView
+     }()
 
-    private let contentView: UIView = {
-        let view = UIView()
-        return view
-    }()
-
+     private let contentView: UIView = {
+         let view = UIView()
+         return view
+     }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Create recipe"
@@ -31,56 +31,38 @@ class AddRecipeViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "hand.tap.fill")
-        imageView.layer.cornerRadius = 20
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        return imageView
-    }()
-
-    private let nameTextField: UITextField = {
+    
+    private let imageView = ImagePickerView()
+    
+    private let recipeNameTF: UITextField = {
         let textField = UITextField()
+        textField.borderStyle = .roundedRect
         textField.placeholder = "Enter recipe name"
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = Resources.Colors.redBorderTabBar.cgColor
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftView = paddingView
-        textField.leftViewMode = .always
         return textField
     }()
-
+    
     private let servesButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Serves", for: .normal)
+        button.setTitle("Serves: 3", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundGray
-        button.setImage(UIImage(resource: .clock), for: .normal)
+        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         return button
     }()
-
+    
     private let cookTimeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Cook time", for: .normal)
-        button.setImage(UIImage(resource: .twoPerson), for: .normal)
+        button.setTitle("Cook time: 20 min", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundGray
+        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         return button
     }()
-
+    
     private let createRecipeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Create recipe", for: .normal)
@@ -89,82 +71,101 @@ class AddRecipeViewController: UIViewController {
         button.layer.cornerRadius = 10
         return button
     }()
-
-    private let servesPicker = UIPickerView()
-    private let cookTimePicker = UIPickerView()
-    private let servesOptions = ["1", "2", "3", "4", "5"]
-    private let cookTimeOptions = ["5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]
-    private var selectedButton: UIButton?
+    
+    private let ingredientsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(AddIngredientCell.self, forCellReuseIdentifier: AddIngredientCell.identifier)
+        tableView.tableFooterView = UIView()
+        return tableView
+    }()
 
     private let disposeBag = DisposeBag()
+    private var selectedButton: UIButton?
+    
+    
+    private let viewModel: AddRecipeViewModel!
 
+    init(viewModel: AddRecipeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        
         setupSubviews()
         setupConstraints()
         setupGesture()
         configurePickers()
     }
-
+    
     private func setupSubviews() {
-        view.addSubview(scrollView)
+        view.addSubviews(titleLabel, scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(
-            titleLabel,
             imageView,
-            nameTextField,
+            recipeNameTF,
             servesButton,
             cookTimeButton,
-            createRecipeButton
+            createRecipeButton,
+            ingredientsTableView
         )
     }
-
+    
     private func setupConstraints() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
+
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
 
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView)
             make.width.equalTo(scrollView)
-        }
-
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.leading.trailing.equalToSuperview()
+            make.height.greaterThanOrEqualTo(scrollView)
         }
 
         imageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(200)
         }
 
-        nameTextField.snp.makeConstraints { make in
+        recipeNameTF.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(40)
         }
 
         servesButton.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
+            make.top.equalTo(recipeNameTF.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(50)
         }
 
         cookTimeButton.snp.makeConstraints { make in
-            make.top.equalTo(servesButton.snp.bottom).offset(20)
+            make.top.equalTo(servesButton.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(50)
         }
 
         createRecipeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(cookTimeButton.snp.bottom).offset(20)
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+
+        ingredientsTableView.snp.makeConstraints { make in
+            make.top.equalTo(createRecipeButton.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -175,70 +176,123 @@ class AddRecipeViewController: UIViewController {
                 self?.presentImagePicker()
             })
             .disposed(by: disposeBag)
-
+        
         servesButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.showPicker(for: self?.servesButton)
+
             })
             .disposed(by: disposeBag)
-
+        
         cookTimeButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.showPicker(for: self?.cookTimeButton)
+
             })
             .disposed(by: disposeBag)
         
         createRecipeButton.rx.tap
             .bind { [weak self] in
                 self?.showLoader()
-                ApiService.random(10).request(type: RecipeResponse.self) { result in
+                
+                // Create the CreateRequest object
+                let createRequest = CreateRequestDTO(
+                    title: self?.recipeNameTF.text ?? "",
+                    ingredients: "2 cups of green beans\n1 cup of olive oil",
+                    instructions: "Cook the beans\nMix with oil",
+                    readyInMinutes: 30,
+                    servings: 4,
+                    mask: "ellipseMask",
+                    backgroundImage: "background1",
+                    author: "John Doe",
+                    backgroundColor: "#ffffff",
+                    fontColor: "#333333",
+                    source: "mywebsite.com",
+                    image: self?.imageView.image
+                )
+                
+                ApiService.create(createRequest).request(type: CreateResponse.self) { result in
                     DispatchQueue.main.async {
                         self?.hideLoader()
                         switch result {
-                        case .success(let success):
-                            print(success)
-                        case .failure(let failure):
-                            self?.showErrorAlert(message: failure.localizedDescription)
+                        case .success(let response):
+                            if let url = URL(string: response.url) {
+                                URLSession.shared.dataTask(with: url) { data, response, error in
+                                    if let data = data, let image = UIImage(data: data) {
+                                        DispatchQueue.main.async {
+                                            let bottomSheetVC = AddRecipeBottomSheet()
+                                            bottomSheetVC.image = image
+                                            bottomSheetVC.modalPresentationStyle = .overFullScreen
+                                            self?.present(bottomSheetVC, animated: true, completion: nil)
+                                        }
+                                    }
+                                }.resume()
+                            }
+                        case .failure(let error):
+                            self?.showErrorAlert(message: error.localizedDescription)
                         }
                     }
                 }
             }
             .disposed(by: disposeBag)
     }
-
+    
     private func configurePickers() {
-        servesPicker.delegate = self
-        servesPicker.dataSource = self
-        cookTimePicker.delegate = self
-        cookTimePicker.dataSource = self
-
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
         toolBar.setItems([doneButton], animated: false)
-
-        nameTextField.inputAccessoryView = toolBar
+        
+        recipeNameTF.inputAccessoryView = toolBar
     }
-
+    
     @objc private func doneTapped() {
-        nameTextField.resignFirstResponder()
+        recipeNameTF.resignFirstResponder()
     }
-
+    
     private func presentImagePicker() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
-
-    private func showPicker(for button: UIButton?) {
-        selectedButton = button
-        if button == servesButton {
-            nameTextField.inputView = servesPicker
-        } else if button == cookTimeButton {
-            nameTextField.inputView = cookTimePicker
+    
+    // MARK: - Table View Data Source and Delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.ingredients.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientCell.identifier, for: indexPath) as? AddIngredientCell else {
+            return UITableViewCell()
         }
-        nameTextField.becomeFirstResponder()
+        
+        let ingredient = viewModel.ingredients[indexPath.row]
+        cell.configure(with: ingredient)
+        cell.minusButton.isHidden = (indexPath.row == viewModel.ingredients.count - 1)
+        cell.plusButton.isHidden = (indexPath.row != viewModel.ingredients.count - 1)
+        
+        cell.minusButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.removeIngredient(at: indexPath.row)
+            })
+            .disposed(by: cell.disposeBag)
+        
+        cell.plusButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.addIngredient()
+            })
+            .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+    
+    private func addIngredient() {
+        viewModel.ingredients.append(("", ""))
+        ingredientsTableView.reloadData()
+    }
+    
+    private func removeIngredient(at index: Int) {
+        viewModel.ingredients.remove(at: index)
+        ingredientsTableView.reloadData()
     }
 }
 
@@ -250,39 +304,8 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
         }
         picker.dismiss(animated: true, completion: nil)
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - Picker View Delegate and Data Source
-extension AddRecipeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == servesPicker {
-            return servesOptions.count
-        } else {
-            return cookTimeOptions.count
-        }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == servesPicker {
-            return servesOptions[row]
-        } else {
-            return cookTimeOptions[row]
-        }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == servesPicker {
-            selectedButton?.setTitle("Serves: \(servesOptions[row])", for: .normal)
-        } else if pickerView == cookTimePicker {
-            selectedButton?.setTitle("Cook time: \(cookTimeOptions[row])", for: .normal)
-        }
     }
 }
