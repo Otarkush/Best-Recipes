@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Spoonacular Meal Type
-enum SpoonacularMealType: String {
+enum SpoonacularMealType: String, CaseIterable {
     case mainCourse = "main course"
     case sideDish = "side dish"
     case dessert = "dessert"
@@ -34,7 +34,6 @@ enum SpoonacularCuisinesType: String, CaseIterable {
     case cajun = "Cajun"
     case caribbean = "Caribbean"
     case chinese = "Chinese"
-    case easternEuropean = "Eastern European"
     case european = "European"
     case french = "French"
     case german = "German"
