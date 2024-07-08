@@ -10,6 +10,7 @@ import UIKit
 enum Resources {
     enum Colors {
         static var black = UIColor(hexString: "#181818")
+        static var white = UIColor(hexString: "FCFCFC")
         static var lightGray = UIColor(hexString: "#C1C1C1")
         static var darkGray = UIColor(hexString: "#919191 ")
         static var red = UIColor(hexString: "#E23E3E")
@@ -21,7 +22,7 @@ enum Resources {
         static var backgroundGray = UIColor(hexString: "#F1F1F1")
         
         static var roseBackTabBar = UIColor(hexString: "#F9D8D8")
-        static var redBorderTabBar = UIColor(hexString: "#E23E3E   ")
+        static var redBorderTabBar = UIColor(hexString: "#E23E3E")
     }
     
     enum Images {

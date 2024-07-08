@@ -11,6 +11,7 @@ enum CoordinatorType {
     case onboarding
     case home
     case favorite
+    case addRecipe
     case notification
     case profile
 }
@@ -46,13 +47,13 @@ protocol TabBarCoordinator: AnyObject, CoordinatorProtocol {
 class Coordinator: CoordinatorProtocol {
     var childCoordinators: [CoordinatorProtocol]
     var type: CoordinatorType
-    var navigationController: UINavigationController?
+    var navigationController: UINavigationController? = nil
     weak var finishDelegate: CoordinatorFinishDelegate?
     
     init(
         childCoordinators: [CoordinatorProtocol] = [],
         type: CoordinatorType,
-        navigationController: UINavigationController,
+        navigationController: UINavigationController?,
         finishDelegate: CoordinatorFinishDelegate? = nil
     ) {
         self.childCoordinators = childCoordinators

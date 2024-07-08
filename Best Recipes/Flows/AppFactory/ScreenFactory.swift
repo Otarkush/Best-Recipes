@@ -30,9 +30,10 @@ struct AppFactory {
     static func makeTabBarFlow(coordinator: AppCoordinator, finishDelegate: CoordinatorFinishDelegate) -> TabBarController {
         // MARK: - Вкладка home
         let homeNavigationController = UINavigationController()
+        homeNavigationController.navigationBar.isHidden = true
         homeNavigationController.tabBarItem = UITabBarItem(
             title: nil,
-            image: UIImage(systemName: "house.fill"),
+            image: Resources.Images.TabBar.home,
             tag: 0
         )
         let homeCoordinator = HomeCoordinator(
@@ -44,9 +45,10 @@ struct AppFactory {
         
         // MARK: - Вкладка favorite
         let favoriteNavigationController = UINavigationController()
+        favoriteNavigationController.navigationBar.isHidden = true
         favoriteNavigationController.tabBarItem = UITabBarItem(
             title: nil,
-            image: UIImage(systemName: "bookmark"),
+            image: Resources.Images.TabBar.bookmark,
             tag: 1
         )
         let favoriteCoordinator = FavoriteCoordinator(
@@ -57,18 +59,26 @@ struct AppFactory {
         favoriteCoordinator.start()
         
         // MARK: - Spacer
-        let spacer = UINavigationController()
-        spacer.tabBarItem = UITabBarItem(
+        let addRecipeNavigationController = UINavigationController()
+        addRecipeNavigationController.navigationBar.isHidden = true
+        addRecipeNavigationController.tabBarItem = UITabBarItem(
             title: nil,
             image: nil,
             tag: 3
         )
+        let addRecipeCoordinator = AddRecipeCoordinator(
+            type: .addRecipe,
+            navigationController: addRecipeNavigationController
+        )
+        addRecipeCoordinator.finishDelegate = finishDelegate
+        addRecipeCoordinator.start()
         
         // MARK: - Влкадка notification
         let notificationNavigationController = UINavigationController()
+        notificationNavigationController.navigationBar.isHidden = true
         notificationNavigationController.tabBarItem = UITabBarItem(
             title: nil,
-            image: UIImage(systemName: "bell"),
+            image: Resources.Images.TabBar.notification,
             tag: 4
         )
         let notificationCoordinator = NotificationCoordinator(
@@ -80,9 +90,10 @@ struct AppFactory {
         
         // MARK: - Вкладка profile
         let profileNavigationController = UINavigationController()
+        profileNavigationController.navigationBar.isHidden = true
         profileNavigationController.tabBarItem = UITabBarItem(
             title: nil,
-            image: UIImage(systemName: "person"),
+            image: Resources.Images.TabBar.profile,
             tag: 5
         )
         let profileCoordinator = ProfileCoordinator(
@@ -94,13 +105,14 @@ struct AppFactory {
         
         coordinator.addChildCoordinator(homeCoordinator)
         coordinator.addChildCoordinator(favoriteCoordinator)
+        coordinator.addChildCoordinator(addRecipeCoordinator)
         coordinator.addChildCoordinator(notificationCoordinator)
         coordinator.addChildCoordinator(profileCoordinator)
         
         let tabbarControllers = [
             homeNavigationController,
             favoriteNavigationController,
-            spacer,
+            addRecipeNavigationController,
             notificationNavigationController,
             profileNavigationController
         ]
