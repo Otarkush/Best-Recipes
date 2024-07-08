@@ -13,11 +13,11 @@ final class RecipeViewController: UIViewController {
     // MARK: - Properties
     
     private let ingredients: [Ingredient] = [
-        Ingredient(image: UIImage(named: "fish") ?? UIImage(), name: "Fish", quantity: 200),
-        Ingredient(image: UIImage(named: "ginger") ?? UIImage(), name: "Ginger", quantity: 100),
-        Ingredient(image: UIImage(named: "oil") ?? UIImage(), name: "Vegetable Oil", quantity: 80),
-        Ingredient(image: UIImage(named: "salt") ?? UIImage(), name: "Salt", quantity: 50),
-        Ingredient(image: UIImage(named: "cucumber") ?? UIImage(), name: "Cucumber", quantity: 200)
+//        Ingredient(image: UIImage(named: "fish") ?? UIImage(), name: "Fish", quantity: 200),
+//        Ingredient(image: UIImage(named: "ginger") ?? UIImage(), name: "Ginger", quantity: 100),
+//        Ingredient(image: UIImage(named: "oil") ?? UIImage(), name: "Vegetable Oil", quantity: 80),
+//        Ingredient(image: UIImage(named: "salt") ?? UIImage(), name: "Salt", quantity: 50),
+//        Ingredient(image: UIImage(named: "cucumber") ?? UIImage(), name: "Cucumber", quantity: 200)
     ]
     
     private let recipeView = RecipeView()

@@ -15,14 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navigationController = RecipeViewController()
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-//        let appCoordinator = AppCoordinator(
-//            type: .onboarding,
-//            navigationController: navigationController
-//        )
-//        self.coordinator = appCoordinator
-//        appCoordinator.start()
+        let appCoordinator = AppCoordinator(type: .onboarding, navigationController: nil)
+        self.coordinator = appCoordinator
+        appCoordinator.window = window
+        appCoordinator.start()
     }
 }
