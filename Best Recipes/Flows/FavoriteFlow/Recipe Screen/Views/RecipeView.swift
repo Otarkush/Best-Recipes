@@ -61,9 +61,9 @@ final class RecipeView: UIScrollView {
     func configure(with recipe: Recipe) {
         titleLabel.text = recipe.title
         
-        if let image = recipe.image {
-            imageView
-        }
+//        if let image = recipe.image {
+//            imageView
+//        }
     }
 }
 

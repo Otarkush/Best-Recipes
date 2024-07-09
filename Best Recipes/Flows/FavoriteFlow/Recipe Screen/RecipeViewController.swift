@@ -22,6 +22,16 @@ final class RecipeViewController: UIViewController {
     
     private let recipeView = RecipeView()
     private var recipe: Recipe?
+    private let id: Int!
+    
+    init(id: Int) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     
@@ -49,7 +59,7 @@ extension RecipeViewController {
     
     // Запрос на получение рецепта
     func fetchRecipe() {
-        ApiService.detail("716429").request(type: Recipe.self) { result in
+        ApiService.detail(id.description).request(type: Recipe.self) { result in
             switch result {
             case .success(let success):
                 print(success)
