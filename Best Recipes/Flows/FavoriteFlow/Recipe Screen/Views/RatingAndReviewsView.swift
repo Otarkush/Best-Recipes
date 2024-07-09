@@ -49,6 +49,13 @@ final class RatingAndReviewsView: UIView {
         
         setupUI()
     }
+    
+    func configure(with recipe: Recipe) {
+        let rating = 5 * (recipe.spoonacularScore ?? 0) / 100
+        ratingLabel.text = "★ \(String(format: "%.1f", rating))"
+        
+        reviewsLabel.text = "(\(recipe.aggregateLikes ?? 0) Reviews)"
+    }
 }
 
 // MARK: - Private Methods

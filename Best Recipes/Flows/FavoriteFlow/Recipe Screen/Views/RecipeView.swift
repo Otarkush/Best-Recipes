@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class RecipeView: UIScrollView {
     
@@ -22,7 +23,8 @@ final class RecipeView: UIScrollView {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "image")
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
     
@@ -60,10 +62,11 @@ final class RecipeView: UIScrollView {
     
     func configure(with recipe: Recipe) {
         titleLabel.text = recipe.title
+        imageView.kf.setImage(with: URL(string: recipe.image!))
         
-//        if let image = recipe.image {
-//            imageView
-//        }
+        ratingAndReviews.configure(with: recipe)
+        instructionsView.configure(with: recipe)
+        titleForTable.configure(with: recipe.extendedIngredients?.count ?? 0)
     }
 }
 
