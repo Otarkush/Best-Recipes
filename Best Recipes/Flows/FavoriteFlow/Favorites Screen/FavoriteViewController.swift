@@ -63,6 +63,20 @@ extension FavoritesViewController: UITableViewDelegate {
         
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        убираем выделение ячейки при нажатии
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectItem = recipes[indexPath.row]
+        print(selectItem)
+        print("id рецепта \(selectItem.id)")
+//        действие
+        let nextVC = RecipeViewController()
+//        nextVC..... = selectItem.id или может картинка?
+//        RecipeModel(id: 661240, score: 1, title: "Spiked Watermelon lemonade", image: "https://img.spoonacular.com/recipes/661240-556x370.jpg", cuisines: [])
+        present(nextVC, animated: true)
+    }
 }
 
 extension FavoritesViewController: UITableViewDataSource {
