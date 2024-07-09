@@ -10,6 +10,7 @@
 		0BA8158B2C302DD800BA2CE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158A2C302DD800BA2CE9 /* AppDelegate.swift */; };
 		0BA8158D2C302DD800BA2CE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8158C2C302DD800BA2CE9 /* SceneDelegate.swift */; };
 		0BA815942C302DD900BA2CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BA815932C302DD900BA2CE9 /* Assets.xcassets */; };
+		110384352C3D3D1E00B2FC72 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110384342C3D3D1E00B2FC72 /* ProfileView.swift */; };
 		11671AB22C341B6D00FCD29A /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB12C341B6D00FCD29A /* UIColor + ext.swift */; };
 		11671AB42C341BCD00FCD29A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11671AB32C341BCD00FCD29A /* Resources.swift */; };
 		11671AB72C34263800FCD29A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11671AB62C34263800FCD29A /* Poppins-Bold.ttf */; };
@@ -85,6 +86,7 @@
 		0BA8158C2C302DD800BA2CE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0BA815932C302DD900BA2CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA815982C302DD900BA2CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		110384342C3D3D1E00B2FC72 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		11671AB12C341B6D00FCD29A /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
 		11671AB32C341BCD00FCD29A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		11671AB62C34263800FCD29A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCB5C972C35E8E400F738AE /* ProfileViewController.swift */,
+				110384342C3D3D1E00B2FC72 /* ProfileView.swift */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				1172E72A2C37D59100572013 /* FavoritesView.swift in Sources */,
 				3C1471042C3AC28F0034280C /* AddRecipeViewModel.swift in Sources */,
 				3CCB5CBF2C35E8E400F738AE /* OnboardingCoordinator.swift in Sources */,
+				110384352C3D3D1E00B2FC72 /* ProfileView.swift in Sources */,
 				79ADA46E2C3A8649004EC09E /* PopularCuisinesRecipesCollectionViewCell.swift in Sources */,
 				3C1D55292C35A71500AA6C40 /* HTTPClient.swift in Sources */,
 				3CCB5CBD2C35E8E400F738AE /* AppCoordinator.swift in Sources */,
