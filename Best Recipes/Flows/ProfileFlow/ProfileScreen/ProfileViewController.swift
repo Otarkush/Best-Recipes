@@ -11,9 +11,17 @@ class ProfileViewController: UIViewController {
     
     private let profileView = ProfileView()
     
+    // MARK: - Life Cycle
+    
+    override func loadView() {
+        super.loadView()
+        view = profileView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "My profile"
 
         profileView.setDelegate(self)
         

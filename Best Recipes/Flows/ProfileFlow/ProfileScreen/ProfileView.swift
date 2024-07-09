@@ -15,17 +15,18 @@ class ProfileView: UIView {
     private lazy var mainStack: UIStackView = {
         let stack = UIStackView()
         stack.spacing = 10
-        stack.alignment = .trailing
+        stack.alignment = .leading
         stack.axis = .vertical
+        stack.backgroundColor = .systemGray
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    private lazy var provileImageView: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10 // сделать потом с учетом view
+        imageView.layer.cornerRadius = 50
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -36,7 +37,6 @@ class ProfileView: UIView {
         label.font = Resources.Fonts.poppinsBold(of: 24)
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.text = "My recipes"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -56,12 +56,14 @@ class ProfileView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+        setView()
+        setConstraints()
     }
     
     // MARK: - Setup UI
@@ -69,11 +71,38 @@ class ProfileView: UIView {
     private func setView() {
         backgroundColor = .white
         
+        self.addSubview(mainStack)
+        
+        mainStack.addArrangedSubview(profileImageView)
+        mainStack.addArrangedSubview(titleLabel)
+        
+        titleLabel.text = "My recipes"
+        profileImageView.image = UIImage(named: "author")
     }
     
     func setDelegate(_ value: ProfileViewController) {
         profileTableView.delegate = value
         profileTableView.dataSource = value
     }
-    
+}
+
+// MARK: - Extensions Constraints
+
+extension ProfileView {
+    func setConstraints() {
+        
+        mainStack.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
+        }
+        
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalTo(mainStack)
+            make.leading.equalTo(mainStack).offset(20)
+            make.size.equalTo(100)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(mainStack).inset(40)
+        }
+        
+    }
 }
