@@ -64,6 +64,7 @@ struct Ent: Codable {
 struct Length: Codable {
     let number: Int?
     let unit: String?
+    let image: URL?
 }
 
 // MARK: - ExtendedIngredient

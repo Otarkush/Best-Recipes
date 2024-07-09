@@ -57,10 +57,12 @@ final class IngredientTableViewCell: UITableViewCell {
     
     // MARK: - Configuration
     
-    func configure(with ingredient: Ingredient) {
-//        ingredientImageView.image = ingredient.image
+    func configure(with ingredient: ExtendedIngredient) {
+        if let imageURL = URL(string: "https://spoonacular.com/cdn/ingredients_100x100/\(ingredient.image!)") {
+            ingredientImageView.kf.setImage(with: imageURL)
+        }
         ingredientLabel.text = ingredient.name
-        quantityLabel.text = "\(ingredient.quantity)g"
+        quantityLabel.text = "\(ingredient.amount ?? 0) \(ingredient.unit ?? "")"
     }
 }
 
@@ -71,6 +73,8 @@ private extension IngredientTableViewCell {
         
         addViews()
         setupConstraints()
+        
+        selectionStyle = .none
     }
     
     func addViews() {

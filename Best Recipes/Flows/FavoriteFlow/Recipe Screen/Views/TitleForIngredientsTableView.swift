@@ -55,6 +55,10 @@ final class TitleForIngredientsTableView: UIView {
         
         setupUI()
     }
+    
+    func configure(with value: Int) {
+        numberOfItemsLabel.text = "\(value) items"
+    }
 }
 
 // MARK: - Private Methods
