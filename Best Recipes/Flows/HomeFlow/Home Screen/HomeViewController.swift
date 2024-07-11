@@ -37,6 +37,17 @@ final class HomeViewController: UIViewController {
         return searchBar
     }()
     
+    weak var coordinator: HomeCoordinator!
+    
+    init(coordinator: HomeCoordinator!) {
+        super.init(nibName: nil, bundle: nil)
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var sections: [ListSection] = []
             
     override func viewDidLoad() {
@@ -71,10 +82,12 @@ private extension HomeViewController {
                     DispatchQueue.main.async {
                         self?.collectionView.reloadData()
                     }
+                    
                 }
             case .failure(let failure):
                 print(failure)
             }
+            
         }
     }
 
@@ -86,6 +99,7 @@ private extension HomeViewController {
     func setupUI() {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
+        
         
         setDelegates()
         addSubviews()
@@ -395,7 +409,6 @@ private extension HomeViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -420,9 +433,6 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)
                     as? PopularCategoryCollectionViewCell else { return UICollectionViewCell()}
             cell.configure(titleCategory: popularCategory[indexPath.row])
-            
-//            cell.isSelected = indexPath.item == 0 ? true : false
-//            print(indexPath.item)
             return cell
         case .popularCategoryRecipes(let popularCategoryRecipes):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryRecipesViewCell", for: indexPath)

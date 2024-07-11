@@ -11,11 +11,17 @@ class HomeCoordinator: Coordinator {
     
     override func start() {
         print("Init home screen")
-        let vc = HomeViewController()
+        let vc = HomeViewController(coordinator: self)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func finish() {
         print("AppCoordinator finish")
+    }
+}
+
+private extension HomeCoordinator {
+    func pushSeeAll() {
+        
     }
 }

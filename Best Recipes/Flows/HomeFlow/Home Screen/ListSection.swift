@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum ListSection {
+enum ListSection: Equatable {
+    static func == (lhs: ListSection, rhs: ListSection) -> Bool {
+        lhs.title == rhs.title
+    }
+    
     case trendingNow([Recipe])
     case popularCategory([String])
     case popularCategoryRecipes([Recipe])
