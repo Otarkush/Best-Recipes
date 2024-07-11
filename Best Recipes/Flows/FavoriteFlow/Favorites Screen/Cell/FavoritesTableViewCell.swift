@@ -123,7 +123,10 @@ final class FavoritesTableViewCell: UITableViewCell {
         }
         
 //        звезда из системного символа
-        let raitingScore = String(recipe.score)
+        var raitingScore: String {
+            let value = 5 * recipe.score / 100
+            return String(format: "%0.1f", value)
+        }
         raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(raitingScore)", size: 12)
     }
     

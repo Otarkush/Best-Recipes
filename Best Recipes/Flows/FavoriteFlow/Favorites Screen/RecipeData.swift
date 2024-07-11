@@ -12,7 +12,7 @@ struct RecipeData: Codable {
 }
 
 struct Recipes: Codable {
-    let healthScore: Int
+    let spoonacularScore: Double
     let id: Int
     let title: String
     let image: String
