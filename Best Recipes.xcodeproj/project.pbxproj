@@ -265,7 +265,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		117E37D92C3F13DE006A45E0 /* SeeAllFlow */ = {
+		117B7A2A2C41112400FEB63A /* SeeAllFlow */ = {
 			isa = PBXGroup;
 			children = (
 				117E37DA2C3F13F4006A45E0 /* SeeAllScreen */,
@@ -356,7 +356,7 @@
 		3CCB5C932C35E8E400F738AE /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				117E37D92C3F13DE006A45E0 /* SeeAllFlow */,
+				117B7A2A2C41112400FEB63A /* SeeAllFlow */,
 				3C1470F72C3AC28F0034280C /* AddRecipeFlow */,
 				3CCB5C982C35E8E400F738AE /* Coordinator */,
 				3CCB5C9B2C35E8E400F738AE /* OnboardingFlow */,
