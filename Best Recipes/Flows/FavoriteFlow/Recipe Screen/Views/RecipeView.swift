@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class RecipeView: UIScrollView {
     
@@ -17,13 +18,13 @@ final class RecipeView: UIScrollView {
         label.font = Resources.Fonts.poppinsBold(of: 24)
         label.textColor = Resources.Colors.black
         label.numberOfLines = 0
-        label.text = "How to make Tasty Fish (point & Kill)"
         return label
     }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "image")
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
     
@@ -57,6 +58,15 @@ final class RecipeView: UIScrollView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
+    }
+    
+    func configure(with recipe: Recipe) {
+        titleLabel.text = recipe.title
+        imageView.kf.setImage(with: URL(string: recipe.image!))
+        
+        ratingAndReviews.configure(with: recipe)
+        instructionsView.configure(with: recipe)
+        titleForTable.configure(with: recipe.extendedIngredients?.count ?? 0)
     }
 }
 
