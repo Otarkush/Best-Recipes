@@ -77,6 +77,7 @@ final class RecipeTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         setupGradientLayer()
     }
     
@@ -127,7 +128,7 @@ private extension RecipeTableViewCell {
         
         gradientContainer.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(recipeImageView)
-            make.height.equalTo(recipeImageView.snp.height).multipliedBy(0.5)
+            make.height.equalTo(recipeImageView.snp.height).multipliedBy(0.75)
         }
         
         ratingLabel.snp.makeConstraints { make in
