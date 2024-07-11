@@ -77,6 +77,7 @@ final class RecipeTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         setupGradientLayer()
     }
     
