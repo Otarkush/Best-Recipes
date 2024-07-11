@@ -18,12 +18,24 @@ final class SeeAllViewController: UIViewController {
         return tableView
     }()
     
+    private var recipes: [Recipe] = []
+    
+    //MARK: - Initializers
+    
+    init(recipes: [Recipe]) {
+        self.recipes = recipes
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       setupUI()
+        setupUI()
     }
 }
 
