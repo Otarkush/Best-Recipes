@@ -12,5 +12,5 @@ struct RecipeModel {
     let score: Int
     let title: String
     let image: String
-    let cuisines: [String]  
+    let cuisines: [String] 
 }

@@ -11,25 +11,32 @@ import SnapKit
 final class RecipeViewController: UIViewController {
     
     // MARK: - Properties
-    
-    private let ingredients: [Ingredient] = [
-//        Ingredient(image: UIImage(named: "fish") ?? UIImage(), name: "Fish", quantity: 200),
-//        Ingredient(image: UIImage(named: "ginger") ?? UIImage(), name: "Ginger", quantity: 100),
-//        Ingredient(image: UIImage(named: "oil") ?? UIImage(), name: "Vegetable Oil", quantity: 80),
-//        Ingredient(image: UIImage(named: "salt") ?? UIImage(), name: "Salt", quantity: 50),
-//        Ingredient(image: UIImage(named: "cucumber") ?? UIImage(), name: "Cucumber", quantity: 200)
-    ]
-    
+        
     private let recipeView = RecipeView()
+    private var recipe: Recipe?
+    private let id: Int!
+    
+    init(id: Int) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchRecipe()
     }
-    
-    // MARK: - Setup UI
+}
+
+//MARK: - Private Methods
+
+extension RecipeViewController {
     
     private func setupUI() {
         view.addSubview(recipeView)
@@ -42,6 +49,29 @@ final class RecipeViewController: UIViewController {
         }
     }
     
+    // Запрос на получение рецепта
+    func fetchRecipe() {
+        ApiService.detail(id.description).request(type: Recipe.self) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+                self.recipe = success
+                DispatchQueue.main.async {
+                    self.updateRecipeView()
+                    self.recipeView.tableView.reloadData()
+                }
+            case .failure(let failure):
+                print("ошибка!!!\(failure)")
+            }
+        }
+    }
+    
+    //Update RecipeView
+    func updateRecipeView() {
+        guard let recipe = recipe else { return }
+        
+        recipeView.configure(with: recipe)
+    }
 }
 
 //MARK: - UITableViewDataSource and UITableViewDelegate
@@ -49,13 +79,19 @@ final class RecipeViewController: UIViewController {
 extension RecipeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ingredients.count
+        return recipe?.extendedIngredients?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as? IngredientTableViewCell else { return  UITableViewCell() }
         
-        cell.configure(with: ingredients[indexPath.row])
+        guard let ingredients = recipe?.extendedIngredients else {
+            print("Нет рецепта")
+            return UITableViewCell()
+        }
+        
+        let ingredient = ingredients[indexPath.row]
+        cell.configure(with: ingredient)
         return cell
     }
     
