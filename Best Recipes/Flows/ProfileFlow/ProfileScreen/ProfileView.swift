@@ -44,10 +44,12 @@ class ProfileView: UIView {
     private lazy var profileTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .red
         tableView.isScrollEnabled = true
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .clear
+        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -56,6 +58,7 @@ class ProfileView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setView()
         setConstraints()
     }
@@ -75,6 +78,7 @@ class ProfileView: UIView {
         
         mainStack.addArrangedSubview(profileImageView)
         mainStack.addArrangedSubview(titleLabel)
+        mainStack.addArrangedSubview(profileTableView)
         
         titleLabel.text = "My recipes"
         profileImageView.image = UIImage(named: "author")
@@ -102,6 +106,11 @@ extension ProfileView {
         }
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(mainStack).inset(40)
+        }
+        
+        profileTableView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(mainStack).offset(-10)
         }
         
     }
