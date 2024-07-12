@@ -9,8 +9,19 @@ import UIKit
 import SnapKit
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - UI Properties
     
+    private let favoritesView = FavoritesView()
+    private let recipeService = RecipeService()
+    
+    // MARK: - temp properties
+    
+    private var score = 0
+    private var recipeTitle = ""
+    private var image = ""
+    private var cuisine = ["Home"]
+    private var recipes: [Recipe] = []
+    
+    // MARK: - UI Properties
     private lazy var headerStackView: UIStackView = {
         let element = UIStackView()
         element.axis = .horizontal
@@ -35,7 +46,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     private lazy var avatarImageView: UIImageView = {
         let element = UIImageView()
-        //element.setImage(UIImage(systemName: "person.circle"), for: .normal)
         element.image = UIImage(systemName: "person.circle")
         element.tintColor = .black
         element.backgroundColor = .lightGray
@@ -52,12 +62,42 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return element
     }()
     
+    var favoriteTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = true
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = .clear
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ProfileRecipeCell.self, forCellReuseIdentifier: ProfileRecipeCell.identifier)
+        return tableView
+    }()
+    
+    
+    
         // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
         addGestureRecognizers()
+        favoriteTableView.dataSource = self
+        favoriteTableView.delegate = self
+        ApiService.random(3).request(type: RandomResponse.self) { respons in
+            switch respons {
+            case .success(let success):
+                if let recipe = success.recipes {
+                    DispatchQueue.main.async {
+                        self.recipes.append(contentsOf: recipe)
+                        self.favoriteTableView.reloadData()
+                    }
+                }
+                
+            case .failure(let failure):
+                break
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,13 +105,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
     }
     
-    
     // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(headerStackView)
         view.addSubview(avatarImageView)
         view.addSubview(myRecipesLabel)
+        view.addSubviews(favoriteTableView)
         
         headerStackView.addArrangedSubview(myProfileLabel)
         headerStackView.addArrangedSubview(settingsButton)
@@ -119,5 +159,36 @@ extension ProfileViewController {
             make.leading.equalToSuperview().inset(20)
             make.top.equalTo(avatarImageView.snp.bottom).offset(40)
         }
+        
+        favoriteTableView.snp.makeConstraints { make in
+            make.top.equalTo(myRecipesLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
     }
+}
+
+
+// MARK: - Extensions TableViewDelegate
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableView.automaticDimension
+    }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileRecipeCell.identifier, for: indexPath) as? ProfileRecipeCell else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        cell.configure(with: recipes[indexPath.row])
+        return cell
+    }
+    
 }

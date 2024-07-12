@@ -36,6 +36,8 @@ struct Recipe: Codable {
     let spoonacularScore: Double?
     let spoonacularSourceURL: String?
     let license: String?
+    let score: Int?
+    let cuisines: [String]
 }
 
 // MARK: - AnalyzedInstruction
