@@ -16,10 +16,7 @@ final class FavoritesViewController: UIViewController {
     
     // MARK: - temp properties
     
-    private var score = 0
-    private var recipeTitle = ""
-    private var image = ""
-    private var cuisine = ["Home"]
+    
     private var recipes: [RecipeModel] = []
     
     
@@ -33,9 +30,25 @@ final class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         
         favoritesView.setDelegate(self)
-        recipeService.delegate = self
-//        запрос
-        recipeService.performRequest("https://api.spoonacular.com/recipes/random?number=4", key: "02426a682de448578c9e4d9ea5b72ee3")
+        loadSavedRecipes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadSavedRecipes()
+    }
+    
+    private func loadSavedRecipes() {
+        let savedRecipes = StorageRecipe.shared.getRecipes()
+        recipes = savedRecipes.map { $0.toRecipeModel() }
+        favoritesView.favoriteTableView.reloadData()
+    }
+    
+    private func removeRecipe(at index: Int) {
+        let recipe = recipes[index].toRecipe()
+        StorageRecipe.shared.removeRecipe(recipe)
+        recipes.remove(at: index)
+        favoritesView.favoriteTableView.reloadData()
     }
 }
 
@@ -43,10 +56,10 @@ final class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: RequestRecipeDelegate {
     func didReceiveRecipe(recipeData: [RecipeModel]) {
-//        обновление данных в контроллере
+        //        обновление данных в контроллере
         self.recipes = recipeData
         
-//        обновление таблицы
+        //        обновление таблицы
         DispatchQueue.main.async {
             self.favoritesView.favoriteTableView.reloadData()
         }
@@ -65,20 +78,10 @@ extension FavoritesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        убираем выделение ячейки при нажатии
-        tableView.deselectRow(at: indexPath, animated: true)
         
         let selectItem = recipes[indexPath.row]
-        
-//        var saveData = StorageRecipe.shared.saveRecipe(recipes[indexPath.row])
-//        print("save data \(saveData)")
-        
-        print(selectItem)
-        print("id рецепта \(selectItem.id)")
-//        действие
+        //        действие
         let nextVC = RecipeViewController(id: selectItem.id)
-//        nextVC..... = selectItem.id или может картинка?
-//        RecipeModel(id: 661240, score: 1, title: "Spiked Watermelon lemonade", image: "https://img.spoonacular.com/recipes/661240-556x370.jpg", cuisines: [])
         present(nextVC, animated: true)
     }
 }
@@ -93,7 +96,17 @@ extension FavoritesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.configure(with: recipes[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
+}
+
+
+extension FavoritesViewController: FavoritesTableViewCellDelegate {
+    func didTapBookmarkButton(in cell: FavoritesTableViewCell) {
+        if let indexPath = favoritesView.favoriteTableView.indexPath(for: cell) {
+            removeRecipe(at: indexPath.row)
+        }
+    }
 }

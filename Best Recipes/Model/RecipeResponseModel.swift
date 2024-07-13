@@ -29,7 +29,7 @@ struct Recipe: Codable {
     let sourceURL: String?
     let image: String?
     let imageType, summary: String?
-    let dishTypes: [String]? // <--- 
+    let dishTypes: [String]? // <---
     let diets: [String]?
     let instructions: String?
     let analyzedInstructions: [AnalyzedInstruction]?
@@ -39,40 +39,40 @@ struct Recipe: Codable {
     let cuisines: [String]
     
     init(id: Int, score: Double, title: String, image: String, cuisines: [String]) {
-           self.id = id
-           self.spoonacularScore = score
-           self.title = title
-           self.image = image
-           self.cuisines = cuisines
-           self.vegetarian = nil
-           self.vegan = nil
-           self.glutenFree = nil
-           self.dairyFree = nil
-           self.veryHealthy = nil
-           self.cheap = nil
-           self.veryPopular = nil
-           self.sustainable = nil
-           self.lowFodmap = nil
-           self.weightWatcherSmartPoints = nil
-           self.gaps = nil
-           self.aggregateLikes = nil
-           self.healthScore = nil
-           self.creditsText = nil
-           self.sourceName = nil
-           self.pricePerServing = nil
-           self.extendedIngredients = nil
-           self.readyInMinutes = nil
-           self.servings = nil
-           self.sourceURL = nil
-           self.imageType = nil
-           self.summary = nil
-           self.dishTypes = nil
-           self.diets = nil
-           self.instructions = nil
-           self.analyzedInstructions = nil
-           self.spoonacularSourceURL = nil
-           self.license = nil
-       }
+        self.id = id
+        self.spoonacularScore = score
+        self.title = title
+        self.image = image
+        self.cuisines = cuisines
+        self.vegetarian = nil
+        self.vegan = nil
+        self.glutenFree = nil
+        self.dairyFree = nil
+        self.veryHealthy = nil
+        self.cheap = nil
+        self.veryPopular = nil
+        self.sustainable = nil
+        self.lowFodmap = nil
+        self.weightWatcherSmartPoints = nil
+        self.gaps = nil
+        self.aggregateLikes = nil
+        self.healthScore = nil
+        self.creditsText = nil
+        self.sourceName = nil
+        self.pricePerServing = nil
+        self.extendedIngredients = nil
+        self.readyInMinutes = nil
+        self.servings = nil
+        self.sourceURL = nil
+        self.imageType = nil
+        self.summary = nil
+        self.dishTypes = nil
+        self.diets = nil
+        self.instructions = nil
+        self.analyzedInstructions = nil
+        self.spoonacularSourceURL = nil
+        self.license = nil
+    }
 }
 
 // MARK: - AnalyzedInstruction
