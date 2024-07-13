@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HomeViewController: UIViewController {
     
@@ -38,6 +39,8 @@ final class HomeViewController: UIViewController {
     }()
     
     private var sections: [ListSection] = []
+    
+    private let disposeBag = DisposeBag()
             
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -415,6 +418,11 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendsCollectionViewCell", for: indexPath)
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: trendingNow[indexPath.row])
+            cell.onSave
+                .bind (onNext: { [weak self] _ in
+                    StorageRecipe.shared.saveRecipe(trendingNow[indexPath.row])
+                })
+                .disposed(by: cell.disposeBag)
             return cell
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)

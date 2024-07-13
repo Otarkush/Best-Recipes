@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecipeModel {
+struct RecipeModel: Codable {
     let id: Int
     let score: Double
     let title: String

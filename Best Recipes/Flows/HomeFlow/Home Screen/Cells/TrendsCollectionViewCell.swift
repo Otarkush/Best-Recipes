@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import RxSwift
+import RxGesture
+import RxRelay
 
 final class TrendsCollectionViewCell: UICollectionViewCell {
+    
+    let onSave = PublishRelay<Void>()
     
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
@@ -54,6 +59,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     
     private let bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
+
         imageView.image = UIImage(named: "bookmarkIcon")
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
@@ -91,9 +97,12 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
+     let disposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -109,6 +118,15 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         titleLabel.text = recipe.title?.capitalized
         authorNameLabel.text = "By \(recipe.sourceName ?? "")"
         rateLabel.text = "4,8"
+    }
+    
+    private func setupBindings() {
+        bookmarkView.rx.tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(to: onSave)
+            .disposed(by: disposeBag)
+        
     }
 }
 
