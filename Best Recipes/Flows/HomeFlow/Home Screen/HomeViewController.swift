@@ -12,7 +12,7 @@ import RxGesture
 
 final class HomeViewController: UIViewController {
     
-    var onDetail = PublishRelay<Recipe>()
+    var onDetail = PublishRelay<Int>()
     var onSeeAll = PublishRelay<[Recipe]>()
     
     private let titleLabel: UILabel = {
@@ -33,16 +33,33 @@ final class HomeViewController: UIViewController {
         return collectionView
     }()
     
-    private let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Search recipes"
-        searchBar.searchBarStyle = .minimal
-        searchBar.layer.cornerRadius = 15
-        searchBar.layer.borderWidth = 1.0
-        searchBar.layer.borderColor = UIColor.systemGray4.cgColor
-        return searchBar
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
+        tableView.isHidden = true
+        return tableView
     }()
     
+    private let searchBar: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Search recipes"
+        textField.layer.cornerRadius = 15
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.systemGray4.cgColor
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
+        textField.leftViewMode = .always
+        return textField
+    }()
+    
+    private lazy var clearButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .gray.withAlphaComponent(0.2)
+        button.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        return button
+    }()
+
     weak var coordinator: HomeCoordinator!
     
     init(coordinator: HomeCoordinator!) {
@@ -55,14 +72,79 @@ final class HomeViewController: UIViewController {
     }
     
     private var sections: [ListSection] = []
+    private var searchResult = PublishRelay<[ComplexSearchResult]>()
     
     private let disposeBag = DisposeBag()
-            
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.rightView = clearButton
+        searchBar.rightViewMode = .whileEditing
+
         addDataToSections()
         setupUI()
+        setupBindings()
     }
+    
+    @objc private func clearTapped() {
+        searchBar.text = ""
+        searchResult.accept([])
+        searchBar.resignFirstResponder()
+        tableView.isHidden = true
+        collectionView.isHidden = false
+    }
+
+    private func setupBindings() {
+        view.rx.tapGesture()
+            .map { _ in }
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        searchBar.rx.text
+            .orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter { !$0.isEmpty }
+            .subscribe(onNext: { [weak self] query in
+                guard let self = self else { return }
+                collectionView.isHidden = true
+                self.tableView.isHidden = false
+                self.showLoader()
+                ApiService.search(query).request(type: ComplexSearchResponse.self) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                            if let result = success.results {
+                                self.searchResult.accept(result)
+                            }
+                        case .failure(let failure):
+                            print(failure)
+                            self.showErrorAlert(message: failure.localizedDescription)
+                        }
+                        self.hideLoader()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        searchResult
+            .bind(to: tableView.rx.items(cellIdentifier: SearchCell.identifier, cellType: SearchCell.self)) { row, recipe, cell in
+                cell.configure(with: recipe)
+                cell.onDetail
+                    .bind(onNext: { [weak self] _ in
+                        self?.onDetail.accept(recipe.id)
+                    })
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+
+    }
+    
 }
 
 // MARK: - Private Methods
@@ -88,6 +170,7 @@ private extension HomeViewController {
         view.addSubview(titleLabel)
         view.addSubview(searchBar)
         view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
     
     func registerCollectionViewCells() {
@@ -147,6 +230,9 @@ private extension HomeViewController {
                 .trailing
                 .equalToSuperview()
                 .offset(-16)
+            make
+                .height
+                .equalTo(44)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -163,8 +249,25 @@ private extension HomeViewController {
                 .offset(-16)
             make
                 .bottom
-                .equalTo(view.safeAreaLayoutGuide)
-                .offset(-48)
+                .equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make
+                .top
+                .equalTo(searchBar.snp.bottom)
+                .offset(16)
+            make
+                .leading
+                .equalToSuperview()
+                .offset(16)
+            make
+                .trailing
+                .equalToSuperview()
+                .offset(-16)
+            make
+                .bottom
+                .equalToSuperview()
         }
     }
 }
@@ -403,7 +506,7 @@ extension HomeViewController: UICollectionViewDataSource {
             
             cell.onDetail
                 .bind(onNext: { [weak self] recipe in
-                    self?.onDetail.accept(recipe)
+                    self?.onDetail.accept(recipe.id ?? 0)
                 })
                 .disposed(by: cell.disposeBag)
             
@@ -515,6 +618,7 @@ extension HomeViewController {
                 }
             case .failure(let failure):
                 print(failure)
+                self?.showErrorAlert(message: failure.localizedDescription)
             }
         }
     }
@@ -535,6 +639,7 @@ extension HomeViewController {
                     }
                 case .failure(let failure):
                     print(failure)
+                    self?.showErrorAlert(message: failure.localizedDescription)
                 }
             }
     }
@@ -555,6 +660,7 @@ extension HomeViewController {
                     }
                 case .failure(let failure):
                     print(failure)
+                    self?.showErrorAlert(message: failure.localizedDescription)
                 }
             }
     }
