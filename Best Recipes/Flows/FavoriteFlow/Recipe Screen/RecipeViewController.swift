@@ -39,6 +39,7 @@ final class RecipeViewController: UIViewController {
 extension RecipeViewController {
     
     private func setupUI() {
+        navigationController?.navigationBar.isHidden = false
         view.addSubview(recipeView)
         
         recipeView.tableView.dataSource = self
@@ -51,6 +52,7 @@ extension RecipeViewController {
     
     // Запрос на получение рецепта
     func fetchRecipe() {
+        self.showLoader()
         ApiService.detail(id.description).request(type: Recipe.self) { result in
             switch result {
             case .success(let success):
@@ -58,6 +60,7 @@ extension RecipeViewController {
                 self.recipe = success
                 DispatchQueue.main.async {
                     self.updateRecipeView()
+                    self.hideLoader()
                     self.recipeView.tableView.reloadData()
                 }
             case .failure(let failure):

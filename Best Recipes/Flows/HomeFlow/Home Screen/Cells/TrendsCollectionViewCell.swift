@@ -14,14 +14,14 @@ import RxRelay
 
 final class TrendsCollectionViewCell: UICollectionViewCell {
     
-    let onSave = PublishRelay<Void>()
+    var onSave = PublishRelay<Void>()
+    var onDetail = PublishRelay<Recipe>()
     
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -96,6 +96,8 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
+    var recipe: Recipe?
+    
      var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -106,7 +108,8 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = .init()
+        disposeBag = DisposeBag()
+        setupBindings()
         bookmarkView.tintColor = .gray
     }
     
@@ -115,6 +118,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(recipe: Recipe) {
+        self.recipe = recipe
         if let imageUrl = URL(string: recipe.image ?? "") {
             recipeImageView.kf.setImage(with: imageUrl)
             authorImageView.kf.setImage(with: imageUrl)
@@ -130,15 +134,25 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
             .tapGesture()
             .when(.recognized)
             .map { _ in }
-            .bind(onNext: { [unowned self] _ in
-               onSave.accept(())
-                bookmarkImageView.tintColor = bookmarkImageView.tintColor
+            .bind(onNext: { [weak self] _ in
+                self?.onSave.accept(())
+                self?.bookmarkImageView.tintColor = self?.bookmarkImageView.tintColor
                 == .red
                 ? .gray
                 : .red
             })
             .disposed(by: disposeBag)
         
+        recipeImageView.rx
+            .tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(onNext: { [weak self] _ in
+                if let recipe = self?.recipe {
+                    self?.onDetail.accept(recipe)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

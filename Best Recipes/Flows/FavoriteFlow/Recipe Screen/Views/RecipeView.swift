@@ -98,7 +98,7 @@ private extension RecipeView {
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(57)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(19)
         }
         
