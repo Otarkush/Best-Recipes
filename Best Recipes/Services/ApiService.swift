@@ -84,11 +84,11 @@ extension ApiService: HTTPClient {
         case .detail:
             return "recipes/"
         case .mealType:
-            return "recipes/complexSearch?query="
+            return "recipes/complexSearch?"
         case .create:
             return "recipes/visualizeRecipe"
         case .cuisineType:
-            return ""
+            return "recipes/complexSearch?"
         }
     }
     
@@ -101,11 +101,11 @@ extension ApiService: HTTPClient {
         case let .detail(id):
             return "\(id)/information"
         case let .mealType(type):
-            return type.rawValue
+            return "type=\(type.rawValue)"
         case .create:
             return ""
-        case .cuisineType:
-            return ""
+        case let .cuisineType(cuisine):
+            return "cuisine=\(cuisine.rawValue)"
         }
     }
     

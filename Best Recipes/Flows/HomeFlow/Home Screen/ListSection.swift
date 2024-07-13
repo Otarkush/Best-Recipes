@@ -7,24 +7,30 @@
 
 import Foundation
 
-enum ListSection {
+enum ListSection: Equatable {
+    static func == (lhs: ListSection, rhs: ListSection) -> Bool {
+        lhs.count == rhs.count
+    }
+    
     case trendingNow([Recipe])
-    case popularCategory([String])
-    case popularCategoryRecipes([Recipe])
+    case popularCategory([SpoonacularMealType])
+    case popularCategoryRecipes([ComplexSearchResult])
     case recentRecipe([Recipe])
-    case popularCuisine([String])
+    case popularCuisine([SpoonacularCuisinesType])
     case popularCuisineRecipes([Recipe])
     
     var items: [Any] {
         switch self {
-        case .trendingNow(let items),
-                .popularCategoryRecipes(let items),
-                .recentRecipe(let items),
-                .popularCuisineRecipes(let items):
+        case let .trendingNow(items),
+             let .recentRecipe(items),
+             let .popularCuisineRecipes(items):
             return items
-        case .popularCategory(let titles),
-                .popularCuisine(let titles):
+        case let .popularCategoryRecipes(items):
+            return items
+        case let .popularCategory(titles):
             return titles
+        case let .popularCuisine(title):
+            return title
         }
     }
     

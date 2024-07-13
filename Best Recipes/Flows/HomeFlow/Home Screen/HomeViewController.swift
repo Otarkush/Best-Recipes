@@ -19,7 +19,7 @@ final class HomeViewController: UIViewController {
     }()
     
     private let collectionView: UICollectionView = {
-       let collectionViewLayout = UICollectionViewLayout()
+        let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = .none
         collectionView.bounces = false
@@ -38,7 +38,7 @@ final class HomeViewController: UIViewController {
     }()
     
     private var sections: [ListSection] = []
-            
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addDataToSections()
@@ -49,35 +49,6 @@ final class HomeViewController: UIViewController {
 // MARK: - Private Methods
 
 private extension HomeViewController {
-    func addDataToSections() {
-        ApiService.random(10).request(type: RandomResponse.self)  { [weak self] result in
-            switch result {
-            case .success(let success):
-                if let recipes = success.recipes {
-                    let trendingNowRecipes = Array(recipes)
-                    let popularCategoryRecipes = Array(recipes)
-                    let recentRecipeRecipes = Array(recipes)
-                    let popularCuisineRecipes = Array(recipes)
-                    
-                    self?.sections = [
-                        .trendingNow(trendingNowRecipes),
-                        .popularCategory(SpoonacularMealType.allCases.map { $0.rawValue }),
-                        .popularCategoryRecipes(popularCategoryRecipes),
-                        .recentRecipe(recentRecipeRecipes),
-                        .popularCuisine(SpoonacularCuisinesType.allCases.map { $0.rawValue }),
-                        .popularCuisineRecipes(popularCuisineRecipes)
-                    ]
-                    
-                    DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
-                    }
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-    }
-
     func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -219,7 +190,7 @@ private extension HomeViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
     
@@ -392,12 +363,6 @@ private extension HomeViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-
-extension HomeViewController: UICollectionViewDelegate {
-    
-}
-
 // MARK: - UICollectionViewDataSource
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -406,7 +371,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return sections[section].count
+        return sections[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -419,10 +384,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)
                     as? PopularCategoryCollectionViewCell else { return UICollectionViewCell()}
-            cell.configure(titleCategory: popularCategory[indexPath.row])
-            
-//            cell.isSelected = indexPath.item == 0 ? true : false
-//            print(indexPath.item)
+            cell.configure(titleCategory: popularCategory[indexPath.row].rawValue)
             return cell
         case .popularCategoryRecipes(let popularCategoryRecipes):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryRecipesViewCell", for: indexPath)
@@ -437,7 +399,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .popularCuisine(let popularCuisines):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisineCollectionView", for: indexPath)
                     as? PopularCuisinesCollectionViewCell else { return UICollectionViewCell()}
-            cell.configure(titleCuisine: popularCuisines[indexPath.row])
+            cell.configure(titleCuisine: popularCuisines[indexPath.row].rawValue)
             return cell
         case .popularCuisineRecipes(let popularCuisineRecipes):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCuisineRecipesCollectionView", for: indexPath) as? PopularCuisinesRecipesCollectionViewCell else { return UICollectionViewCell() }
@@ -458,11 +420,106 @@ extension HomeViewController: UICollectionViewDataSource {
                 titleSection: sections[indexPath.section].title,
                 isButtonVisible:
                     sections[indexPath.section].title == "Popular category"
-                    || sections[indexPath.section].title == "" ? false : true
+                || sections[indexPath.section].title == "" ? false : true
             )
             return header
         default:
             return UICollectionReusableView()
         }
+    }
+}
+
+
+// MARK: - Вызов запросов при нажатии на ячейку
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case let .popularCategory(category):
+            let selectedCategory = category[indexPath.item]
+            print(selectedCategory)
+            self.showLoader()
+            fetchMealRecipes(by: selectedCategory)
+        case let .popularCuisine(cousine):
+            let selectedCousine = cousine[indexPath.item]
+            self.showLoader()
+            fetchCuisinesRecipes(by: selectedCousine)
+        default:
+            break
+        }
+    }
+    
+}
+
+// MARK: - API CALLS
+extension HomeViewController {
+    func addDataToSections() {
+        self.showLoader()
+        ApiService.random(10).request(type: RandomResponse.self)  { [weak self] result in
+            switch result {
+            case .success(let success):
+                if let recipes = success.recipes {
+                    let trendingNowRecipes = Array(recipes)
+                    let recentRecipeRecipes = Array(recipes)
+                    
+                    self?.sections = [
+                        .trendingNow(trendingNowRecipes),
+                        .popularCategory(SpoonacularMealType.allCases.map { $0 }),
+                        .popularCategoryRecipes([]),
+                        .recentRecipe(recentRecipeRecipes),
+                        .popularCuisine(SpoonacularCuisinesType.allCases.map { $0 }),
+                        .popularCuisineRecipes([])
+                    ]
+                    
+                    DispatchQueue.main.async {
+                        self?.fetchMealRecipes(by: .mainCourse)
+                        self?.fetchCuisinesRecipes(by: .african)
+                        self?.collectionView.reloadData()
+                        self?.hideLoader()
+                    }
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
+    private func fetchMealRecipes(by type: SpoonacularMealType) {
+        ApiService
+            .mealType(type)
+            .request(type: ComplexSearchResponse.self) { [weak self] result in
+                switch result {
+                case .success(let success):
+                    if let recipes = success.results {
+                        print(recipes)
+                        DispatchQueue.main.async {
+                            self?.sections[2] = .popularCategoryRecipes(recipes)
+                            self?.collectionView.reloadData()
+                            self?.hideLoader()
+                        }
+                    }
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+    }
+    
+    private func fetchCuisinesRecipes(by type: SpoonacularCuisinesType) {
+        ApiService
+            .cuisineType(type)
+            .request(type: ComplexSearchResponse.self) { [weak self] result in
+                switch result {
+                case .success(let success):
+                    if let recipes = success.results {
+                        print(recipes)
+                        DispatchQueue.main.async {
+                            self?.sections[5] = .popularCategoryRecipes(recipes)
+                            self?.collectionView.reloadData()
+                            self?.hideLoader()
+                        }
+                    }
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
     }
 }

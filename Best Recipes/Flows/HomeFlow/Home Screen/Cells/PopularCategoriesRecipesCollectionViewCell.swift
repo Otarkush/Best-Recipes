@@ -84,7 +84,7 @@ final class PopularCategoriesRecipesCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func configure(recipe: Recipe) {
+    func configure(recipe: ComplexSearchResult) {
         if let imageURL = URL(string: recipe.image ?? "") {
             recipeImageView.kf.setImage(with: imageURL)
         }
