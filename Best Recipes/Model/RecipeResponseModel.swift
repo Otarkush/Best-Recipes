@@ -36,6 +36,43 @@ struct Recipe: Codable {
     let spoonacularScore: Double?
     let spoonacularSourceURL: String?
     let license: String?
+    let cuisines: [String]
+    
+    init(id: Int, score: Double, title: String, image: String, cuisines: [String]) {
+           self.id = id
+           self.spoonacularScore = score
+           self.title = title
+           self.image = image
+           self.cuisines = cuisines
+           self.vegetarian = nil
+           self.vegan = nil
+           self.glutenFree = nil
+           self.dairyFree = nil
+           self.veryHealthy = nil
+           self.cheap = nil
+           self.veryPopular = nil
+           self.sustainable = nil
+           self.lowFodmap = nil
+           self.weightWatcherSmartPoints = nil
+           self.gaps = nil
+           self.aggregateLikes = nil
+           self.healthScore = nil
+           self.creditsText = nil
+           self.sourceName = nil
+           self.pricePerServing = nil
+           self.extendedIngredients = nil
+           self.readyInMinutes = nil
+           self.servings = nil
+           self.sourceURL = nil
+           self.imageType = nil
+           self.summary = nil
+           self.dishTypes = nil
+           self.diets = nil
+           self.instructions = nil
+           self.analyzedInstructions = nil
+           self.spoonacularSourceURL = nil
+           self.license = nil
+       }
 }
 
 // MARK: - AnalyzedInstruction
@@ -93,3 +130,5 @@ struct Metric: Codable, Hashable {
     let amount: Double?
     let unitShort, unitLong: String?
 }
+
+

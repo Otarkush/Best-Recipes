@@ -23,7 +23,7 @@
 		1172E73E2C385BF200572013 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1172E73D2C385BF200572013 /* Kingfisher */; };
 		117E37DE2C3F1424006A45E0 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117E37DD2C3F1424006A45E0 /* SeeAllViewController.swift */; };
 		117E37E12C3F149D006A45E0 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117E37E02C3F149D006A45E0 /* RecipeTableViewCell.swift */; };
-		11FA0DF42C42CD0F0081B079 /* StorageRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA0DF32C42CD0F0081B079 /* StorageRecipe.swift */; };
+		11D58B332C43197C001858DD /* StorageRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D58B322C43197C001858DD /* StorageRecipe.swift */; };
 		3C1470F42C3AC25E0034280C /* ComplexSearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F32C3AC25E0034280C /* ComplexSearchResponseModel.swift */; };
 		3C1470F62C3AC26F0034280C /* CreateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F52C3AC26F0034280C /* CreateRequestModel.swift */; };
 		3C1471032C3AC28F0034280C /* AddRecipeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470F82C3AC28F0034280C /* AddRecipeCoordinator.swift */; };
@@ -100,7 +100,7 @@
 		1172E73A2C38466800572013 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		117E37DD2C3F1424006A45E0 /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
 		117E37E02C3F149D006A45E0 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
-		11FA0DF32C42CD0F0081B079 /* StorageRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRecipe.swift; sourceTree = "<group>"; };
+		11D58B322C43197C001858DD /* StorageRecipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageRecipe.swift; sourceTree = "<group>"; };
 		3C1470F32C3AC25E0034280C /* ComplexSearchResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexSearchResponseModel.swift; sourceTree = "<group>"; };
 		3C1470F52C3AC26F0034280C /* CreateRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRequestModel.swift; sourceTree = "<group>"; };
 		3C1470F82C3AC28F0034280C /* AddRecipeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeCoordinator.swift; sourceTree = "<group>"; };
@@ -348,6 +348,7 @@
 		3CB7EBE52C3352C900892324 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				11D58B322C43197C001858DD /* StorageRecipe.swift */,
 				3C1D55282C35A71500AA6C40 /* HTTPClient.swift */,
 				3C35BBBE2C36FDD100033CDD /* ApiService.swift */,
 				3CB7EBE62C3352DD00892324 /* UserDefaultsService.swift */,
@@ -485,7 +486,6 @@
 				1172E7362C38365600572013 /* RecipeService.swift */,
 				1172E7382C383DFB00572013 /* RecipeData.swift */,
 				1172E73A2C38466800572013 /* RecipeModel.swift */,
-				11FA0DF32C42CD0F0081B079 /* StorageRecipe.swift */,
 			);
 			path = "Favorites Screen";
 			sourceTree = "<group>";
@@ -654,6 +654,7 @@
 				3CCB5CBD2C35E8E400F738AE /* AppCoordinator.swift in Sources */,
 				3C1470F42C3AC25E0034280C /* ComplexSearchResponseModel.swift in Sources */,
 				3C1471082C3AC28F0034280C /* PickerView.swift in Sources */,
+				11D58B332C43197C001858DD /* StorageRecipe.swift in Sources */,
 				3C1471032C3AC28F0034280C /* AddRecipeCoordinator.swift in Sources */,
 				3C35BBBF2C36FDD100033CDD /* ApiService.swift in Sources */,
 				3C1471062C3AC28F0034280C /* AddRecipeBottomSheet.swift in Sources */,
@@ -673,7 +674,6 @@
 				3CCB5CBE2C35E8E400F738AE /* Coordinator.swift in Sources */,
 				3CCB5CC32C35E8E400F738AE /* IngredientModel.swift in Sources */,
 				3CCB5CCD2C35E8E400F738AE /* CustomTabBar.swift in Sources */,
-				11FA0DF42C42CD0F0081B079 /* StorageRecipe.swift in Sources */,
 				79E5C5E02C36D76500124B88 /* PopularCategoriesRecipesCollectionViewCell.swift in Sources */,
 				3CB7EBE72C3352DD00892324 /* UserDefaultsService.swift in Sources */,
 				79E5C5E32C36D76500124B88 /* TrendsCollectionViewCell.swift in Sources */,

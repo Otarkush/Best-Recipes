@@ -1,10 +1,3 @@
-//
-//  StorageRecipe.swift
-//  Best Recipes
-//
-//  Created by Alexander Bokhulenkov on 13.07.2024.
-//
-
 import Foundation
 
 class StorageRecipe {
@@ -29,9 +22,28 @@ class StorageRecipe {
         print(recipes.count)
     }
 
+    func removeRecipe(_ recipe: Recipe) {
+        if let index = recipes.firstIndex(where: { $0.id == recipe.id }) {
+            recipes.remove(at: index)
+            saveRecipes()
+        }
+    }
+
     func saveRecipes() {
         guard let recipesEncoded = try? JSONEncoder().encode(recipes) else { return }
         defaults.set(recipesEncoded, forKey: "savedRecipes")
         print("Save RECIPES")
+    }
+}
+
+extension Recipe {
+    func toRecipeModel() -> RecipeModel {
+        return RecipeModel(id: self.id ?? 0, score: self.spoonacularScore ?? 0.0, title: self.title ?? "", image: self.image ?? "", cuisines: self.cuisines)
+    }
+}
+
+extension RecipeModel {
+    func toRecipe() -> Recipe {
+        return Recipe(id: self.id, score: self.score, title: self.title, image: self.image, cuisines: self.cuisines)
     }
 }
