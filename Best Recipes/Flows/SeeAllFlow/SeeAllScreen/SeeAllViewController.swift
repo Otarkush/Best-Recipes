@@ -19,6 +19,7 @@ final class SeeAllViewController: UIViewController {
     }()
     
     private var recipes: [Recipe] = []
+    private let recipeCell = RecipeTableViewCell()
     
     //MARK: - Initializers
     
@@ -67,11 +68,14 @@ private extension SeeAllViewController {
 
 extension SeeAllViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableViewCell.description(), for: indexPath) as? RecipeTableViewCell else { return UITableViewCell() }
+        
+        let recipe = recipes[indexPath.row]
+        cell.configure(with: recipe)
         
         return cell
     }
