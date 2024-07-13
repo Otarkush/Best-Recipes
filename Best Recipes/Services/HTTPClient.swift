@@ -79,6 +79,7 @@ extension HTTPClient {
             completion(.failure(.badURL))
             return
         }
+        print(url)
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
