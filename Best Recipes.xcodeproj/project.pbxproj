@@ -80,6 +80,7 @@
 		B511728B2C374013001A44E5 /* OnboardingPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */; };
 		B511728C2C374013001A44E5 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */; };
 		B511728D2C374013001A44E5 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51172882C374013001A44E5 /* OnboardingMainViewController.swift */; };
+		B54DF0B22C3DC17700EBF708 /* ProfileRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DF0B12C3DC17700EBF708 /* ProfileRecipeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,7 @@
 		B51172862C374013001A44E5 /* OnboardingPage1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage1ViewController.swift; sourceTree = "<group>"; };
 		B51172872C374013001A44E5 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
 		B51172882C374013001A44E5 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
+		B54DF0B12C3DC17700EBF708 /* ProfileRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRecipeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCB5C972C35E8E400F738AE /* ProfileViewController.swift */,
+				B54DF0B12C3DC17700EBF708 /* ProfileRecipeCell.swift */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				1172E72B2C37D59100572013 /* FavoritesTableViewCell.swift in Sources */,
 				3CCB5CBB2C35E8E400F738AE /* ProfileCoordinator.swift in Sources */,
 				1172E7392C383DFB00572013 /* RecipeData.swift in Sources */,
+				B54DF0B22C3DC17700EBF708 /* ProfileRecipeCell.swift in Sources */,
 				3C1471092C3AC28F0034280C /* ImagePickerVIew.swift in Sources */,
 				1172E72A2C37D59100572013 /* FavoritesView.swift in Sources */,
 				3C1471042C3AC28F0034280C /* AddRecipeViewModel.swift in Sources */,
