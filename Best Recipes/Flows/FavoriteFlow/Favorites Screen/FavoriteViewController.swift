@@ -69,6 +69,10 @@ extension FavoritesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let selectItem = recipes[indexPath.row]
+        
+//        var saveData = StorageRecipe.shared.saveRecipe(recipes[indexPath.row])
+//        print("save data \(saveData)")
+        
         print(selectItem)
         print("id рецепта \(selectItem.id)")
 //        действие
