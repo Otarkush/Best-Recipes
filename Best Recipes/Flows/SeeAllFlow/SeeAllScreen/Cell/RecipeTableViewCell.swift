@@ -81,11 +81,18 @@ final class RecipeTableViewCell: UITableViewCell {
         setupGradientLayer()
     }
     
-    func configure() {
-        recipeImageView.image = UIImage(named: "image 15")
-        ratingLabel.attributedText = charactersToString(character: "star.fill", text: " 5,0", size: 14)
-        recipeNameLabel.text = "How to make yam & vegetable sauce at home"
-        ingredientsAndTimeLabel.text = "9 Ingredients | 25 min"
+    func configure(with recipe: Recipe) {
+        recipeImageView.kf.setImage(with: URL(string: recipe.image!))
+        let rating = 5 * (recipe.spoonacularScore ?? 0) / 100
+        ratingLabel.attributedText = charactersToString(
+            character: "star.fill",
+            text: "\(String(format: "%.1f", rating))", size: 14)
+        recipeNameLabel.text = recipe.title
+        
+        let ingredientsNumber = recipe.extendedIngredients?.count
+        let time = recipe.readyInMinutes ?? 0
+        
+        ingredientsAndTimeLabel.text = "\(ingredientsNumber ?? 0) Ingredients | \(time) min"
     }
 }
 
@@ -97,7 +104,7 @@ private extension RecipeTableViewCell {
         
         addViews()
         setupConstraints()
-        configure()
+//        configure()
         setupGradientLayer()
     }
     
