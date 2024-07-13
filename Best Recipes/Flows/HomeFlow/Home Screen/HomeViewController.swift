@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
+import RxGesture
 
 final class HomeViewController: UIViewController {
+    
+    var onDetail = PublishRelay<Recipe>()
+    var onSeeAll = PublishRelay<[Recipe]>()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -37,8 +43,21 @@ final class HomeViewController: UIViewController {
         return searchBar
     }()
     
+    weak var coordinator: HomeCoordinator!
+    
+    init(coordinator: HomeCoordinator!) {
+        super.init(nibName: nil, bundle: nil)
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var sections: [ListSection] = []
     
+    private let disposeBag = DisposeBag()
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         addDataToSections()
@@ -57,6 +76,7 @@ private extension HomeViewController {
     func setupUI() {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
+        
         
         setDelegates()
         addSubviews()
@@ -183,7 +203,7 @@ private extension HomeViewController {
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSpasing
         section.boundarySupplementaryItems = supplemetaryItems
-        section.supplementariesFollowContentInsets = false
+        section.supplementariesFollowContentInsets = contentInsets
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(heightOfHeader)),
@@ -380,6 +400,19 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendsCollectionViewCell", for: indexPath)
                     as? TrendsCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(recipe: trendingNow[indexPath.row])
+            
+            cell.onDetail
+                .bind(onNext: { [weak self] recipe in
+                    self?.onDetail.accept(recipe)
+                })
+                .disposed(by: cell.disposeBag)
+            
+            cell.onSave
+                .bind {
+                    StorageRecipe.shared.saveRecipe(trendingNow[indexPath.row])
+                }
+                .disposed(by: cell.disposeBag)
+            
             return cell
         case .popularCategory(let popularCategory):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCategoryViewCell", for: indexPath)
@@ -418,10 +451,14 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as! HeaderSupplementaryView
             header.configureHeader(
                 titleSection: sections[indexPath.section].title,
-                isButtonVisible:
-                    sections[indexPath.section].title == "Popular category"
-                || sections[indexPath.section].title == "" ? false : true
+                isButtonVisible: sections[indexPath.section].isShowButton
             )
+            header.onSeeAll
+                .bind(onNext: { [unowned self] in
+                    onSeeAll.accept(sections[indexPath.section].items as! [Recipe])
+                })
+                .disposed(by: header.disposeBag)
+            
             return header
         default:
             return UICollectionReusableView()
@@ -473,7 +510,6 @@ extension HomeViewController {
                     DispatchQueue.main.async {
                         self?.fetchMealRecipes(by: .mainCourse)
                         self?.fetchCuisinesRecipes(by: .african)
-                        self?.collectionView.reloadData()
                         self?.hideLoader()
                     }
                 }

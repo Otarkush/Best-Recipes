@@ -20,6 +20,7 @@ final class PopularCategoryCollectionViewCell: UICollectionViewCell {
         didSet {
             titleLabel.textColor = isSelected ? .white : .red
             contentView.backgroundColor = isSelected ? .red : .clear
+            print("isSelected: \(isSelected)")
         }
     }
     

@@ -14,11 +14,11 @@ enum ListSection: Equatable {
     
     case trendingNow([Recipe])
     case popularCategory([SpoonacularMealType])
-    case popularCategoryRecipes([ComplexSearchResult])
+    case popularCategoryRecipes([ComplexSearchResult] = [])
     case recentRecipe([Recipe])
     case popularCuisine([SpoonacularCuisinesType])
-    case popularCuisineRecipes([Recipe])
-    
+    case popularCuisineRecipes([Recipe] = [])
+
     var items: [Any] {
         switch self {
         case let .trendingNow(items),
@@ -52,6 +52,23 @@ enum ListSection: Equatable {
             return "Popular cuisines"
         case .popularCuisineRecipes(_):
             return ""
+        }
+    }
+    
+    var isShowButton: Bool {
+        switch self {
+        case .trendingNow(_):
+            return true
+        case .popularCategory(_):
+            return false
+        case .popularCategoryRecipes(_):
+            return false
+        case .recentRecipe(_):
+            return true
+        case .popularCuisine(_):
+            return false
+        case .popularCuisineRecipes(_):
+            return false
         }
     }
 }

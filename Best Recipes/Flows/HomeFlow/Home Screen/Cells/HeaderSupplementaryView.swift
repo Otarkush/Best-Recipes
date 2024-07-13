@@ -7,8 +7,14 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxRelay
+import RxGesture
 
 final class HeaderSupplementaryView: UICollectionReusableView {
+    
+    var onSeeAll = PublishRelay<Void>()
+    
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "header"
@@ -37,22 +43,34 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         return button
     }()
     
+    var disposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupBidings()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHeader(titleSection title: String, isButtonVisible: Bool) {
-        headerLabel.text = title
-        if !isButtonVisible {
-            headerSeeAllButton.isHidden = true
-        }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = .init()
+        setupBidings()
     }
     
+    func configureHeader(titleSection title: String, isButtonVisible: Bool) {
+        headerLabel.text = title
+        headerSeeAllButton.isHidden = !isButtonVisible
+    }
+    
+    private func setupBidings() {
+        headerSeeAllButton.rx.tap
+            .bind(to: onSeeAll)
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - Private Methods
@@ -82,7 +100,7 @@ extension HeaderSupplementaryView {
         headerSeeAllButton.snp.makeConstraints { make in
             make
                 .centerY
-                .equalToSuperview()
+                .equalTo(headerLabel.snp.centerY)
             make
                 .trailing
                 .equalToSuperview()

@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class FavoritesTableViewCell: UITableViewCell {
+final class ProfileRecipeCell: UITableViewCell {
     
-    static let identifier = FavoritesTableViewCell.description()
+    static let identifier = ProfileRecipeCell.description()
     
     // MARK: - Property Cell
     
@@ -107,11 +107,14 @@ final class FavoritesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with recipe: RecipeModel) {
+    func configure(with recipe: Recipe) {
         
-        if let url = URL(string: recipe.image) {
+        if let imageUrlString = recipe.image, let url = URL(string: imageUrlString) {
             recipesImageView.kf.setImage(with: url)
+        } else {
+            recipesImageView.image = UIImage(named: "placeholder_image")
         }
+        
         descriptionLabel.text = recipe.title
         
         cuisineImageView.image = UIImage(named: "cuisine")
@@ -122,17 +125,12 @@ final class FavoritesTableViewCell: UITableViewCell {
             cuisineLabel.text = "World cuisine"
         }
         
-//        звезда из системного символа
-        var raitingScore: String {
-            let value = 5 * recipe.score / 100
-            return String(format: "%0.1f", value)
-        }
+        let raitingScore = recipe.score
         raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(raitingScore)", size: 12)
     }
     
     @objc private func addBookmark() {
-//        let loadData = StorageRecipe.shared.getRecipe()
-//        print("Add or Remove from bookmarsks, loadData \(loadData)")
+        print("Add or Remove from bookmarsks")
     }
     
     // MARK: - Constraints

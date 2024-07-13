@@ -12,7 +12,6 @@ class ProfileCoordinator: Coordinator {
     override func start() {
         print("Init profile screen")
         let vc = ProfileViewController()
-        vc.view.backgroundColor = .green
         navigationController?.pushViewController(vc, animated: true)
     }
     

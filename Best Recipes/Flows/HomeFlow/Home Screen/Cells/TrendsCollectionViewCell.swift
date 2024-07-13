@@ -8,8 +8,14 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import RxSwift
+import RxGesture
+import RxRelay
 
 final class TrendsCollectionViewCell: UICollectionViewCell {
+    
+    var onSave = PublishRelay<Void>()
+    var onDetail = PublishRelay<Recipe>()
     
     private let recipeImageView: UIImageView = {
        let imageView = UIImageView()
@@ -47,14 +53,13 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     private let bookmarkView: UIView = {
        let view = UIView()
         view.backgroundColor = .white
-        view.clipsToBounds = true
         view.layer.cornerRadius = 18
         return view
     }()
     
     private let bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "bookmarkIcon")
+        imageView.image = UIImage(named: "bookmarkIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -91,9 +96,21 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
+    var recipe: Recipe?
+    
+     var disposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupBindings()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        setupBindings()
+        bookmarkView.tintColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -101,6 +118,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(recipe: Recipe) {
+        self.recipe = recipe
         if let imageUrl = URL(string: recipe.image ?? "") {
             recipeImageView.kf.setImage(with: imageUrl)
             authorImageView.kf.setImage(with: imageUrl)
@@ -109,6 +127,32 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         titleLabel.text = recipe.title?.capitalized
         authorNameLabel.text = "By \(recipe.sourceName ?? "")"
         rateLabel.text = "4,8"
+    }
+    
+    private func setupBindings() {
+        bookmarkView.rx
+            .tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(onNext: { [weak self] _ in
+                self?.onSave.accept(())
+                self?.bookmarkImageView.tintColor = self?.bookmarkImageView.tintColor
+                == .red
+                ? .gray
+                : .red
+            })
+            .disposed(by: disposeBag)
+        
+        recipeImageView.rx
+            .tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(onNext: { [weak self] _ in
+                if let recipe = self?.recipe {
+                    self?.onDetail.accept(recipe)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -127,7 +171,7 @@ private extension TrendsCollectionViewCell {
         blurredBackgroundView.contentView.addSubview(starLabel)
         blurredBackgroundView.contentView.addSubview(rateLabel)
         
-        recipeImageView.addSubview(bookmarkView)
+        contentView.addSubview(bookmarkView)
         bookmarkView.addSubview(bookmarkImageView)
         
         contentView.addSubview(titleLabel)

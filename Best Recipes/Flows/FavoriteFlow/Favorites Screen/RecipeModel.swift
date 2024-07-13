@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct RecipeModel {
+struct RecipeModel: Codable {
     let id: Int
-    let score: Int
+    let score: Double
     let title: String
     let image: String
     let cuisines: [String] 

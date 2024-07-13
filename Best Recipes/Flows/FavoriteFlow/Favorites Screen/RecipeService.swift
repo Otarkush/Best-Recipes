@@ -44,7 +44,7 @@ class RecipeService {
         do {
             let decodedData = try decoder.decode(RecipeData.self, from: recipeData)
             return decodedData.recipes.map {
-                RecipeModel(id: $0.id, score: $0.healthScore, title: $0.title, image: $0.image, cuisines: $0.cuisines)
+                RecipeModel(id: $0.id, score: $0.spoonacularScore, title: $0.title, image: $0.image, cuisines: $0.cuisines)
             }
         }catch {
             delegate?.didFailWithError(error: error)
