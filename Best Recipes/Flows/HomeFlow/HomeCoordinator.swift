@@ -18,8 +18,8 @@ class HomeCoordinator: Coordinator {
         navigationController?.pushViewController(vc, animated: true)
 
         vc.onDetail
-            .bind(onNext: { [weak self] recipe in
-                self?.showDetail(with: recipe)
+            .bind(onNext: { [weak self] id in
+                self?.showDetail(with: id)
             })
             .disposed(by: disposeBag)
         
@@ -41,8 +41,8 @@ private extension HomeCoordinator {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showDetail(with recipe: Recipe) {
-        let vc = RecipeViewController(id: recipe.id ?? 0)
+    func showDetail(with id: Int) {
+        let vc = RecipeViewController(id: id)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

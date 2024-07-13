@@ -62,7 +62,9 @@ final class RecipeView: UIScrollView {
     
     func configure(with recipe: Recipe) {
         titleLabel.text = recipe.title
-        imageView.kf.setImage(with: URL(string: recipe.image!))
+        if let url = recipe.image {
+            imageView.kf.setImage(with: URL(string: url))
+        }
         
         ratingAndReviews.configure(with: recipe)
         instructionsView.configure(with: recipe)
