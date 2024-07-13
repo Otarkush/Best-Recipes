@@ -131,8 +131,8 @@ final class FavoritesTableViewCell: UITableViewCell {
     }
     
     @objc private func addBookmark() {
-        let loadData = StorageRecipe.shared.getRecipe()
-        print("Add or Remove from bookmarsks, loadData \(loadData)")
+//        let loadData = StorageRecipe.shared.getRecipe()
+//        print("Add or Remove from bookmarsks, loadData \(loadData)")
     }
     
     // MARK: - Constraints

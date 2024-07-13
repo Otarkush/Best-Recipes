@@ -8,22 +8,30 @@
 import Foundation
 
 class StorageRecipe {
-    
     static let shared = StorageRecipe()
-    
-    private var saveRecipe = RecipeModel(id: 0, score: 0.0, title: "", image: "", cuisines: [""])
+
     private let defaults = UserDefaults.standard
-    
-    func getRecipe() -> RecipeModel {
-        guard let savedData = defaults.object(forKey: "savedRecipe") as? Data else { return saveRecipe }
-        guard let loadRecipe = try? JSONDecoder().decode(RecipeModel.self, from: savedData) else { return saveRecipe }
-        saveRecipe = loadRecipe
-        return saveRecipe
+    private(set) var recipes: [Recipe] = []
+
+    init() {
+        recipes = getRecipes()
     }
-    
+
+    func getRecipes() -> [Recipe] {
+        guard let savedData = defaults.object(forKey: "savedRecipes") as? Data else { return [] }
+        guard let loadedRecipes = try? JSONDecoder().decode([Recipe].self, from: savedData) else { return [] }
+        return loadedRecipes
+    }
+
     func saveRecipe(_ recipe: Recipe) {
-        guard let recipeEncoded = try? JSONEncoder().encode(recipe) else { return }
-        defaults.set(recipeEncoded, forKey: "savedRecipe")
-        print("Save RECIPE ")
+        recipes.append(recipe)
+        saveRecipes()
+        print(recipes.count)
+    }
+
+    func saveRecipes() {
+        guard let recipesEncoded = try? JSONEncoder().encode(recipes) else { return }
+        defaults.set(recipesEncoded, forKey: "savedRecipes")
+        print("Save RECIPES")
     }
 }
