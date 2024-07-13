@@ -7,6 +7,9 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxRelay
+import RxGesture
 
 final class RecipeTableViewCell: UITableViewCell {
     
@@ -62,6 +65,8 @@ final class RecipeTableViewCell: UITableViewCell {
     
     //MARK: - Initializers
     
+    var disposeBag = DisposeBag()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -69,8 +74,12 @@ final class RecipeTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupUI()
-        
+            fatalError()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = .init()
     }
     
     //MARK: - Public methods

@@ -96,14 +96,6 @@ final class HomeViewController: UIViewController {
     }
 
     private func setupBindings() {
-        view.rx.tapGesture()
-            .map { _ in }
-            .bind { [weak self] _ in
-                self?.view.endEditing(true)
-            }
-            .disposed(by: disposeBag)
-        
-        
         searchBar.rx.text
             .orEmpty
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
@@ -577,10 +569,12 @@ extension HomeViewController: UICollectionViewDelegate {
         case let .popularCategory(category):
             let selectedCategory = category[indexPath.item]
             print(selectedCategory)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             self.showLoader()
             fetchMealRecipes(by: selectedCategory)
         case let .popularCuisine(cousine):
             let selectedCousine = cousine[indexPath.item]
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             self.showLoader()
             fetchCuisinesRecipes(by: selectedCousine)
         default:
@@ -623,6 +617,7 @@ extension HomeViewController {
         }
     }
     
+    
     private func fetchMealRecipes(by type: SpoonacularMealType) {
         ApiService
             .mealType(type)
@@ -634,6 +629,7 @@ extension HomeViewController {
                         DispatchQueue.main.async {
                             self?.sections[2] = .popularCategoryRecipes(recipes)
                             self?.collectionView.reloadData()
+                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 2), animated: false, scrollPosition: .centeredHorizontally)
                             self?.hideLoader()
                         }
                     }
@@ -655,6 +651,7 @@ extension HomeViewController {
                         DispatchQueue.main.async {
                             self?.sections[5] = .popularCategoryRecipes(recipes)
                             self?.collectionView.reloadData()
+                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 5), animated: false, scrollPosition: .centeredHorizontally)
                             self?.hideLoader()
                         }
                     }

@@ -38,6 +38,14 @@ class HomeCoordinator: Coordinator {
 private extension HomeCoordinator {
     func pushSeeAll(with recipes: [Recipe]) {
         let vc = SeeAllViewController(recipes: recipes)
+        
+        vc.onDetail
+            .bind(onNext: { [weak self] id in
+                self?.showDetail(with: id)
+            })
+            .disposed(by: disposeBag)
+            
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
