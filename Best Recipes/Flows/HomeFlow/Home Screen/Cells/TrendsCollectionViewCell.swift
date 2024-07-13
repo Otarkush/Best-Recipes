@@ -21,6 +21,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -52,15 +53,13 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     private let bookmarkView: UIView = {
        let view = UIView()
         view.backgroundColor = .white
-        view.clipsToBounds = true
         view.layer.cornerRadius = 18
         return view
     }()
     
     private let bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
-
-        imageView.image = UIImage(named: "bookmarkIcon")
+        imageView.image = UIImage(named: "bookmarkIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -97,12 +96,18 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-     let disposeBag = DisposeBag()
+     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupBindings()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = .init()
+        bookmarkView.tintColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -121,10 +126,17 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupBindings() {
-        bookmarkView.rx.tapGesture()
+        bookmarkView.rx
+            .tapGesture()
             .when(.recognized)
             .map { _ in }
-            .bind(to: onSave)
+            .bind(onNext: { [unowned self] _ in
+               onSave.accept(())
+                bookmarkImageView.tintColor = bookmarkImageView.tintColor
+                == .red
+                ? .gray
+                : .red
+            })
             .disposed(by: disposeBag)
         
     }
@@ -145,7 +157,7 @@ private extension TrendsCollectionViewCell {
         blurredBackgroundView.contentView.addSubview(starLabel)
         blurredBackgroundView.contentView.addSubview(rateLabel)
         
-        recipeImageView.addSubview(bookmarkView)
+        contentView.addSubview(bookmarkView)
         bookmarkView.addSubview(bookmarkImageView)
         
         contentView.addSubview(titleLabel)
