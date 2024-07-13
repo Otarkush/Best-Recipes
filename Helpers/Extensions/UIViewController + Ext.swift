@@ -38,7 +38,7 @@ extension UIViewController {
         }
 
         let overlay = UIView(frame: window.bounds)
-        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         overlay.tag = overlayTag
         window.addSubview(overlay)
 

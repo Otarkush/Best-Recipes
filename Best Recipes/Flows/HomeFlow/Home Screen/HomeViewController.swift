@@ -437,9 +437,11 @@ extension HomeViewController: UICollectionViewDelegate {
         case let .popularCategory(category):
             let selectedCategory = category[indexPath.item]
             print(selectedCategory)
+            self.showLoader()
             fetchMealRecipes(by: selectedCategory)
         case let .popularCuisine(cousine):
             let selectedCousine = cousine[indexPath.item]
+            self.showLoader()
             fetchCuisinesRecipes(by: selectedCousine)
         default:
             break
@@ -458,7 +460,6 @@ extension HomeViewController {
                 if let recipes = success.recipes {
                     let trendingNowRecipes = Array(recipes)
                     let recentRecipeRecipes = Array(recipes)
-                    let popularCuisineRecipes = Array(recipes)
                     
                     self?.sections = [
                         .trendingNow(trendingNowRecipes),
@@ -483,7 +484,6 @@ extension HomeViewController {
     }
     
     private func fetchMealRecipes(by type: SpoonacularMealType) {
-        self.showLoader()
         ApiService
             .mealType(type)
             .request(type: ComplexSearchResponse.self) { [weak self] result in
@@ -504,7 +504,6 @@ extension HomeViewController {
     }
     
     private func fetchCuisinesRecipes(by type: SpoonacularCuisinesType) {
-        self.showLoader()
         ApiService
             .cuisineType(type)
             .request(type: ComplexSearchResponse.self) { [weak self] result in
