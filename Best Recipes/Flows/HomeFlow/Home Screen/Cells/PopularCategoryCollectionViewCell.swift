@@ -18,7 +18,7 @@ final class PopularCategoryCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? .red : .clear
+            contentView.backgroundColor = isSelected ? .red : .clear
             titleLabel.textColor = isSelected ? .white : .red
         }
     }
@@ -34,6 +34,11 @@ final class PopularCategoryCollectionViewCell: UICollectionViewCell {
     
     func configure(titleCategory title: String) {
         titleLabel.text = title.capitalized
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.layer.cornerRadius = 15
     }
 }
 

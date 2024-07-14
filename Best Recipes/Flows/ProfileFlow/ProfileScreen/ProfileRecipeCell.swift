@@ -39,24 +39,7 @@ final class ProfileRecipeCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-//    райтинг
-    private lazy var raitingContainer: UIView = {
-        let viewConteiner = UIView()
-        viewConteiner.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.7)
-        viewConteiner.layer.cornerRadius = 8
-        viewConteiner.translatesAutoresizingMaskIntoConstraints = false
-        return viewConteiner
-    }()
-    
-    private lazy var raitingLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.white
-        label.font = Resources.Fonts.poppinsBold(of: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+        
 //    кухня
     private lazy var conteinerView: UIView = {
         let viewConteiner = UIView()
@@ -89,13 +72,9 @@ final class ProfileRecipeCell: UITableViewCell {
             recipesImageView,
             descriptionLabel,
             bookmarkButton,
-            raitingContainer,
             conteinerView
-        ].forEach{ contentView.addSubview($0)}
-        
-//        рейтинг рецепта
-        raitingContainer.addSubview(raitingLabel)
-        
+        ]
+            .forEach { contentView.addSubview($0) }
         //        картинка кухни и подпись под изображением
         conteinerView.addSubview(cuisineImageView)
         conteinerView.addSubview(cuisineLabel)
@@ -124,9 +103,6 @@ final class ProfileRecipeCell: UITableViewCell {
         } else {
             cuisineLabel.text = "World cuisine"
         }
-        
-        let raitingScore = recipe.score
-        raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(raitingScore)", size: 12)
     }
     
     @objc private func addBookmark() {
@@ -151,17 +127,6 @@ final class ProfileRecipeCell: UITableViewCell {
         bookmarkButton.snp.makeConstraints { make in
             make.top.equalTo(recipesImageView).offset(8)
             make.trailing.equalTo(recipesImageView).offset(-8)
-        }
-        //            райтинг рецепта
-        raitingContainer.snp.makeConstraints { make in
-            make.top.equalTo(recipesImageView).offset(8)
-            make.leading.equalTo(recipesImageView).offset(8)
-            make.width.equalTo(58)
-            make.height.equalTo(28)
-        }
-        
-        raitingLabel.snp.makeConstraints { make in
-            make.center.equalTo(raitingContainer)
         }
         //            контейнер кухня + текста
         conteinerView.snp.makeConstraints { make in
