@@ -152,7 +152,7 @@ extension ProfileViewController {
         avatarImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.top.equalTo(headerStackView.snp.bottom).offset(40)
-            make.height.width.equalTo(140)
+            make.height.width.equalTo(80)
         }
         
         myRecipesLabel.snp.makeConstraints { make in

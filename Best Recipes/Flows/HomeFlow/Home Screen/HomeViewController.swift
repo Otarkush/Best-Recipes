@@ -29,7 +29,6 @@ final class HomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = .none
         collectionView.bounces = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -320,7 +319,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.8),
-                heightDimension: .fractionalHeight(0.55)
+                heightDimension: .fractionalHeight(0.45)
             ),
             subitems: [item]
         )
@@ -376,7 +375,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.45)
+                heightDimension: .fractionalHeight(0.36)
             ),
             subitems: [item]
         )
@@ -404,7 +403,7 @@ private extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.35),
-                heightDimension: .fractionalHeight(0.40)
+                heightDimension: .fractionalHeight(0.35)
             ),
             subitems: [item]
         )
@@ -568,15 +567,16 @@ extension HomeViewController: UICollectionViewDelegate {
         switch sections[indexPath.section] {
         case let .popularCategory(category):
             let selectedCategory = category[indexPath.item]
-            print(selectedCategory)
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             self.showLoader()
-            fetchMealRecipes(by: selectedCategory)
+            fetchMealRecipes(by: selectedCategory) {
+                self.collectionView.selectItem(at: IndexPath(item: indexPath.item, section: 1), animated: false, scrollPosition: .centeredHorizontally)
+            }
         case let .popularCuisine(cousine):
             let selectedCousine = cousine[indexPath.item]
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             self.showLoader()
-            fetchCuisinesRecipes(by: selectedCousine)
+            fetchCuisinesRecipes(by: selectedCousine) {
+                self.collectionView.selectItem(at: IndexPath(item: indexPath.item, section: 4), animated: false, scrollPosition: .centeredHorizontally)
+            }
         default:
             break
         }
@@ -605,8 +605,12 @@ extension HomeViewController {
                     ]
                     
                     DispatchQueue.main.async {
-                        self?.fetchMealRecipes(by: .mainCourse)
-                        self?.fetchCuisinesRecipes(by: .african)
+                        self?.fetchMealRecipes(by: .mainCourse, completion: {
+                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 1), animated: false, scrollPosition: .centeredHorizontally)
+                        })
+                        self?.fetchCuisinesRecipes(by: .african, completion: {
+                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 4), animated: false, scrollPosition: .centeredHorizontally)
+                        })
                         self?.hideLoader()
                     }
                 }
@@ -618,7 +622,7 @@ extension HomeViewController {
     }
     
     
-    private func fetchMealRecipes(by type: SpoonacularMealType) {
+    private func fetchMealRecipes(by type: SpoonacularMealType, completion: (() -> Void)? = nil) {
         ApiService
             .mealType(type)
             .request(type: ComplexSearchResponse.self) { [weak self] result in
@@ -629,8 +633,8 @@ extension HomeViewController {
                         DispatchQueue.main.async {
                             self?.sections[2] = .popularCategoryRecipes(recipes)
                             self?.collectionView.reloadData()
-                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 2), animated: false, scrollPosition: .centeredHorizontally)
                             self?.hideLoader()
+                            completion?()
                         }
                     }
                 case .failure(let failure):
@@ -640,7 +644,7 @@ extension HomeViewController {
             }
     }
     
-    private func fetchCuisinesRecipes(by type: SpoonacularCuisinesType) {
+    private func fetchCuisinesRecipes(by type: SpoonacularCuisinesType, completion: (() -> Void)? = nil) {
         ApiService
             .cuisineType(type)
             .request(type: ComplexSearchResponse.self) { [weak self] result in
@@ -651,8 +655,8 @@ extension HomeViewController {
                         DispatchQueue.main.async {
                             self?.sections[5] = .popularCategoryRecipes(recipes)
                             self?.collectionView.reloadData()
-                            self?.collectionView.selectItem(at: IndexPath(item: 0, section: 5), animated: false, scrollPosition: .centeredHorizontally)
                             self?.hideLoader()
+                            completion?()
                         }
                     }
                 case .failure(let failure):
