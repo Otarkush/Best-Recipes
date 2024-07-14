@@ -258,7 +258,7 @@ private extension HomeViewController {
                 .offset(-16)
             make
                 .bottom
-                .equalToSuperview()
+                .equalToSuperview().inset(30)
         }
     }
 }
