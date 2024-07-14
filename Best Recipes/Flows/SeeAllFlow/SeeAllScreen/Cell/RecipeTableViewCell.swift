@@ -91,7 +91,9 @@ final class RecipeTableViewCell: UITableViewCell {
     }
     
     func configure(with recipe: Recipe) {
-        recipeImageView.kf.setImage(with: URL(string: recipe.image!))
+        if let image = recipe.image {
+            recipeImageView.kf.setImage(with: URL(string: image))
+        }
         let rating = 5 * (recipe.spoonacularScore ?? 0) / 100
         ratingLabel.attributedText = charactersToString(
             character: "star.fill",
