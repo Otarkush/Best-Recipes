@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxGesture
+import RxRelay
 
 final class SeeAllViewController: UIViewController {
     
     //MARK: - Private properties
+    
+    let onDetail = PublishRelay<Int>()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -19,8 +24,8 @@ final class SeeAllViewController: UIViewController {
     }()
     
     private var recipes: [Recipe] = []
-    private let recipeCell = RecipeTableViewCell()
     
+    private let disposeBag = DisposeBag()
     //MARK: - Initializers
     
     init(recipes: [Recipe]) {
@@ -77,6 +82,14 @@ extension SeeAllViewController: UITableViewDataSource, UITableViewDelegate {
         let recipe = recipes[indexPath.row]
         cell.configure(with: recipe)
         
+        cell.rx.tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(onNext: { [weak self] _ in
+                self?.onDetail.accept(recipe.id ?? 0)
+            })
+            .disposed(by: disposeBag)
+            
         return cell
     }
     

@@ -75,6 +75,16 @@
             value = "a6bff91b94bd43fb8b137992341a6cb8"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "KEY_SIX"
+            value = "ce44da9c6a2c4b429f1d6da3e2e43b93"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "KEY_SEVEN"
+            value = "5b5c1dc390ef4faca9b216b0cf8f5a20"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

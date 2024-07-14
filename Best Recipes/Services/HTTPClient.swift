@@ -8,31 +8,37 @@
 import Foundation
 
 // MARK: - Apikeys
- enum ApiKeys: String, CaseIterable {
+enum ApiKeys: String, CaseIterable {
     case one
     case two
     case three
     case four
     case five
-     
-     var rawValue: String {
-         switch self {
-         case .one:
-             return ProcessInfo.processInfo.environment["KEY_ONE"] ?? ""
-         case .two:
-             return ProcessInfo.processInfo.environment["KEY_TWO"] ?? ""
-         case .three:
-             return ProcessInfo.processInfo.environment["KEY_THREE"] ?? ""
-         case .four:
-             return ProcessInfo.processInfo.environment["KEY_FOUR"] ?? ""
-         case .five:
-             return ProcessInfo.processInfo.environment["KEY_FIVE"] ?? ""
-         }
-     }
+    case six
+    case seven
+    
+    var rawValue: String {
+        switch self {
+        case .one:
+            return ProcessInfo.processInfo.environment["KEY_ONE"] ?? ""
+        case .two:
+            return ProcessInfo.processInfo.environment["KEY_TWO"] ?? ""
+        case .three:
+            return ProcessInfo.processInfo.environment["KEY_THREE"] ?? ""
+        case .four:
+            return ProcessInfo.processInfo.environment["KEY_FOUR"] ?? ""
+        case .five:
+            return ProcessInfo.processInfo.environment["KEY_FIVE"] ?? ""
+        case .six:
+            return ProcessInfo.processInfo.environment["KEY_SIX"] ?? ""
+        case .seven:
+            return ProcessInfo.processInfo.environment["KEY_SEVEN"] ?? ""
+        }
+    }
 }
 
 // MARK: - Methods
- enum HTTPMethod: String {
+enum HTTPMethod: String {
     case GET, POST
 }
 
@@ -43,7 +49,7 @@ enum HTTPClientError: Error, LocalizedError {
     case badParametrSerialization
     case badDecode
     case deadApiKey
-
+    
     var errorDescription: String? {
         switch self {
         case .badURL:
@@ -69,7 +75,7 @@ protocol HTTPClient {
     var headers: [String: String]? { get }
     var parameters: [String: String]? { get }
     var data: Data? { get }
-
+    
     func request<T: Codable>(type: T.Type, completion: @escaping (Result<T, HTTPClientError>) -> Void)
 }
 
@@ -80,16 +86,16 @@ extension HTTPClient {
             return
         }
         print(url)
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         request.cachePolicy = .reloadIgnoringLocalCacheData
-
+        
         if let data = data {
             let boundary = UUID().uuidString
             var requestData = Data()
-
+            
             if let parameters = parameters {
                 for (key, value) in parameters {
                     requestData.append("--\(boundary)\r\n".data(using: .utf8)!)
@@ -97,7 +103,7 @@ extension HTTPClient {
                     requestData.append("\(value)\r\n".data(using: .utf8)!)
                 }
             }
-
+            
             requestData.append("--\(boundary)\r\n".data(using: .utf8)!)
             requestData.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
             requestData.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
@@ -107,14 +113,14 @@ extension HTTPClient {
             request.httpBody = requestData
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         }
-
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             if let error = error {
                 completion(.failure(.badDataTask))
                 return
             }
-
+            
             if let httpResponse = response as? HTTPURLResponse {
                 switch httpResponse.statusCode {
                 case 402:
@@ -124,7 +130,7 @@ extension HTTPClient {
                     break
                 }
             }
-
+            
             if let data = data {
                 do {
                     completion(.success(try JSONDecoder().decode(type, from: data)))
@@ -136,7 +142,7 @@ extension HTTPClient {
                 completion(.failure(.badDataTask))
             }
         }
-
+        
         dataTask.resume()
     }
 }
