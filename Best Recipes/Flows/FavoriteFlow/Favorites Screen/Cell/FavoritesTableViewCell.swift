@@ -8,9 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol FavoritesTableViewCellDelegate: AnyObject {
+    func didTapBookmarkButton(in cell: FavoritesTableViewCell)
+}
+
 final class FavoritesTableViewCell: UITableViewCell {
     
     static let identifier = FavoritesTableViewCell.description()
+    weak var delegate: FavoritesTableViewCellDelegate?
     
     // MARK: - Property Cell
     
@@ -40,7 +45,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         return label
     }()
     
-//    райтинг
+    //    райтинг
     private lazy var raitingContainer: UIView = {
         let viewConteiner = UIView()
         viewConteiner.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.7)
@@ -57,7 +62,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         return label
     }()
     
-//    кухня
+    //    кухня
     private lazy var conteinerView: UIView = {
         let viewConteiner = UIView()
         viewConteiner.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +98,7 @@ final class FavoritesTableViewCell: UITableViewCell {
             conteinerView
         ].forEach{ contentView.addSubview($0)}
         
-//        рейтинг рецепта
+        //        рейтинг рецепта
         raitingContainer.addSubview(raitingLabel)
         
         //        картинка кухни и подпись под изображением
@@ -107,32 +112,29 @@ final class FavoritesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+    }
+    
     func configure(with recipe: RecipeModel) {
         
         if let url = URL(string: recipe.image) {
             recipesImageView.kf.setImage(with: url)
         }
         descriptionLabel.text = recipe.title
-        
         cuisineImageView.image = UIImage(named: "cuisine")
+        cuisineLabel.text = recipe.cuisines.first ?? "World cuisine"
         
-        if !recipe.cuisines.isEmpty {
-            cuisineLabel.text = recipe.cuisines[0]
-        } else {
-            cuisineLabel.text = "World cuisine"
-        }
-        
-//        звезда из системного символа
-        var raitingScore: String {
-            let value = 5 * recipe.score / 100
-            return String(format: "%0.1f", value)
-        }
+        // Star rating
+        let raitingScore: String = String(format: "%0.1f", 5 * recipe.score / 100)
         raitingLabel.attributedText = charactersToString(character: "star.fill", text: " \(raitingScore)", size: 12)
     }
     
     @objc private func addBookmark() {
-//        let loadData = StorageRecipe.shared.getRecipe()
-//        print("Add or Remove from bookmarsks, loadData \(loadData)")
+        // Отправка уведомления для изменения цвета bookmarkImageView в TrendsCollectionViewCell
+        NotificationCenter.default.post(name: NSNotification.Name("Bookmark Tapped"), object: nil)
+        delegate?.didTapBookmarkButton(in: self)
     }
     
     // MARK: - Constraints
