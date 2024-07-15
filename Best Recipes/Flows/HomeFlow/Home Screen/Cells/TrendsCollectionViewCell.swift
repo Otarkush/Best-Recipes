@@ -22,6 +22,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -104,13 +105,14 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
         setupBindings()
+        setupNotificationObserver()
     }
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         setupBindings()
-        bookmarkView.tintColor = .gray
+        updateBookmarkImageView()
     }
     
     required init?(coder: NSCoder) {
@@ -127,6 +129,7 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         titleLabel.text = recipe.title?.capitalized
         authorNameLabel.text = "By \(recipe.sourceName ?? "")"
         rateLabel.text = "4,8"
+        bookmarkImageView.tintColor = StorageRecipe.shared.getRecipes().contains(where: {  $0.id == recipe.id }) ? .red : .gray
     }
     
     private func setupBindings() {
@@ -134,14 +137,12 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
             .tapGesture()
             .when(.recognized)
             .map { _ in }
-            .bind(onNext: { [weak self] _ in
-                self?.onSave.accept(())
-                self?.bookmarkImageView.tintColor = self?.bookmarkImageView.tintColor
-                == .red
-                ? .gray
-                : .red
+            .bind(onNext: { [unowned self] _ in
+               onSave.accept(())
+                updateBookmarkImageView()
             })
             .disposed(by: disposeBag)
+        
         
         recipeImageView.rx
             .tapGesture()
@@ -153,6 +154,18 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBookmarkImageView), name: NSNotification.Name("Bookmark Tapped"), object: nil)
+    }
+    
+    @objc private func updateBookmarkImageView() {
+        if let recipe = recipe, StorageRecipe.shared.getRecipes().contains(where: {  $0.id == recipe.id }) {
+            bookmarkImageView.tintColor = .red
+        } else {
+            bookmarkImageView.tintColor = .gray
+        }
     }
 }
 
