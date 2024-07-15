@@ -17,9 +17,14 @@ class StorageRecipe {
     }
     
     func saveRecipe(_ recipe: Recipe) {
-        recipes.append(recipe)
-        saveRecipes()
-        print(recipes.count)
+        if recipes.contains(where: { $0.id == recipe.id }) {
+            print("Рецепт уже добавлен")
+            removeRecipe(recipe)
+        } else {
+            recipes.append(recipe)
+            saveRecipes()
+            print(recipes.count)
+        }
     }
     
     func removeRecipe(_ recipe: Recipe) {

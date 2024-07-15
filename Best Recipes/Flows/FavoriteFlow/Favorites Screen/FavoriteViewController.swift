@@ -16,9 +16,7 @@ final class FavoritesViewController: UIViewController {
     
     // MARK: - temp properties
     
-    
     private var recipes: [RecipeModel] = []
-    
     
     // MARK: - Life Cycle
     
@@ -64,6 +62,7 @@ extension FavoritesViewController: RequestRecipeDelegate {
             self.favoritesView.favoriteTableView.reloadData()
         }
     }
+    
     func didFailWithError(error: Error) {
         print("We have parse error: \(error)")
     }
