@@ -127,6 +127,8 @@ final class FavoritesTableViewCell: UITableViewCell {
     }
     
     @objc private func addBookmark() {
+        // Отправка уведомления для изменения цвета bookmarkImageView в TrendsCollectionViewCell
+        NotificationCenter.default.post(name: NSNotification.Name("Bookmark Tapped"), object: nil)
         delegate?.didTapBookmarkButton(in: self)
     }
     

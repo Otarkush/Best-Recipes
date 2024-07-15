@@ -102,12 +102,13 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
         setupBindings()
+        setupNotificationObserver()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = .init()
-        bookmarkView.tintColor = .gray
+        bookmarkImageView.tintColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -139,6 +140,14 @@ final class TrendsCollectionViewCell: UICollectionViewCell {
             })
             .disposed(by: disposeBag)
         
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBookmarkImageView), name: NSNotification.Name("Bookmark Tapped"), object: nil)
+    }
+    
+    @objc private func updateBookmarkImageView() {
+        bookmarkImageView.tintColor = .gray
     }
 }
 
